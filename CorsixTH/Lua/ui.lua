@@ -1029,6 +1029,11 @@ function UI:addWindow(window)
     end
     self.modal_windows[window.modal_class] = window
   end
+  local winClass = class.type(window)
+  print(winClass .. " add")
+  if winClass == "UIFax" or winClass == "UIStaffRise" or winClass == "UIAnnualReport" then
+    self.app.world:setSpeed("Pause")
+  end
   if window.modal_class == "main" or window.modal_class == "fullscreen" then
     self.editing_allowed = false -- do not allow editing rooms if main windows (build, furnish, hire) are open
   end
@@ -1037,9 +1042,16 @@ end
 
 function UI:removeWindow(window)
   if Window.removeWindow(self, window) then
+    local winClass = class.type(window)
+    print(winClass .. " rem")
     local class = window.modal_class
     if class and self.modal_windows[class] == window then
       self.modal_windows[class] = nil
+    end
+    if winClass == "UIFax" or winClass == "UIStaffRise" or winClass == "UIAnnualReport" then
+      if self.app.world:isCurrentSpeed("Pause") and self.app.world and #self:getWindows(UIFax) == 0 and #self:getWindows(UIStaffRise) == 0 and #self:getWindows(UIAnnualReport) == 0 then
+        self.app.world:setSpeed(self.app.world.prev_speed)
+      end
     end
     if window.modal_class == "main" or window.modal_class == "fullscreen" then
       self.editing_allowed = true -- allow editing rooms again when main window is closed
