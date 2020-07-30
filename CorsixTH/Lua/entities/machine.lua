@@ -150,7 +150,24 @@ function Machine:machineUsed(room)
       local call = self.world.dispatcher:callForRepair(self, true, false, true)
       self.hospital:addHandymanTask(self, "repairing", 2, self.tile_x, self.tile_y, call)
     else -- Otherwise the task is already queued. Increase the priority to above that of machines with at least 4 uses left
-      self.hospital:modifyHandymanTaskPriority(taskIndex, 2, "repairing")
+      local subTable = self.hospital:findHandymanTaskSubtable("repairing")
+      -- Alert player a machine is now close to exploding
+      local sound = room.room_info.handyman_call_sound
+      local earthquake = self.world.next_earthquake
+      if sound and subTable[taskIndex].priority == 1 then
+        -- If an earthquake is happening limit the amount of machine warnings
+        if earthquake.active and earthquake.warning_timer == 0 then
+          if not earthquake.machwarn_trigger then
+            self.world.ui:playAnnouncement("machwarn.wav", AnnouncementPriority.Critical)
+            earthquake.machwarn_trigger = true -- resets with each damage phase
+          end
+        else
+          -- must be same priority
+          self.world.ui:playAnnouncement("machwarn.wav", AnnouncementPriority.Critical)
+          self.world.ui:playAnnouncement(sound, AnnouncementPriority.Critical)
+        end
+        self.hospital:modifyHandymanTaskPriority(taskIndex, 2, "repairing")
+      end
     end
   -- Else if repair is needed, but not urgently
   elseif threshold < 6 then
