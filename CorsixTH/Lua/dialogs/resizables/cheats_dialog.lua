@@ -132,7 +132,7 @@ function UICheats:buttonBack()
 end
 
 function UICheats:afterLoad(old, new)
-  if old < 141 then
+  if old < 144 then
     -- Window must be closed if open for compatibility
     local cheatWindow = self.ui:getWindow(UICheats)
     if cheatWindow then
