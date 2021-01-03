@@ -110,7 +110,7 @@ end
 -- W113: accessing undefined variable XYZ
 -- W314: value assigned to field XYZ is unused
 for _, lng in ipairs({"brazilian_portuguese", "czech", "danish", "developer",
-    "dutch", "english", "finnish", "french", "german", "hungarian",
+    "dutch", "english", "finnish", "french", "german", "greek", "hungarian",
     "iberic_portuguese", "italian", "korean", "norwegian", "original_strings",
     "polish", "russian", "simplified_chinese", "spanish", "swedish",
     "traditional_chinese"}) do
@@ -240,3 +240,4 @@ add_ignore("CorsixTH/Lua/world.lua", "212")
 add_ignore("CorsixTH/Lua/world.lua", "542")
 add_ignore("CorsixTH/Luatest/non_strict.lua", "212")
 add_ignore("CorsixTH/Luatest/spec/utility_spec.lua", "121")
+add_ignore("CorsixTH/CorsixTH.lua", "143") -- luacheck is missing 5.4 debug functions

@@ -251,7 +251,7 @@ moods("cold",           3994,       0,       true) -- These have no priority sin
 moods("hot",            3988,       0,       true) -- they will be shown when hovering
 moods("queue",          4568,      70)             -- no matter what other priorities.
 moods("poo",            3996,       5)
-moods("sad_money",      4018,      50)
+moods("sad_money",      4018,      55)
 moods("patient_wait",   5006,      40)
 moods("epidemy1",       4566,      55)
 moods("epidemy2",       4570,      55)
@@ -492,8 +492,6 @@ local function Humanoid_startAction(self)
     elseif class.is(self, Staff) then
       ui:addWindow(UIStaff(ui, self))
     end
-    -- Pause the game.
-    self.world:setSpeed("Pause")
 
     -- Tell the player what just happened.
     self.world:gameLog("")

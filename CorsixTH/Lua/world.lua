@@ -116,13 +116,14 @@ function World:World(app)
     self.free_build_mode = false
   else
     self.free_build_mode = app.config.free_build_mode
-    self.debug_disable_salary_raise = self.free_build_mode
   end
 
-  self.debug_disable_salary_raise = false
+  -- If set, do not create salary raise requests.
+  self.debug_disable_salary_raise = self.free_build_mode
   self.idle_cache = {}
   -- List of which goal criterion means what, and what number the corresponding icon has.
   self.level_criteria = local_criteria_variable
+  self.delayed_map_objects = {} -- Initial objects in the map for parcels without owner.
   self.room_remove_callbacks = {--[[a set rather than a list]]}
   self.room_built = {} -- List of room types that have been built
   self.hospitals = {}
@@ -670,6 +671,8 @@ function World:tickEarthquake()
   end
 end
 
+--! Enable or disable salary raise events.
+--!param mode (boolean) If true, do not create salary raise events.
 function World:debugDisableSalaryRaise(mode)
   self.debug_disable_salary_raise = mode
 end
@@ -723,30 +726,44 @@ function World:getObjectToNotifyOfOccupants(x, y)
   return self.objects_notify_occupants[idx]
 end
 
-local flag_cache = {}
+--! Place objects from a map file onto the map.
+--!param objects Objects to place.
 function World:createMapObjects(objects)
   self.delayed_map_objects = {}
+
+  for _, object in ipairs(objects) do
+    self:_createMapObject(object)
+  end
+end
+
+local flag_cache = {}
+--! Internal function for placing an object from the map file.
+--!param object Object to place.
+function World:_createMapObject(object)
+  local x, y, thob, flags = unpack(object)
+  local object_id = self.object_id_by_thob[thob]
+  if not object_id then
+    print("Warning: Map contained object with unrecognised THOB (" .. thob
+        .. ") at " .. x .. "," .. y)
+    return
+  end
+
+  local object_type = self.object_types[object_id]
+  if not object_type or not object_type.supports_creation_for_map then
+    print("Warning: Unable to create map object " .. object_id .. " at "
+        .. x .. "," .. y)
+    return
+  end
+
   local map = self.map.th
-  for _, object in ipairs(objects) do repeat
-    local x, y, thob, flags = unpack(object)
-    local object_id = self.object_id_by_thob[thob]
-    if not object_id then
-      print("Warning: Map contained object with unrecognised THOB (" .. thob .. ") at " .. x .. "," .. y)
-      break -- continue
-    end
-    local object_type = self.object_types[object_id]
-    if not object_type or not object_type.supports_creation_for_map then
-      print("Warning: Unable to create map object " .. object_id .. " at " .. x .. "," .. y)
-      break -- continue
-    end
+  local parcel = map:getCellFlags(x, y, flag_cache).parcelId
+  if parcel ~= 0 and map:getPlotOwner(parcel) == 0 then
     -- Delay making objects which are on plots which haven't been purchased yet
-    local parcel = map:getCellFlags(x, y, flag_cache).parcelId
-    if parcel ~= 0 and map:getPlotOwner(parcel) == 0 then
-      self.delayed_map_objects[{object_id, x, y, flags, "map object"}] = parcel
-    else
-      self:newObject(object_id, x, y, flags, "map object")
-    end
-  until true end
+    self.delayed_map_objects[{object_id, x, y, flags, "map object"}] = parcel
+
+  else
+    self:newObject(object_id, x, y, flags, "map object")
+  end
 end
 
 --! Change owner of a plot.
@@ -1082,6 +1099,7 @@ end
 
 -- Called immediately prior to the ingame day changing.
 function World:onEndDay()
+  local local_hospital = self:getLocalPlayerHospital()
   for _, entity in ipairs(self.entities) do
     if entity.ticks and class.is(entity, Humanoid) then
       self.current_tick_entity = entity
@@ -1094,8 +1112,8 @@ function World:onEndDay()
 
   --check if it's time for a VIP visit
   if self.game_date:isSameDay(self.next_vip_date) then
-    if #self.rooms > 0 and self.ui.hospital:hasStaffedDesk() then
-      self.hospitals[1]:createVip()
+    if #self.rooms > 0 and local_hospital:hasStaffedDesk() then
+      local_hospital:createVip()
     else
       self.next_vip_date = self:_generateNextVipDate()
     end
@@ -1121,7 +1139,7 @@ function World:onEndDay()
       local control = self.map.level_config.emergency_control
       if control[0].Mean or control[0].Random then
         -- The level uses random emergencies, so just create one.
-        self.hospitals[1]:createEmergency()
+        local_hospital:createEmergency()
       else
         control = control[self.next_emergency_no]
         -- Find out which disease the emergency patients have.
@@ -1134,7 +1152,7 @@ function World:onEndDay()
         end
         if not disease then
           -- Unknown disease! Create a random one instead.
-          self.hospitals[1]:createEmergency()
+          local_hospital:createEmergency()
         else
           local emergency = {
             disease = disease,
@@ -1144,7 +1162,7 @@ function World:onEndDay()
             killed_emergency_patients = 0,
             cured_emergency_patients = 0,
           }
-          self.hospitals[1]:createEmergency(emergency)
+          local_hospital:createEmergency(emergency)
         end
       end
     end
@@ -1174,16 +1192,6 @@ end
 -- Called immediately prior to the ingame month changing.
 -- returns true if the game was killed due to the player losing
 function World:onEndMonth()
-  -- Check if a player has won the level if the year hasn't ended, if it has the
-  -- annual report window will perform this check when it has been closed.
-
-  -- TODO.... this is a step closer to the way TH would check.
-  -- What is missing is that if offer is declined then the next check should be
-  -- either 6 months later or at the end of month 12 and then every 6 months
-  if self.game_date:monthOfYear() % 3 == 0 and self.game_date:monthOfYear() < 12 then
-    self:checkIfGameWon()
-  end
-
   local local_hospital = self:getLocalPlayerHospital()
   local_hospital.population = 0.25
   if self.game_date:monthOfGame() >= self.map.level_config.gbv.AllocDelay then
@@ -1476,7 +1484,8 @@ end
 function World:getCampaignWinningText(player_no)
   local text = {}
   local choice_text, choice
-  local repeated_offer = false -- TODO whether player was asked previously to advance and declined
+  local hosp = self:getLocalPlayerHospital()
+  local repeated_offer = hosp.win_declined
   local has_next = false
   if type(self.map.level_number) == "number" then
     local no = tonumber(self.map.level_number)
@@ -1878,20 +1887,26 @@ end
 --! Creates a new object by finding the object_type from the "id" variable and
 --  calls its class constructor.
 --!param id (string) The unique id of the object to be created.
+--!param x X position of the new object.
+--!param y Y position of the new object.
+--!param flags Flags of the new object.
+--!param name Name of the new object.
 --!return The created object.
-function World:newObject(id, ...)
+function World:newObject(id, x, y, flags, name)
   local object_type = self.object_types[id]
+  local hospital = self:getLocalPlayerHospital()
+
   local entity
   if object_type.class then
-    entity = _G[object_type.class](self, object_type, ...)
+    entity = _G[object_type.class](hospital, object_type, x, y, flags, name)
   elseif object_type.default_strength then
-    entity = Machine(self, object_type, ...)
+    entity = Machine(hospital, object_type, x, y, flags, name)
     -- Tell the player if there is no handyman to take care of the new machinery.
     if self.hospitals[1]:countStaffOfCategory("Handyman") == 0 then
       self.ui.adviser:say(_A.staff_advice.need_handyman_machines)
     end
   else
-    entity = Object(self, object_type, ...)
+    entity = Object(hospital, object_type, x, y, flags, name)
   end
   self:objectPlaced(entity, id)
   return entity

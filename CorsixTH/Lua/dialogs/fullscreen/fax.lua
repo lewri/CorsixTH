@@ -178,7 +178,7 @@ function UIFax:choice(choice_number)
   end
   local vip_ignores_refusal = math.random(1, 2)
   if choice == "accept_emergency" then
-    self.ui.app.world:newObject("helicopter", self.ui.hospital, "north")
+    self.ui.app.world:newObject("helicopter", "north")
     self.ui:addWindow(UIWatch(self.ui, "emergency"))
     self.ui:playAnnouncement(self.ui.hospital.emergency.disease.emergency_sound, AnnouncementPriority.Critical)
     self.ui.adviser:say(_A.information.emergency)
@@ -226,6 +226,8 @@ function UIFax:choice(choice_number)
   elseif choice == "return_to_main_menu" then
     self.ui.app.moviePlayer:playWinMovie()
     self.ui.app:loadMainMenu()
+  elseif choice == "stay_on_level" then
+    self.ui.hospital.win_declined = true
   end
   self.icon:removeMessage()
   self:close()

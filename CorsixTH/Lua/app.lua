@@ -28,7 +28,7 @@ local runDebugger = corsixth.require("run_debugger")
 -- Increment each time a savegame break would occur
 -- and add compatibility code in afterLoad functions
 
-local SAVEGAME_VERSION = 144
+local SAVEGAME_VERSION = 151
 
 class "App"
 
@@ -1050,6 +1050,7 @@ function App:run()
   local e, where = SDL.mainloop(co)
   debug.sethook(co, nil)
   self.running = false
+  self.video:setCaptureMouse(false) -- Free the mouse, so the user can eg close the window.
   if e ~= nil then
     if where then
       -- Errors from an asynchronous callback done on the dispatcher coroutine

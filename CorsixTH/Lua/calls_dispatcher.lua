@@ -121,12 +121,6 @@ function CallsDispatcher:callForRepair(object, urgent, manual, lock_room)
   end
 
   if not manual and urgent then
-    local room = object:getRoom()
-    local sound = room.room_info.handyman_call_sound
-    if sound then
-      ui:playAnnouncement(sound, AnnouncementPriority.High)
-      ui:playSound("machwarn.wav")
-    end
     message = _A.warnings.machines_falling_apart
   end
   if message then
@@ -523,7 +517,7 @@ function CallsDispatcher.getPriorityForRoom(room, attribute, staff)
     end
   end
 
-  -- Prefer the tirer staff (such that less chance to have "resting sychronization issue")
+  -- Prefer the tirer staff (such that less chance to have "resting synchronization issue")
   score = score - staff.attributes["fatigue"] * 40 -- 40 is just a weighting scale
 
   -- TODO: Assign doctor with higher ability
