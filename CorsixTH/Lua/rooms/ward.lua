@@ -76,7 +76,7 @@ function WardRoom:roomFinished()
     Nurse = desks,
   }
   self.maximum_patients = beds
-  if self.hospital:countStaffOfCategory("Nurse") == 0 then
+  if self.hospital:countStaffOfCategory("Nurse", 1) == 0 then
     self.world.ui.adviser:say(_A.room_requirements.ward_need_nurse)
   end
   Room.roomFinished(self)
@@ -154,23 +154,6 @@ function WardRoom:commandEnteringPatient(patient)
   end
 
   return Room.commandEnteringPatient(self, patient)
-end
-
--- Returns the staff member with the minimum amount of skill. Perhaps we should consider tiredness too
-function WardRoom:getStaffMember()
-  local staff
-  for staff_member, _ in pairs(self.staff_member_set) do
-    if staff and not staff_member.fired and not staff_member:hasLeavingAction() then
-      if staff.profile.skill > staff_member.profile.skill then
-        staff = staff_member
-      end
-    else
-      if not staff_member.fired and not staff_member:hasLeavingAction() then
-        staff = staff_member
-      end
-    end
-  end
-  return staff
 end
 
 function WardRoom:setStaffMember(staff)

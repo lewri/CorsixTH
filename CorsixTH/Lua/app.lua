@@ -28,7 +28,7 @@ local runDebugger = corsixth.require("run_debugger")
 -- Increment each time a savegame break would occur
 -- and add compatibility code in afterLoad functions
 
-local SAVEGAME_VERSION = 151
+local SAVEGAME_VERSION = 155
 
 class "App"
 
@@ -138,6 +138,11 @@ function App:init()
       print("Warning: Compiled binary is out of date. CorsixTH will likely" ..
       " fail to run until you recompile the binary.")
     end
+  end
+
+  -- Report operating system
+  if compile_opts.os then
+    self.os = compile_opts.os
   end
 
   local modes = {}
@@ -621,22 +626,7 @@ function App:loadLevel(level, difficulty, level_name, level_file, level_intro, m
     return
   end
   -- If going from another level, save progress.
-  local carry_to_next_level
-  if self.world and self.world.campaign_info then
-    carry_to_next_level = {
-      world = {
-        room_built = self.world.room_built,
-        campaign_info = self.world.campaign_info,
-        },
-      hospital = {
-        player_salary = self.ui.hospital.player_salary,
-        message_popup = self.ui.hospital.message_popup,
-        handyman_popup = self.ui.hospital.handyman_popup,
-        hospital_littered = self.ui.hospital.hospital_littered,
-        has_seen_pay_rise = self.ui.hospital.has_seen_pay_rise,
-      },
-    }
-  end
+  local campaign_data = self.world and self.world:getCampaignData()
 
   -- Make sure there is no blue filter active.
   self.video:setBlueFilterActive(false)
@@ -663,8 +653,8 @@ function App:loadLevel(level, difficulty, level_name, level_file, level_intro, m
   self.world:setUI(self.ui) -- Function call allows world to set up its keyHandlers
 
   -- Now restore progress from previous levels.
-  if carry_to_next_level then
-    self.world:initFromPreviousLevel(carry_to_next_level)
+  if campaign_data then
+    self.world:setCampaignData(campaign_data)
   end
 end
 
@@ -864,7 +854,8 @@ end
 
 function App:saveConfig()
   -- Load lines from config file
-  local fi = io.open(self.command_line["config-file"] or "config.txt", "r")
+  local config_file = self.command_line["config-file"] or "config.txt"
+  local fi = io.open(config_file, "r")
   local lines = {}
   local handled_ids = {}
   if fi then
@@ -915,11 +906,26 @@ function App:saveConfig()
     lines[#lines] = nil
   end
 
-  fi = io.open(self.command_line["config-file"] or "config.txt", "w")
+  fi = self:writeToFileOrTmp(config_file)
   for _, line in ipairs(lines) do
     fi:write(line .. "\n")
   end
   fi:close()
+end
+
+--! Tries to open the given file or a file in OS's temp dir.
+-- Returns the file handler
+--!param file The full path of the intended file
+function App:writeToFileOrTmp(file)
+  local f, err = io.open(file, "w")
+  if err then
+    local tmp_file = os.tmpname()
+    f = io.open(tmp_file, "w")
+    self.ui:addWindow(UIInformation(self.ui,
+        {_S.errors.save_to_tmp:format(file, tmp_file, err)}))
+  end
+  assert(f, "Error: cannot write to filesystem")
+  return f
 end
 
 function App:fixHotkeys()
@@ -945,7 +951,8 @@ end
 
 function App:saveHotkeys()
   -- Load lines from config file
-  local fi = io.open(self.command_line["hotkeys-file"] or "hotkeys.txt", "r")
+  local hotkeys_filename = self.command_line["hotkeys-file"] or "hotkeys.txt"
+  local fi = io.open(hotkeys_filename, "r")
   local lines = {}
   local handled_ids = {}
 
@@ -999,7 +1006,7 @@ function App:saveHotkeys()
     lines[#lines] = nil
   end
 
-  fi = io.open(self.command_line["hotkeys-file"] or "hotkeys.txt", "w")
+  fi = self:writeToFileOrTmp(hotkeys_filename)
   for _, line in ipairs(lines) do
     fi:write(line .. "\n")
   end
@@ -1241,13 +1248,18 @@ function App:checkInstallFolder()
       " as said files are required for graphics and sounds."
   if not status then
     -- Table of predictable places. First three are platform independent,
-    -- then macOS GOG bundle, then linux Filesystem Hierarchy Standard, then Windows
-    local possible_locations = { os.getenv( "HOME" ), os.getenv( "HOME" ) .. pathsep ..  "Documents",
+    -- then macOS app and its parent folder, GOG bundle,
+    -- then linux Filesystem Hierarchy Standard, then Windows Program Files
+    -- mac_app_dir is the macOS app base directory named CorsixTH.app
+    local mac_app_dir = debug.getinfo(1).short_src:match("(.*)/Contents/.")
+    local user_dir = os.getenv("HOME") or os.getenv("HOMEPATH") or ""
+    local possible_locations = { user_dir, user_dir .. pathsep ..  "Documents",
       select(1, corsixth.require("config_finder")):match("(.*[/\\])"):sub(1, -2),
+      mac_app_dir, mac_app_dir and mac_app_dir:match("(.*)/.*%.app"),
       "/Applications/Theme Hospital.app/Contents/Resources/game/Theme Hospital.app/" ..
         "Contents/Resources/Theme Hospital.boxer/C.harddisk",
       "/usr/share/games/corsix-th", "/usr/local/share/games/corsix-th",
-      os.getenv("%ProgramFiles%"), os.getenv("%ProgramFiles(x86)%") }
+      os.getenv("ProgramFiles"), os.getenv("ProgramFiles(x86)") }
     local possible_folders = { "ThemeHospital", "Theme Hospital", "HOSP", "TH97",
       [[GOG.com\Theme Hospital]], [[Origin Games\Theme Hospital\data\Game]] }
     for _, dir in ipairs(possible_locations) do
@@ -1268,7 +1280,7 @@ function App:checkInstallFolder()
       -- been changed at all from the default, and we looked unsuccessfully in
       -- some likely folders for the game data, so we continue to initialise the
       -- app, and give the user a dialog asking for the correct directory.
-	  return false
+      return false
     end
   end
 
@@ -1513,6 +1525,19 @@ function App:quickLoad()
   end
 end
 
+--! Function to check the loaded game is compatible with the program
+--!param save_version (num)
+--!return true if compatible, otherwise false
+function App:checkCompatibility(save_version)
+  local app_version = self.savegame_version
+  if app_version >= save_version or self.config.debug then
+    return true
+  else
+    UILoadGame:loadError(_S.errors.compatibility_error)
+    return false
+  end
+end
+
 --! Restarts the current level (offers confirmation window first)
 function App:restart()
   assert(self.map, "Trying to restart while no map is loaded.")
@@ -1572,20 +1597,27 @@ function App:afterLoad()
     self.world.original_savegame_version = old
   end
   local first = self.world.original_savegame_version
+
+  -- Generate the human-readable version number (old [loaded save], new [program], first [original])
+  local first_version = first .. " (" .. self:getVersion(first) .. ")"
+  local old_version = old .. " (" .. self:getVersion(old) .. ")"
+  local new_version = new .. " (" .. self:getVersion() .. ")"
+
   if new == old then
-    self.world:gameLog("Savegame version is " .. new .. " (" .. self:getVersion() ..
-        "), originally it was " .. first .. " (" .. self:getVersion(first) .. ")")
+    local msg_same = "Savegame version is %s, originally it was %s."
+    self.world:gameLog(msg_same:format(new_version, first_version))
     self.world:playLoadedEntitySounds()
   elseif new > old then
-    self.world:gameLog("Savegame version changed from " .. old .. " (" .. self:getVersion(old) ..
-                       ") to " .. new .. " (" .. self:getVersion() ..
-                       "). The save was created using " .. first ..
-                       " (" .. self:getVersion(first) .. ")")
-  else
-    -- TODO: This should maybe be forbidden completely.
-    self.world:gameLog("Warning: loaded savegame version " .. old .. " (" .. self:getVersion(old) ..
-                       ")" .. " in older version " .. new .. " (" .. self:getVersion() .. ").")
+    local msg_older = "Savegame changed from %s to %s. The save was created using %s."
+    self.world:gameLog(msg_older:format(old_version, new_version, first_version))
+  else -- Save is newer than the game and can only proceed in debug mode
+    local get_old_release_version = self.world.release_version or "Trunk" -- For compatibility
+    old_version = old .. " (" .. get_old_release_version .. ")"
+    local msg_newer = "Warning: loaded savegame version %s in older version %s."
+    self.world:gameLog(msg_newer:format(old_version, new_version))
+    self.ui:addWindow(UIInformation(self.ui, {_S.warnings.newersave}))
   end
+  self.world.release_version = self:getVersion()
   self.world.savegame_version = new
 
   if old < 87 then
@@ -1614,11 +1646,11 @@ function App:checkForUpdates()
 
   -- Default language to use for the changelog if no localised version is available
   local default_language = "en"
-  local update_url = 'www.corsixth.com/check-for-updates'
+  local update_url = 'https://corsixth.github.io/CorsixTH/check-for-updates'
   local current_version = self:getVersion()
 
   -- Only URLs that match this list of trusted domains will be accepted.
-  local trusted_domains = { 'corsixth.com', 'code.google.com' }
+  local trusted_domains = { 'corsixth.com', 'github.com', 'corsixth.github.io' }
 
   -- Only check for updates against released versions
   if current_version == "Trunk" then
@@ -1626,25 +1658,14 @@ function App:checkForUpdates()
     return
   end
 
-  local success, _ = pcall(require, "socket")
-
-  if not success then
-    -- LuaSocket is not available, just return
-    print("Cannot check for updates since LuaSocket is not available.")
+  local luasocket, _ = pcall(require, "socket")
+  local luasec, _ = pcall(require, "ssl.https")
+  if not (luasocket and luasec) then
+    print("Cannot check for updates since LuaSocket and/or LuaSec are not available.")
     return
-  else
-    self.lua_socket_available = true
   end
   local http = require("socket.http")
   local url = require("socket.url")
-
-  -- Safely attempt to use luasec
-  local hassec, _ = pcall(require, "ssl.https")
-  if hassec then
-    update_url = "https://" .. update_url
-  else
-    update_url = "http://" .. update_url
-  end
 
   print("Checking for CorsixTH updates...")
   local update_body, status, _ = http.request(update_url)
@@ -1704,6 +1725,10 @@ function App:finishVideoUpdate()
   self.moviePlayer:updateRenderer()
   self.moviePlayer:allocatePictureBuffer()
   self.video:startFrame()
+end
+
+function App:isAudioEnabled()
+  return TH.GetCompileOptions().audio
 end
 
 -- Do not remove, for savegame compatibility < r1891

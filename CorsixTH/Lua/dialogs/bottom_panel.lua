@@ -142,7 +142,9 @@ function UIBottomPanel:registerKeyHandlers()
 end
 
 function UIBottomPanel:openJukebox()
-  self.ui:addWindow(UIJukebox(self.ui.app))
+  if self.ui.app.config.audio and self.ui.app:isAudioEnabled() then
+    self.ui:addWindow(UIJukebox(self.ui.app))
+  end
 end
 
 function UIBottomPanel:openSave()
@@ -484,6 +486,7 @@ function UIBottomPanel:createMessageWindow(index)
   if not message_info then
     return
   end
+  -- Create the message window, note this does not show it to the player on creation.
   local alert_window = UIMessage(self.ui, 175, 1 + #message_windows * 30,
     onClose, message_info.type, message_info.message, message_info.owner, message_info.timeout, message_info.default_choice, message_info.callback)
   message_windows[#message_windows + 1] = alert_window

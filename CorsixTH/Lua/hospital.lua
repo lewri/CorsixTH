@@ -31,19 +31,21 @@ function Hospital:Hospital(world, avail_rooms, name)
   self.world = world
   local level_config = world.map.level_config
   local level = world.map.level_number
-  local balance = 40000
-  local interest_rate = 0.01
-  if level_config then
-    if level_config.towns and level_config.towns[level] then
-      balance = level_config.towns[level].StartCash
-      interest_rate = level_config.towns[level].InterestRate / 10000
-    elseif level_config.town then
-      balance = level_config.town.StartCash
-      interest_rate = level_config.town.InterestRate / 10000
-    end
+  local balance, interest_rate_numerator, reputation, overdraft_differential_numerator
+
+  if level_config.towns and level_config.towns[level] then
+    balance = level_config.towns[level].StartCash
+    interest_rate_numerator = level_config.towns[level].InterestRate
+    reputation = level_config.towns[level].StartRep
+    overdraft_differential_numerator = level_config.towns[level].OverdraftDiff
+  elseif level_config.town then
+    balance = level_config.town.StartCash
+    interest_rate_numerator = level_config.town.InterestRate
+    reputation = level_config.town.StartRep
+    overdraft_differential_numerator = level_config.town.OverdraftDiff
   end
+
   self.name = name or "PLAYER"
-  -- TODO: Variate initial reputation etc based on level
   -- When playing in free build mode you don't care about money.
   self.balance = not world.free_build_mode and balance or 0
   self.loan = 0
@@ -78,13 +80,14 @@ function Hospital:Hospital(world, avail_rooms, name)
   self.concurrent_epidemic_limit = level_config.gbv.EpidemicConcurrentLimit or 1
 
   -- Initial values
-  self.interest_rate = interest_rate
+  self.interest_rate = interest_rate_numerator / 10000
   self.inflation_rate = 0.045
+  self.overdraft_interest_rate = self.interest_rate + overdraft_differential_numerator / 10000
   self.salary_incr = level_config.gbv.ScoreMaxInc or 300
   self.sal_min = level_config.gbv.ScoreMaxInc / 6 or 50
-  self.reputation = 500
   self.reputation_min = 0
   self.reputation_max = 1000
+  self.reputation = math.min(math.max(reputation, self.reputation_min), self.reputation_max)
 
   local difficulty = self.world.map:getDifficulty()
   -- Price distortion level under which the patients might consider the
@@ -138,7 +141,7 @@ function Hospital:Hospital(world, avail_rooms, name)
       visitors = 0,
       cures = 0,
       deaths = 0,
-      reputation = 500, -- TODO: Always 500 from the beginning?
+      reputation = self.reputation
     }
   }
   self.money_in = 0
@@ -167,14 +170,14 @@ function Hospital:Hospital(world, avail_rooms, name)
   self.policies = {}
   self.discovered_diseases = {} -- a list
 
-  self.discovered_rooms = {} -- a set; keys are the entries of TheApp.rooms, values are true or nil
-  self.undiscovered_rooms = {} -- NB: These two together must form the list world.available_rooms
+  -- Make a table containing available rooms for the level, and its discovery status (room, discovery_status)
+  -- Index is the room's id e.g. gp
+  self.room_discoveries = {}
   for _, avail_room in ipairs(avail_rooms) do
-    if avail_room.is_discovered then
-      self.discovered_rooms[avail_room.room] = true
-    else
-      self.undiscovered_rooms[avail_room.room] = true
-    end
+    self.room_discoveries[avail_room.room.id] = {
+      room = avail_room.room,
+      is_discovered = avail_room.is_discovered or false
+    }
   end
 
   self.policies["staff_allowed_to_move"] = true
@@ -183,18 +186,22 @@ function Hospital:Hospital(world, avail_rooms, name)
   self.policies["stop_procedure"] = 1 -- Note that this is between 1 and 2 ( = 100% - 200%)
   self.policies["goto_staffroom"] = 0.6
   self.policies["grant_wage_increase"] = TheApp.config.grant_wage_increase
-  -- Randomly select three insurance companies to use, only different by name right now.
-  -- The first ones are more likely to come
+
+  -- Semi-randomly select three insurance companies to use, only different by name right now.
+  -- The companies in the first quarter of the list are more likely to be selected
   self.insurance = {}
+  -- Make a local writeable copy table of the translated company names.
+  local companies = {}
   for no, local_name in ipairs(_S.insurance_companies) do
-    -- NOTE: Will not work if more companies are added
-    if math.random(1, 11) < 4 or 11 - no < #self.insurance + 3 then
-      self.insurance[#self.insurance + 1] = local_name
-    end
-    if #self.insurance > 2 then
-      break
-    end
+    companies[no] = local_name
   end
+  while #self.insurance < 3 and #companies > 0 do
+    local num = math.random(1, 2) == 1 and math.random(1, math.ceil(#companies / 4)) or
+        math.random(1, #companies)
+    self.insurance[#self.insurance + 1] = companies[num]
+    table.remove(companies, num)
+  end
+
   -- A list of how much each insurance company owes you. The first entry for
   -- each company is the current month's dept, the second the previous
   -- month and the third the month before that.
@@ -254,6 +261,13 @@ function Hospital:Hospital(world, avail_rooms, name)
         build_cost = not self.free_build_mode and avail_room.build_cost or 0,
       }
   end
+end
+
+--! Checks if a room has been discovered
+--!param room_id (string) The name of the room
+--!return (boolean) true if discovered, otherwise false
+function Hospital:isRoomDiscovered(room_id)
+  return self.room_discoveries[room_id].is_discovered
 end
 
 --! Give the user possibly a message about a cured patient.
@@ -599,6 +613,40 @@ function Hospital:afterLoad(old, new)
   if old < 148 then
     self.msg_counter = nil
   end
+  if old < 152 then
+    -- If old save has an emergency fax, or emergency active, of an undiscovered disease
+    -- make the disease discovered to prevent crashing (see #1754, #1799)
+    local em = self.emergency
+    if em and not self.disease_casebook[em.disease.id].discovered then
+      self.research:discoverDisease(em.disease)
+    end
+  end
+
+  if old < 154 then
+    -- We now use one table for our room discovery
+    self.room_discoveries = {}
+    -- Get the level start available rooms
+    local avail_rooms = self.world:getAvailableRooms()
+    for _, avail_room in ipairs(avail_rooms) do
+      self.room_discoveries[avail_room.room.id] = {
+        room = avail_room.room,
+        is_discovered = avail_room.is_discovered or false
+      }
+    end
+    -- Has the player discovered rooms since?
+    for _, room_new in pairs(self.room_discoveries) do
+      if self.discovered_rooms[room_new.room] then -- old system used rooms as keys
+        room_new.is_discovered = true
+      end
+    end
+    -- Clear old variables
+    self.discovered_rooms = nil
+    self.undiscovered_rooms = nil
+  end
+
+  if old < 155 then
+    self.overdraft_interest_rate = self.interest_rate + 0.02
+  end
 
   -- Update other objects in the hospital (added in version 106).
   if self.epidemic then self.epidemic.afterLoad(old, new) end
@@ -651,7 +699,7 @@ function Hospital:tick()
     -- Wait until there are some patients in the hospital and a room, otherwise you
     -- will wonder who is coughing or who is the receptionist telephoning!
     -- Opted for gp as you can't run the hospital without one.
-    if self:countRoomOfType("gp") > 0 and self:countPatients(3) > 2 then
+    if self:countRoomOfType("gp", 1) > 0 and self:countPatients(3) > 2 then
       local sounds = {
         "ispot001.wav", "ispot002.wav", "ispot003.wav", "ispot004.wav",
         "ispot005.wav", "ispot006.wav", "ispot007.wav", "ispot008.wav",
@@ -861,8 +909,7 @@ function Hospital:onEndDay()
 
   self.show_progress_screen_warnings = math.random(1, 3) -- used in progress report to limit warnings
   if self.balance < 0 then
-    -- TODO: Add the extra interest rate to level configuration.
-    local overdraft_interest = self.interest_rate + 0.02
+    local overdraft_interest = self.overdraft_interest_rate
     local overdraft = math.abs(self.balance)
     local overdraft_payment = (overdraft*overdraft_interest)/365
     self.acc_overdraft = self.acc_overdraft + overdraft_payment
@@ -1076,7 +1123,7 @@ function Hospital:createEmergency(emergency)
 
     local staff_available = self:countStaffOfCategory(required_staff) > 0
     -- Check so that all rooms in the list are available
-    if self:countRoomOfType(emergency.disease.treatment_rooms[no_rooms]) > 0 then
+    if self:countRoomOfType(emergency.disease.treatment_rooms[no_rooms], 1) > 0 then
       room_name = nil
     end
 
@@ -1597,34 +1644,30 @@ end
 --!param category (string) A humanoid_class or one of the specialists, i.e.
 --! "Doctor", "Nurse", "Handyman", "Receptionist", "Psychiatrist",
 --! "Surgeon", "Researcher", "Junior" or "Consultant"
---! returns Number of that type employed
-function Hospital:countStaffOfCategory(category)
+--!param max_count (optional integer) If provided, non-negative maximum count to return.
+--! returns Number of that type employed, at most max_count is returned if provided.
+function Hospital:countStaffOfCategory(category, max_count)
   local result = 0
   for _, staff in ipairs(self.staff) do
-    if staff.humanoid_class == category then
+    if staff:fulfillsCriterion(category) then
       result = result + 1
-    elseif staff.humanoid_class == "Doctor" then
-      if (category == "Psychiatrist" and staff.profile.is_psychiatrist >= 1.0) or
-          (category == "Surgeon" and staff.profile.is_surgeon >= 1.0) or
-          (category == "Researcher" and staff.profile.is_researcher >= 1.0) or
-          (category == "Consultant" and staff.profile.is_consultant) or
-          (category == "Junior" and staff.profile.is_junior) then
-        result = result + 1
-      end
     end
+    if max_count ~= nil and result >= max_count then break end
   end
   return result
 end
 
 --! Checks if the hospital has a room of a given type.
 --!param type (string) A room_info.id, e.g. "ward".
---! Returns Number of that type found
-function Hospital:countRoomOfType(type)
+--!param max_count (optional integer) If provided, non-negative maximum count to return.
+--! Returns Number of that type found, at most max_count is returned if provided.
+function Hospital:countRoomOfType(type, max_count)
   -- Check how many rooms there are.
   local result = 0
   for _, room in pairs(self.world.rooms) do
     if room.hospital == self and room.room_info.id == type and room.is_active then
       result = result + 1
+      if max_count ~= nil and result >= max_count then break end
     end
   end
   return result
@@ -1947,7 +1990,7 @@ function Hospital:checkDiseaseRequirements(disease)
   local staff = {}
   local any = false
   for _, room_id in ipairs(self.world.available_diseases[disease].treatment_rooms) do
-    local found = self:countRoomOfType(room_id) > 0
+    local found = self:countRoomOfType(room_id, 1) > 0
     if not found then
       rooms[#rooms + 1] = room_id
       any = true
@@ -2266,14 +2309,12 @@ end
 
 --! Function that returns true if the room for the given disease
 --! has not been researched yet.
---! param disease (string): the disease to be checked.
+--!param disease (string): the disease to be checked.
 function Hospital:roomNotYetResearched(disease)
   local req = self:checkDiseaseRequirements(disease)
   if type(req) == "table" and #req.rooms > 0 then
     for _, room_id in ipairs(req.rooms) do
-      if not self.discovered_rooms[self.world.available_rooms[room_id]] then
-        return true
-      end
+      if not self:isRoomDiscovered(room_id) then return true end
     end
   end
   return false
@@ -2350,4 +2391,26 @@ end
 --!param changeValue (int) The amount the hospital value should change by
 function Hospital:changeValue(changeValue)
   self.value = self.value + changeValue
+end
+
+--! Collect the hospital level settings relevant for the next hospital
+--!return campaign_data (table) Hospital campaign data
+function Hospital:getCampaignData()
+  local campaign_data = {
+    player_salary = self.player_salary,
+    message_popup = self.message_popup,
+    handyman_popup = self.handyman_popup,
+    hospital_littered = self.hospital_littered,
+    has_seen_pay_rise = self.has_seen_pay_rise,
+    policies = self.policies,
+  }
+  return campaign_data
+end
+
+--! Restore the hospital settings from the previous hospital
+--!param campaign_data (table) Hospital campaign data
+function Hospital:setCampaignData(campaign_data)
+  for key, value in pairs(campaign_data) do
+    self[key] = value
+  end
 end

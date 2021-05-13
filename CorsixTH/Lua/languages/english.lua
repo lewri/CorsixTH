@@ -104,8 +104,13 @@ multiplayer.everyone_failed = "Everyone failed to satisfy that last objective. S
 -- Override for a disease patient choice typo
 disease_discovered_patient_choice.need_to_employ = "Employ a %s to be able to handle this situation."
 
---Win message override typo
-letter[12][2] = "Your successful career as the best hospital administrator since Moses is nearing an end. However, such has been your impact on the cosy world of medicine, the Ministry would like to offer you a salary of $%d simply to appear on our behalf, opening fetes, launching ships, and doing chat shows. The whole world is clamouring for you, and it would be great PR for us all!//"
+-- Override for shorter messages and a typo in 12.2
+letter[9][2] = "You have proved yourself to be the best hospital administrator in medicine's long and chequered history. Such a momentous achievement cannot go unrewarded, so we would like to offer you the honorary post of Supreme Chief of All Hospitals. This comes with a salary of $%d. You will be given a tickertape parade, and people will show their appreciation wherever you go.//"
+letter[10][2] = "Congratulations on successfully running every hospital we assigned you to. Such a superb performance qualifies you for the freedom of all the world's cities. You are to be given a pension of $%d, and all we ask is that you travel, for free, around the nation, promoting the work of all hospitals to your adoring public.//"
+letter[11][2] = "Your career has been exemplary, and you are an inspiration to all of us. Thank you for running so many hospitals so well. We would like to grant you a lifetime salary of $%d, and would ask simply that you travel by official open-topped car from city to city, giving lectures about how you achieved so much so fast.//"
+letter[11][3] = "You are an example to every wise person, and without exception, everybody in the world regards you as a supreme asset.//"
+letter[12][2] = "Your successful career as the best hospital administrator since Moses is nearing an end. Befitting your impact on the nation, the Ministry would like to offer you a salary of $%d simply to appear on our behalf, opening fetes, launching ships, and doing chat shows. It would be great PR for us all!//"
+
 -------------------------------  NEW STRINGS  -------------------------------
 date_format = {
   daymonth = "%1% %2:months%",
@@ -683,6 +688,7 @@ errors = {
   dialog_missing_graphics = "Sorry, the demo data files don't contain this dialog.",
   save_prefix = "Error while saving game: ",
   load_prefix = "Error while loading game: ",
+  compatibility_error = "Sorry, this save was created with a newer version of CorsixTH and is not compatible. Please update to a more recent version.",
   no_games_to_contine = "There are no saved games.",
   load_quick_save = "Error, cannot load the quicksave as it does not exist, not to worry as we have now created one for you!",
   map_file_missing = "Could not find the map file %s for this level!",
@@ -692,11 +698,13 @@ errors = {
   fractured_bones = "NOTE: The animation for female patients with Fractured Bones is not perfect",
   could_not_load_campaign = "Failed to load the campaign: %s",
   could_not_find_first_campaign_level = "Could not find the first level of this campaign: %s",
+  save_to_tmp = "The file at %s could not be used. The game has been saved to %s. Error: %s",
 }
 
 warnings = {
   levelfile_variable_is_deprecated = "Notice: The level '%s' contains a deprecated variable definition in the level file." ..
                                      "'%LevelFile' has been renamed to '%MapFile'. Please advise the map creator to update the level.",
+  newersave = "Warning, you have loaded a save from a newer version of CorsixTH. It is not recommended to continue as crashes may occur. Play at your own risk."
 }
 
 confirmation = {

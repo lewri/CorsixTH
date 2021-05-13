@@ -129,6 +129,7 @@ end
 function UIJukebox:loopTrack()
   local index = self.audio:findIndexOfCurrentTrack()
   local playlist = self.audio.background_playlist
+  if not playlist[index] then return end
 
   if playlist[index].loop then
     playlist[index].loop = false
@@ -174,4 +175,11 @@ function UIJukebox:draw(canvas, x, y)
       font:draw(canvas, str, x + 24, self.y + 27)
     end
   end
+end
+
+function UIJukebox:afterLoad(old, new)
+  if not (self.app.config.audio and self.app:isAudioEnabled()) then
+    self:close()
+  end
+  Window.afterLoad(self, old, new)
 end

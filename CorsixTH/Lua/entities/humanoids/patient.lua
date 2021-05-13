@@ -301,8 +301,16 @@ function Patient:isTreatmentEffective()
   local cure_chance = self.hospital.disease_casebook[self.disease.id].cure_effectiveness
   cure_chance = cure_chance * self.diagnosis_progress
 
-  local die = self.die_anims and math.random(1, 100) > cure_chance
-  return not die
+  -- Service quality has a factor on cure chance
+  local room = self:getRoom()
+  local min_impact = 20
+  local service_base = math.max(100 - cure_chance, min_impact)
+
+  local scale = 0.2 -- Quality scaled to +-10%
+  local service_factor = (room:getStaffServiceQuality() - 0.5) * scale
+  cure_chance = cure_chance + (service_base * service_factor)
+
+  return (cure_chance >= math.random(1,100))
 end
 
 --! Change patient internal state to "cured".
@@ -868,7 +876,7 @@ function Patient:setTile(x, y)
           self.hospital.hospital_littered = true
 
           -- A callout is only needed if there are no handymen employed
-          if self.hospital:countStaffOfCategory("Handyman") == 0 then
+          if self.hospital:countStaffOfCategory("Handyman", 1) == 0 then
             self.world.ui.adviser:say(_A.staff_advice.need_handyman_litter)
           end
         end
@@ -990,8 +998,8 @@ function Patient:updateMessage(choice)
       -- enable only if research department is built and a room in the treatment chain is undiscovered
       local req = self.hospital:checkDiseaseRequirements(self.disease.id)
       if req then
-        enabled = (self.hospital:countRoomOfType("research") > 0 and
-                   self.hospital:countStaffOfCategory("Researcher") > 0)
+        enabled = (self.hospital:countRoomOfType("research", 1) > 0 and
+                   self.hospital:countStaffOfCategory("Researcher", 1) > 0)
 
         local strings = _S.fax.disease_discovered_patient_choice
         local output_text = strings.can_not_cure

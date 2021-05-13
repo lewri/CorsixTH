@@ -1,7 +1,7 @@
 # Sanity check
 if(CORSIX_TH_DONE_TOP_LEVEL_CMAKE)
 else()
-  message(FATAL_ERROR "Please run cmake on the top-level directory, not this one.")
+  message(FATAL_ERROR "Please run CMake from the top-level directory instead of here.")
 endif()
 
 # Project Declaration
@@ -44,6 +44,15 @@ elseif(MSVC)
   add_executable(CorsixTH CorsixTH.rc)
 else()
   add_executable(CorsixTH "")
+endif()
+
+# Report operating system in compile_opts.os
+if(WIN32)
+  set(CORSIX_TH_OS "windows")
+elseif(APPLE)
+  set(CORSIX_TH_OS "macos")
+else()
+  set(CORSIX_TH_OS "unix")
 endif()
 
 # Ensure config.h is picked up by cmake - moving this into subdir cmake files will
