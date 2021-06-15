@@ -28,7 +28,7 @@ local runDebugger = corsixth.require("run_debugger")
 -- Increment each time a savegame break would occur
 -- and add compatibility code in afterLoad functions
 
-local SAVEGAME_VERSION = 155
+local SAVEGAME_VERSION = 156
 
 class "App"
 
@@ -156,6 +156,9 @@ function App:init()
   end
   if self.config.track_fps then
     modes[#modes + 1] = "present immediate"
+  end
+  if self.config.direct_zoom then
+    modes[#modes + 1] = "direct zoom"
   end
   self.modes = modes
   self.video = assert(TH.surface(self.config.width, self.config.height, unpack(modes)))
@@ -1087,7 +1090,7 @@ function App:run()
       elseif class.is(entity, Staff) then
         self.ui:addWindow(UIStaff(self.ui, entity))
       end
-      self.ui:addWindow(UIConfirmDialog(self.ui,
+      self.ui:addWindow(UIConfirmDialog(self.ui, true,
           "Sorry, but an error has occurred. There can be many reasons - see the " ..
           "log window for details. Would you like to attempt a recovery?",
           --[[persistable:app_attempt_recovery]] function()
@@ -1253,10 +1256,16 @@ function App:checkInstallFolder()
     -- then linux Filesystem Hierarchy Standard, then Windows Program Files
     -- mac_app_dir is the macOS app base directory named CorsixTH.app
     local mac_app_dir = debug.getinfo(1).short_src:match("(.*)/Contents/.")
-    local user_dir = os.getenv("HOME") or os.getenv("HOMEPATH")
+    local user_dir = os.getenv("HOME") or os.getenv("USERPROFILE")
+    local win_home_dir = nil;
+    if os.getenv("HOMEDRIVE") and os.getenv("HOMEPATH") then
+      win_home_dir = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH")
+      if win_home_dir == user_dir then win_home_dir = nil; end
+    end
     local possible_locations = {
       user_dir,
       user_dir and (user_dir .. pathsep ..  "Documents"),
+      win_home_dir,
       select(1, corsixth.require("config_finder")):match("(.*[/\\])"):sub(1, -2),
       mac_app_dir,
       mac_app_dir and mac_app_dir:match("(.*)/.*%.app"),
@@ -1473,8 +1482,10 @@ end
 -- a specific savegame version is from.
 function App:getVersion(version)
   local ver = version or self.savegame_version
-  if ver > 138 then
+  if ver > 156 then
     return "Trunk"
+  elseif ver > 138 then
+    return "v0.65"
   elseif ver > 134 then
     return "v0.64"
   elseif ver > 127 then
@@ -1549,7 +1560,7 @@ end
 --! Restarts the current level (offers confirmation window first)
 function App:restart()
   assert(self.map, "Trying to restart while no map is loaded.")
-  self.ui:addWindow(UIConfirmDialog(self.ui, _S.confirmation.restart_level,
+  self.ui:addWindow(UIConfirmDialog(self.ui, false, _S.confirmation.restart_level,
   --[[persistable:app_confirm_restart]] function()
     self:worldExited()
     local level = self.map.level_number

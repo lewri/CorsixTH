@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-Version 0.65 - released xxxx 2021
+Version 0.65 - released June 2021
 -------------------------------------------------------------------------------
 # New Features/Enhancements
 * CorsixTH is now available as a Flatpak! (thanks to @rmnvgr !)
@@ -9,8 +9,9 @@ Version 0.65 - released xxxx 2021
 * The information dialogs that appear when a room is first built can be
   disabled in the configuration file
 * Fire extinguishers in rooms now have a chance to save a smoking machine
-* More adviser messages added
-* New trophy added
+  from exploding
+* Advisor has more advice
+* Additional trophy of the original game is implemented
 * Windows and room size now impact staff happiness
 * Roujin's challenge cheat is back
 
@@ -26,6 +27,10 @@ Version 0.65 - released xxxx 2021
 * The game will now check common locations for Theme Hospital on startup if it
   has not been configured
 * Games compiled without movie/audio can no longer access these settings
+* Update check now occurs over TLS for better security
+* English names are now shown in a tooltip when hovering over a language
+  option
+* Improved TTF font rendering
 
 # Translations
 * Greek language added! (thanks to dimitrios-iliadis!)
@@ -37,10 +42,9 @@ Version 0.65 - released xxxx 2021
 * Issues scheduling emergencies have been resolved
 * Games will no longer crash on load if the jukebox was open
 * Games will no longer crash because of an empty music folder
-* Fixed a chance of Doctors getting stuck in a queue after editing a room
-* Fixed an issue where the game could continue scrolling on load
-* Psychiatrists in the Operating Theatre are now properly counted when checking for
-  Psychiatrists
+* Fixed a scenario where editing a room caused staff to get stuck
+* Games that scrolled while saving stop scrolling on load
+* Psychiatrists in the Operating Theatre are now properly counted
 * Losing a game now gives the reason if the movie is skipped
 * Exiting the game will no longer hang when using the Wayland backend
 * The mouse will now be freed on game crash
