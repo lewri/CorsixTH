@@ -59,6 +59,18 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="self">
+ <a href="_0_1_player_hospital.html#_0_1_player_hospital_1advise_cannot_afford_plot">adviseCannotAffordPlot</a>()
+ (overrides <a href="_0_1_hospital.html#_0_1_hospital_1advise_cannot_afford_plot">Hospital:adviseCannotAffordPlot</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_player_hospital.html#_0_1_player_hospital_1advise_discover_disease">adviseDiscoverDisease</a>(<span class="p">disease</span>)
+ (overrides <a href="_0_1_hospital.html#_0_1_hospital_1advise_discover_disease">Hospital:adviseDiscoverDisease</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_player_hospital.html#_0_1_player_hospital_1advise_price_level_impact">advisePriceLevelImpact</a>(<span class="p">judgment</span>, <span class="p">name</span>)
+ (overrides <a href="_0_1_hospital.html#_0_1_hospital_1advise_price_level_impact">Hospital:advisePriceLevelImpact</a>)
+ </li>
+ <li class="self">
  <a href="_0_1_player_hospital.html#_0_1_player_hospital_1after_load">afterLoad</a>(<span class="p">old</span>, <span class="p">new</span>)
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1after_load">Hospital:afterLoad</a>)
  </li>
@@ -130,7 +142,7 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1count_room_of_type">countRoomOfType</a>(<span class="p">type</span>)
+ <a href="_0_1_hospital.html#_0_1_hospital_1count_room_of_type">countRoomOfType</a>(<span class="p">type</span>, <span class="p">max_count</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -138,7 +150,7 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1count_staff_of_category">countStaffOfCategory</a>(<span class="p">category</span>)
+ <a href="_0_1_hospital.html#_0_1_hospital_1count_staff_of_category">countStaffOfCategory</a>(<span class="p">category</span>, <span class="p">max_count</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -177,6 +189,10 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1get_campaign_data">getCampaignData</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1get_debug_patient">getDebugPatient</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -202,6 +218,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1get_player_index">getPlayerIndex</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1get_random_busy_room">getRandomBusyRoom</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -253,6 +273,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1is_reputation_change_allowed">isReputationChangeAllowed</a>(<span class="p">amount</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1is_room_discovered">isRoomDiscovered</a>(<span class="p">room_id</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -370,6 +394,10 @@
  <a href="_0_1_hospital.html#_0_1_hospital_1sell_soda_to_patient">sellSodaToPatient</a>(<span class="p">patient</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1set_campaign_data">setCampaignData</a>(<span class="p">campaign_data</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
  <li class="self">
  <a href="_0_1_player_hospital.html#_0_1_player_hospital_1show_gates_to_hell">showGatesToHell</a>(<span class="p">entity</span>)
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1show_gates_to_hell">Hospital:showGatesToHell</a>)
@@ -405,6 +433,9 @@
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1update_percentages">updatePercentages</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_player_hospital.html#_0_1_player_hospital_1warn_for_long_queues">warnForLongQueues</a>()
  </li>
  </ul>
 </div>
@@ -490,7 +521,13 @@
  <li><span class="p">handymanTasks</span>
  (*)
  </li>
+ <li><span class="p">handyman_popup</span>
+ (*)
+ </li>
  <li><span class="p">has_impressive_reputation</span>
+ (*)
+ </li>
+ <li><span class="p">has_seen_pay_rise</span>
  (*)
  </li>
  <li><span class="p">heating</span>
@@ -499,6 +536,9 @@
  (*)
  </li>
  <li><span class="p">hosp_cheats</span>
+ </li>
+ <li><span class="p">hospital_littered</span>
+ (*)
  </li>
  <li><span class="p">inflation_rate</span>
  (*)
@@ -519,6 +559,9 @@
  (*)
  </li>
  <li><span class="p">loan</span>
+ </li>
+ <li><span class="p">message_popup</span>
+ (*)
  </li>
  <li><span class="p">money_in</span>
  (*)
@@ -567,6 +610,9 @@
  (*)
  </li>
  <li><span class="p">over_priced_threshold</span>
+ (*)
+ </li>
+ <li><span class="p">overdraft_interest_rate</span>
  (*)
  </li>
  <li><span class="p">ownedPlots</span>
@@ -629,6 +675,9 @@
  (*)
  </li>
  <li><span class="p">research_rooms</span>
+ (*)
+ </li>
+ <li><span class="p">room_discoveries</span>
  (*)
  </li>
  <li><span class="p">sal_min</span>
@@ -719,6 +768,54 @@
  </p>
  </div>
  <div class="method">
+ <h5><a name="_0_1_player_hospital_1advise_cannot_afford_plot">function PlayerHospital:adviseCannotAffordPlot()</a></h5>
+ <p>
+ Give visual warning that player doesn't have enough $ to build
+Let the message remain until cancelled by the player as it is being displayed behind the town map<br/><br/>
+ <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_cannot_afford_plot">Hospital:adviseCannotAffordPlot</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L411">line 411 of Lua/hospitals/player_hospital.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_player_hospital_1advise_discover_disease">function PlayerHospital:adviseDiscoverDisease(<span class="p">disease</span>)</a></h5>
+ <p>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">disease</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ </table></p><p>
+ <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_discover_disease">Hospital:adviseDiscoverDisease</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L361">line 361 of Lua/hospitals/player_hospital.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_player_hospital_1advise_price_level_impact">function PlayerHospital:advisePriceLevelImpact(<span class="p">judgment</span>, <span class="p">name</span>)</a></h5>
+ <p>
+ Tell the player, through the advisor, about the impact of casebook prices<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">judgment</td>
+ <td class="t">string&nbsp;or&nbsp;under&nbsp;or&nbsp;over&nbsp;or&nbsp;fair</td>
+ <td class="d"> The judgment of the price,
+from Hospital:computePriceLevelImpact</td>
+ </tr>
+ <tr>
+ <td class="n">name</td>
+ <td class="t">string</td>
+ <td class="d"> The name of the casebook entry of the diagnosis or disease</td>
+ </tr>
+ </table></p><p>
+ <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_price_level_impact">Hospital:advisePriceLevelImpact</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L417">line 417 of Lua/hospitals/player_hospital.lua</a>.
+ </p>
+ </div>
+ <div class="method">
  <h5><a name="_0_1_player_hospital_1after_load">function PlayerHospital:afterLoad(<span class="p">old</span>, <span class="p">new</span>)</a></h5>
  <p>
  <strong>Parameters:</strong>
@@ -736,7 +833,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1after_load">Hospital:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L366">line 366 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L434">line 434 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -757,7 +854,7 @@
  <td class="d"> Current game year.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L216">line 216 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L224">line 224 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -791,14 +888,14 @@ call actually says something.</td>
  <td class="d"> If true, let the adviser remain visible afterwards.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L282">line 282 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L289">line 289 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_player_hospital_1monthly_advice_checks">function PlayerHospital:monthlyAdviceChecks()</a></h5>
  <p>
  Give advice to the player at the end of a month.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L189">line 189 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L193">line 193 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -806,7 +903,7 @@ call actually says something.</td>
  <p>
  Give the user possibly a message about a cured patient.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_cured">Hospital:msgCured</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L303">line 303 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L310">line 310 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -814,7 +911,7 @@ call actually says something.</td>
  <p>
  Give the user possibly a message about a dead patient.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_killed">Hospital:msgKilled</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L319">line 319 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L326">line 326 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -822,7 +919,7 @@ call actually says something.</td>
  <p>
  Give advice to the user about maintenance of plants.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_plant">Hospital:msgPlant</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L259">line 259 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L266">line 266 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -830,7 +927,7 @@ call actually says something.</td>
  <p>
  Give advice to the user about having bought a reception desk.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_reception_desk">Hospital:msgReceptionDesk</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L246">line 246 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L253">line 253 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -838,7 +935,7 @@ call actually says something.</td>
  <p>
  Called at the end of each day.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1on_end_day">Hospital:onEndDay</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L335">line 335 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L381">line 381 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -846,7 +943,7 @@ call actually says something.</td>
  <p>
  Called at the end of each day.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1on_end_month">Hospital:onEndMonth</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L345">line 345 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L391">line 391 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -863,7 +960,15 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1show_gates_to_hell">Hospital:showGatesToHell</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L268">line 268 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L275">line 275 of Lua/hospitals/player_hospital.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_player_hospital_1warn_for_long_queues">function PlayerHospital:warnForLongQueues()</a></h5>
+ <p>
+ Once a month the advisor may warn about long queues.<br/><br/>
+ Rooms requiring a doctor occasionally trigger the generic message<br/><br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L342">line 342 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
 </div>

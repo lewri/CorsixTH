@@ -58,6 +58,18 @@
  <a href="_0_1_hospital.html#_0_1_hospital_1add_to_epidemic">addToEpidemic</a>(<span class="p">patient</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1advise_cannot_afford_plot">adviseCannotAffordPlot</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1advise_discover_disease">adviseDiscoverDisease</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1advise_price_level_impact">advisePriceLevelImpact</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
  <li class="self">
  <a href="_0_1_a_i_hospital.html#_0_1_a_i_hospital_1after_load">afterLoad</a>(<span class="p">old</span>, <span class="p">new</span>)
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1after_load">Hospital:afterLoad</a>)
@@ -127,7 +139,7 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1count_room_of_type">countRoomOfType</a>(<span class="p">type</span>)
+ <a href="_0_1_hospital.html#_0_1_hospital_1count_room_of_type">countRoomOfType</a>(<span class="p">type</span>, <span class="p">max_count</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -135,7 +147,7 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1count_staff_of_category">countStaffOfCategory</a>(<span class="p">category</span>)
+ <a href="_0_1_hospital.html#_0_1_hospital_1count_staff_of_category">countStaffOfCategory</a>(<span class="p">category</span>, <span class="p">max_count</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -171,6 +183,10 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1get_campaign_data">getCampaignData</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1get_debug_patient">getDebugPatient</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -196,6 +212,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1get_player_index">getPlayerIndex</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1get_random_busy_room">getRandomBusyRoom</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -244,6 +264,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1is_reputation_change_allowed">isReputationChangeAllowed</a>(<span class="p">amount</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1is_room_discovered">isRoomDiscovered</a>(<span class="p">room_id</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="self">
@@ -356,6 +380,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1sell_soda_to_patient">sellSodaToPatient</a>(<span class="p">patient</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1set_campaign_data">setCampaignData</a>(<span class="p">campaign_data</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -477,7 +505,13 @@
  <li><span class="p">handymanTasks</span>
  (*)
  </li>
+ <li><span class="p">handyman_popup</span>
+ (*)
+ </li>
  <li><span class="p">has_impressive_reputation</span>
+ (*)
+ </li>
+ <li><span class="p">has_seen_pay_rise</span>
  (*)
  </li>
  <li><span class="p">heating</span>
@@ -487,6 +521,9 @@
  (*)
  </li>
  <li><span class="p">hosp_cheats</span>
+ </li>
+ <li><span class="p">hospital_littered</span>
+ (*)
  </li>
  <li><span class="p">inflation_rate</span>
  (*)
@@ -506,6 +543,9 @@
  <li><span class="p">is_in_world</span>
  </li>
  <li><span class="p">loan</span>
+ (*)
+ </li>
+ <li><span class="p">message_popup</span>
  (*)
  </li>
  <li><span class="p">money_in</span>
@@ -556,6 +596,9 @@
  (*)
  </li>
  <li><span class="p">over_priced_threshold</span>
+ (*)
+ </li>
+ <li><span class="p">overdraft_interest_rate</span>
  (*)
  </li>
  <li><span class="p">ownedPlots</span>
@@ -621,6 +664,9 @@
  <li><span class="p">research_rooms</span>
  (*)
  </li>
+ <li><span class="p">room_discoveries</span>
+ (*)
+ </li>
  <li><span class="p">sal_min</span>
  (*)
  </li>
@@ -680,7 +726,7 @@
 </div>
 <div class="methods">
  <div class="method">
- <h5><a name="_0_1_a_i_hospital_1_a_i_hospital">function AIHospital:AIHospital(<span class="p">competitor</span>, <span class="p">...</span>)</a></h5>
+ <h5><a name="_0_1_a_i_hospital_1_a_i_hospital">function AIHospital:AIHospital(<span class="p">competitor</span>, <span class="p">world</span>, <span class="p">avail_rooms</span>, <span class="p">name</span>)</a></h5>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
@@ -691,7 +737,17 @@
  <td class="d">?</td>
  </tr>
  <tr>
- <td class="n">...</td>
+ <td class="n">world</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">avail_rooms</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">name</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
@@ -717,21 +773,21 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1after_load">Hospital:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L47">line 47 of Lua/hospitals/ai_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L49">line 49 of Lua/hospitals/ai_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_a_i_hospital_1log_transaction">function AIHospital:logTransaction()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1log_transaction">Hospital:logTransaction</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L43">line 43 of Lua/hospitals/ai_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L45">line 45 of Lua/hospitals/ai_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_a_i_hospital_1spawn_patient">function AIHospital:spawnPatient()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1spawn_patient">Hospital:spawnPatient</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L39">line 39 of Lua/hospitals/ai_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L41">line 41 of Lua/hospitals/ai_hospital.lua</a>.
  </p>
  </div>
 </div>

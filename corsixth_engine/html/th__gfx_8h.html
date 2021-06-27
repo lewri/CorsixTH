@@ -70,7 +70,8 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">th_gfx.h File Reference</div>  </div>
 </div><!--header-->
@@ -79,6 +80,7 @@ $(function() {
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="th_8h_source.html">th.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="th__gfx__common_8h_source.html">th_gfx_common.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="th__gfx__sdl_8h_source.html">th_gfx_sdl.h</a>&quot;</code><br />
 </div>
 <p><a href="th__gfx_8h_source.html">Go to the source code of this file.</a></p>
@@ -92,7 +94,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchunk__renderer.html">chunk_renderer</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlayers.html">layers</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layer information (see <a class="el" href="classanimation__manager.html#acb1ad2ff4f04ea30ebc60af78810dfff" title="Draw an animation frame.">animation_manager::draw_frame</a>)  <a href="structlayers.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layer information (see <a class="el" href="classanimation__manager.html#a8030310eeb3a3ff13696c07285e9b541" title="Draw an animation frame.">animation_manager::draw_frame</a>)  <a href="structlayers.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structanimation__key.html">animation_key</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,7 +144,8 @@ Enumerations</h2></td></tr>
 <a class="el" href="th__gfx_8h.html#a43e9cb66d61948afed4b803a77a88bacade1d03f1eb279ad17a0f0945c795a4ed">thdf_list_bottom</a> = 1 &lt;&lt; 11, 
 <br />
 &#160;&#160;<a class="el" href="th__gfx_8h.html#a43e9cb66d61948afed4b803a77a88baca72ca1bd383954100139f1b8c1503b849">thdf_bound_box_hit_test</a> = 1 &lt;&lt; 12, 
-<a class="el" href="th__gfx_8h.html#a43e9cb66d61948afed4b803a77a88bacaeade10e546633892a1f121dda5c79eb7">thdf_crop</a> = 1 &lt;&lt; 13
+<a class="el" href="th__gfx_8h.html#a43e9cb66d61948afed4b803a77a88bacaeade10e546633892a1f121dda5c79eb7">thdf_crop</a> = 1 &lt;&lt; 13, 
+<a class="el" href="th__gfx_8h.html#a43e9cb66d61948afed4b803a77a88bacae900ecb1269e41b6f0ec96b1ade8b91b">thdf_nearest</a> = 1 &lt;&lt; 14
 <br />
  }</td></tr>
 <tr class="memdesc:a43e9cb66d61948afed4b803a77a88bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitflags for drawing operations.  <a href="th__gfx_8h.html#a43e9cb66d61948afed4b803a77a88bac">More...</a><br /></td></tr>
@@ -155,6 +158,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a1472e83492af694471a73f956424cef6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="th__gfx_8h.html#a1472e83492af694471a73f956424cef6">operator&lt;</a> (const <a class="el" href="structanimation__key.html">animation_key</a> &amp;oK, const <a class="el" href="structanimation__key.html">animation_key</a> &amp;oL)</td></tr>
 <tr class="memdesc:a1472e83492af694471a73f956424cef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less-than operator for map-sorting.  <a href="th__gfx_8h.html#a1472e83492af694471a73f956424cef6">More...</a><br /></td></tr>
 <tr class="separator:a1472e83492af694471a73f956424cef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aa3a81ba06ab8a75f1cc57536beccbf97"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="th__gfx_8h.html#aa3a81ba06ab8a75f1cc57536beccbf97">max_number_of_layers</a> = 13</td></tr>
+<tr class="memdesc:aa3a81ba06ab8a75f1cc57536beccbf97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of available layers, must be less or equal to 16 as it is stored in.  <a href="th__gfx_8h.html#aa3a81ba06ab8a75f1cc57536beccbf97">More...</a><br /></td></tr>
+<tr class="separator:aa3a81ba06ab8a75f1cc57536beccbf97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a52e84b5f9b2e517c8ec1867680d7c104"></a>
@@ -232,6 +241,8 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a43e9cb66d61948afed4b803a77a88baca72ca1bd383954100139f1b8c1503b849"></a>thdf_bound_box_hit_test&#160;</td><td class="fielddoc"><p>Hit-test using bounding-box precision rather than pixel-perfect. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a43e9cb66d61948afed4b803a77a88bacaeade10e546633892a1f121dda5c79eb7"></a>thdf_crop&#160;</td><td class="fielddoc"><p>Apply a cropping operation prior to drawing. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a43e9cb66d61948afed4b803a77a88bacae900ecb1269e41b6f0ec96b1ade8b91b"></a>thdf_nearest&#160;</td><td class="fielddoc"><p>Draw using nearest pixel hinting. </p>
 </td></tr>
 </table>
 
@@ -337,6 +348,23 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether <em>oK</em> should be before <em>oL</em>. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="aa3a81ba06ab8a75f1cc57536beccbf97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3a81ba06ab8a75f1cc57536beccbf97">&#9670;&nbsp;</a></span>max_number_of_layers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int max_number_of_layers = 13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of available layers, must be less or equal to 16 as it is stored in. </p>
 
 </div>
 </div>
