@@ -33,8 +33,12 @@ function Staff:Staff(...)
   self.parcelNr = 0
 end
 
+--! Handle daily adjustments to staff.
+--!return (boolean) Whether the caller should continue processing
 function Staff:tickDay()
-  Humanoid.tickDay(self)
+  if not Humanoid.tickDay(self) then
+    return false
+  end
   -- Pay too low  --> unhappy
   -- Pay too high -->   happy
   local fair_wage = self.profile:getFairWage()
@@ -110,6 +114,8 @@ function Staff:tickDay()
     -- Greater space helps but in smaller increments
     self:changeAttribute("happiness", math.round(math.log(extraspace)) / 1000)
   end
+
+  return true
 end
 
 function Staff:tick()
@@ -245,10 +251,10 @@ function Staff:fire()
   self:setMood("exit", "activate")
   self:setDynamicInfoText(_S.dynamic_info.staff.actions.fired)
   self.fired = true
+  self.going_home = true
   self.hospital:changeReputation("kicked")
   self:despawn()
   self.hover_cursor = nil
-  self.attributes["fatigue"] = nil
   self:leaveAnnounce()
   -- Unregister any build callbacks or messages.
   self:unregisterCallbacks()
@@ -345,7 +351,7 @@ function Staff:updateSpeed()
     level = 3
   end
   local room = self:getRoom()
-  if room and room.room_info.id == "training" then
+  if room and room.room_info.id == "training" and self:fulfillsCriterion("Doctor") then
     level = 1
   elseif self.attributes["fatigue"] then
     if self.attributes["fatigue"] >= 0.8 then

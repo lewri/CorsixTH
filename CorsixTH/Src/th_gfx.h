@@ -22,11 +22,13 @@ SOFTWARE.
 
 #ifndef CORSIX_TH_TH_GFX_H_
 #define CORSIX_TH_TH_GFX_H_
+
 #include <map>
 #include <string>
 #include <vector>
 
 #include "th.h"
+#include "th_gfx_common.h"
 #include "th_gfx_sdl.h"
 
 class lua_persist_reader;
@@ -78,6 +80,8 @@ enum draw_flags : uint32_t {
   thdf_bound_box_hit_test = 1 << 12,
   //! Apply a cropping operation prior to drawing
   thdf_crop = 1 << 13,
+  //! Draw using nearest pixel hinting
+  thdf_nearest = 1 << 14,
 };
 
 /** Helper structure with parameters to create a #render_target. */
@@ -88,6 +92,8 @@ struct render_target_creation_params {
   bool fullscreen;         ///< Run full-screen.
   bool present_immediate;  ///< Whether to present immediately to the user
                            ///< (else wait for Vsync).
+  bool direct_zoom;  ///< Scale each texture when copying if true, otherwise
+                     ///< render to intermediate texture and scale.
 };
 
 /*!
@@ -194,9 +200,13 @@ class chunk_renderer {
   bool skip_eol;
 };
 
+//! Number of available layers, must be less or equal to 16 as it is stored in
+//  a nibble.
+const int max_number_of_layers = 13;
+
 //! Layer information (see animation_manager::draw_frame)
 struct layers {
-  uint8_t layer_contents[13];
+  uint8_t layer_contents[max_number_of_layers];
 };
 
 class memory_reader;
@@ -328,10 +338,12 @@ class animation_manager {
       @param iX The screen position to use as the animation X origin.
       @param iY The screen position to use as the animation Y origin.
       @param iFlags Zero or more THDrawFlags flags.
+      @param effect The animation effect to apply.
   */
   void draw_frame(render_target* pCanvas, size_t iFrame,
-                  const ::layers& oLayers, int iX, int iY,
-                  uint32_t iFlags) const;
+                  const ::layers& oLayers, int iX, int iY, uint32_t iFlags,
+                  animation_effect patient_effect = animation_effect::none,
+                  size_t patient_effect_offset = 0) const;
 
   void get_frame_extent(size_t iFrame, const ::layers& oLayers, int* pMinX,
                         int* pMaxX, int* pMinY, int* pMaxY,
@@ -354,6 +366,9 @@ class animation_manager {
    */
   const animation_start_frames& get_named_animations(const std::string& sName,
                                                      int iTilesize) const;
+
+  //! Notified every world tick to allow tracking rate of game time passage.
+  void tick();
 
  private:
 #if CORSIX_TH_USE_PACK_PRAGMAS
@@ -387,7 +402,8 @@ class animation_manager {
     uint16_t table_position;
     uint8_t offx;
     uint8_t offy;
-    // High nibble: The layer which the element belongs to [0, 12]
+    // High nibble: The layer which the element belongs to
+    //              [0, max_number_of_layers)
     // Low  nibble: Zero or more draw_flags
     uint8_t flags;
     // The layer option / layer id
@@ -433,7 +449,7 @@ class animation_manager {
                        ///< bit 2=draw 50% alpha, bit 3=draw 75% alpha.
     int x;             ///< X offset of the sprite.
     int y;             ///< Y offset of the sprite.
-    uint8_t layer;     ///< Layer class (0..12).
+    uint8_t layer;     ///< Layer class [0..max_number_of_layers).
     uint8_t layer_id;  ///< Value of the layer class to match.
 
     sprite_sheet* element_sprite_sheet;  ///< Sprite sheet to use for this
@@ -455,6 +471,9 @@ class animation_manager {
   size_t frame_count;         ///< Number of frames.
   size_t element_list_count;  ///< Number of list elements.
   size_t element_count;       ///< Number of sprite elements.
+
+  size_t
+      game_ticks;  ///< Number of game ticks, used for global animation timing.
 
   //! Compute the bounding box of the frame.
   /*!
@@ -568,6 +587,8 @@ class animation : public animation_base {
   void persist(lua_persist_writer* pWriter) const;
   void depersist(lua_persist_reader* pReader);
 
+  void set_patient_effect(animation_effect patient_effect);
+
   animation_manager* get_animation_manager() { return manager; }
 
  private:
@@ -584,6 +605,10 @@ class animation : public animation_base {
 
   size_t sound_to_play;
   int crop_column;
+  animation_effect patient_effect;
+  //! Number of game_ticks to offset animation by so they aren't all
+  //! running in sync.
+  size_t patient_effect_offset;
 };
 
 class sprite_render_list : public animation_base {

@@ -216,6 +216,12 @@ DrawFlags.ListBottom      = 2^11
 DrawFlags.BoundBoxHitTest = 2^12
 DrawFlags.Crop            = 2^13
 
+-- Keep in sync with animation_effect in th_gfx_common.h
+AnimationEffect = {}
+AnimationEffect.None = 0
+AnimationEffect.Glowing = 1
+AnimationEffect.Jelly = 2
+
 -- Compare values of two simple (non-nested) tables
 function compare_tables(t1, t2)
   local count1 = 0
@@ -319,7 +325,7 @@ end
 local function serialize_table(obj, options, depth, pt_reflist)
   -- Used to prevent infinite loops
   pt_reflist = pt_reflist or {}
-  options = options or {}
+  options = options or {detect_cycles = true} -- By default, don't crash on cycles.
   depth = depth or 1
 
   if options.max_depth and depth > options.max_depth then
@@ -379,6 +385,15 @@ local function serialize_table(obj, options, depth, pt_reflist)
   return result
 end
 
+--! Serialize a value. Call it with the value to serialize and print the output.
+--  By default it will end recursion when a cycle is detected.
+--!param val Value to serialize.
+--!param options Option settings, table, 'detect_cycles' field boolean that
+--  ends recursion on a cycle, and 'max_depth' integer that ends recursion at the
+--  specified depth. By default initialized with "{detect_cycles = True}"
+--!param depth Recursion depth, should be omitted.
+--!param pt_reflist Seen nodes, should be omitted.
+--!return The seralized output.
 function serialize(val, options, depth, pt_reflist)
   if type(val) == "string" then
     return serialize_string(val)

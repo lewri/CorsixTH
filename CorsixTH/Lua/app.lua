@@ -28,7 +28,7 @@ local runDebugger = corsixth.require("run_debugger")
 -- Increment each time a savegame break would occur
 -- and add compatibility code in afterLoad functions
 
-local SAVEGAME_VERSION = 155
+local SAVEGAME_VERSION = 158
 
 class "App"
 
@@ -156,6 +156,9 @@ function App:init()
   end
   if self.config.track_fps then
     modes[#modes + 1] = "present immediate"
+  end
+  if self.config.direct_zoom == nil or self.config.direct_zoom then
+    modes[#modes + 1] = "direct zoom"
   end
   self.modes = modes
   self.video = assert(TH.surface(self.config.width, self.config.height, unpack(modes)))
@@ -916,11 +919,12 @@ end
 --! Tries to open the given file or a file in OS's temp dir.
 -- Returns the file handler
 --!param file The full path of the intended file
-function App:writeToFileOrTmp(file)
-  local f, err = io.open(file, "w")
+--!param mode The mode in which the file is opened, defaults to write
+function App:writeToFileOrTmp(file, mode)
+  local f, err = io.open(file, mode or "w")
   if err then
     local tmp_file = os.tmpname()
-    f = io.open(tmp_file, "w")
+    f = io.open(tmp_file, mode or "w")
     self.ui:addWindow(UIInformation(self.ui,
         {_S.errors.save_to_tmp:format(file, tmp_file, err)}))
   end
@@ -1086,7 +1090,7 @@ function App:run()
       elseif class.is(entity, Staff) then
         self.ui:addWindow(UIStaff(self.ui, entity))
       end
-      self.ui:addWindow(UIConfirmDialog(self.ui,
+      self.ui:addWindow(UIConfirmDialog(self.ui, true,
           "Sorry, but an error has occurred. There can be many reasons - see the " ..
           "log window for details. Would you like to attempt a recovery?",
           --[[persistable:app_attempt_recovery]] function()
@@ -1252,19 +1256,32 @@ function App:checkInstallFolder()
     -- then linux Filesystem Hierarchy Standard, then Windows Program Files
     -- mac_app_dir is the macOS app base directory named CorsixTH.app
     local mac_app_dir = debug.getinfo(1).short_src:match("(.*)/Contents/.")
-    local user_dir = os.getenv("HOME") or os.getenv("HOMEPATH") or ""
-    local possible_locations = { user_dir, user_dir .. pathsep ..  "Documents",
+    local user_dir = os.getenv("HOME") or os.getenv("USERPROFILE")
+    local win_home_dir = nil;
+    if os.getenv("HOMEDRIVE") and os.getenv("HOMEPATH") then
+      win_home_dir = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH")
+      if win_home_dir == user_dir then win_home_dir = nil; end
+    end
+    local possible_locations = {
+      user_dir,
+      user_dir and (user_dir .. pathsep ..  "Documents"),
+      win_home_dir,
       select(1, corsixth.require("config_finder")):match("(.*[/\\])"):sub(1, -2),
-      mac_app_dir, mac_app_dir and mac_app_dir:match("(.*)/.*%.app"),
+      mac_app_dir,
+      mac_app_dir and mac_app_dir:match("(.*)/.*%.app"),
       "/Applications/Theme Hospital.app/Contents/Resources/game/Theme Hospital.app/" ..
         "Contents/Resources/Theme Hospital.boxer/C.harddisk",
-      "/usr/share/games/corsix-th", "/usr/local/share/games/corsix-th",
-      os.getenv("ProgramFiles"), os.getenv("ProgramFiles(x86)") }
+      "/usr/share/games/corsix-th",
+      "/usr/local/share/games/corsix-th",
+      os.getenv("ProgramFiles"),
+      os.getenv("ProgramFiles(x86)"),
+      [[C:]], [[D:]], [[E:]], [[F:]], [[G:]], [[H:]] }
     local possible_folders = { "ThemeHospital", "Theme Hospital", "HOSP", "TH97",
-      [[GOG.com\Theme Hospital]], [[Origin Games\Theme Hospital\data\Game]] }
-    for _, dir in ipairs(possible_locations) do
+      [[GOG.com\Theme Hospital]], [[GOG Games\Theme Hospital]],
+      [[Origin Games\Theme Hospital\data\Game]] }
+    for _, dir in pairs(possible_locations) do
       if status then break end
-      for _, folder in ipairs(possible_folders) do
+      for _, folder in pairs(possible_folders) do
         local path = dir .. pathsep .. folder
         if lfs.attributes(path, "mode") == "directory" and self:isThemeHospitalPath(path) then
           print("Game data found at: " .. path)
@@ -1465,8 +1482,10 @@ end
 -- a specific savegame version is from.
 function App:getVersion(version)
   local ver = version or self.savegame_version
-  if ver > 138 then
+  if ver > 156 then
     return "Trunk"
+  elseif ver > 138 then
+    return "v0.65"
   elseif ver > 134 then
     return "v0.64"
   elseif ver > 127 then
@@ -1541,7 +1560,7 @@ end
 --! Restarts the current level (offers confirmation window first)
 function App:restart()
   assert(self.map, "Trying to restart while no map is loaded.")
-  self.ui:addWindow(UIConfirmDialog(self.ui, _S.confirmation.restart_level,
+  self.ui:addWindow(UIConfirmDialog(self.ui, false, _S.confirmation.restart_level,
   --[[persistable:app_confirm_restart]] function()
     self:worldExited()
     local level = self.map.level_number

@@ -722,7 +722,7 @@ end
 
 function Hospital:purchasePlot(plot_number)
   local map = self.world.map
-  if map.th:isParcelPurchasable(plot_number, self:getPlayerIndex()) and not self.world.ui.transparent_walls then
+  if map.th:isParcelPurchasable(plot_number, self:getPlayerIndex()) then
     local cost = not self.world.free_build_mode and map:getParcelPrice(plot_number) or 0
     if cost <= self.balance then
       self.world:setPlotOwner(plot_number, self:getPlayerIndex())
@@ -732,12 +732,15 @@ function Hospital:purchasePlot(plot_number)
       self:spendMoney(cost, _S.transactions.buy_land, cost)
       return true
     else
-    -- Give visual warning that player doesn't have enough $ to build
-    -- Let the message remain unitl cancelled by the player as it is being displayed behind the town map
-      self.world.ui.adviser:say(_A.warnings.cannot_afford_2, true, true)
+      -- Give visual warning that player doesn't have enough $ to build
+      self:adviseCannotAffordPlot()
     end
   end
   return false
+end
+
+function Hospital:adviseCannotAffordPlot()
+  -- Nothing to do, override in a derived class.
 end
 
 function Hospital:getPlayerIndex()
@@ -2365,18 +2368,22 @@ function Hospital:computePriceLevelImpact(patient, casebook)
 
   if price_distortion < self.under_priced_threshold then
     if math.random(1, 100) == 1 then
-      self.world.ui.adviser:say(_A.warnings.low_prices:format(casebook.disease.name))
+      self:advisePriceLevelImpact("under", casebook.disease.name)
       self:changeReputation("under_priced")
     end
   elseif price_distortion > self.over_priced_threshold then
     if math.random(1, 100) == 1 then
-      self.world.ui.adviser:say(_A.warnings.high_prices:format(casebook.disease.name))
+      self:advisePriceLevelImpact("over", casebook.disease.name)
       self:changeReputation("over_priced")
     end
   elseif math.abs(price_distortion) <= 0.15 and math.random(1, 200) == 1 then
     -- When prices are well adjusted (i.e. abs(price distortion) <= 0.15)
-    self.world.ui.adviser:say(_A.warnings.fair_prices:format(casebook.disease.name))
+    self:advisePriceLevelImpact("fair", casebook.disease.name)
   end
+end
+
+function Hospital:advisePriceLevelImpact()
+  -- Nothing to do, override in a derived class.
 end
 
 --! Notify patients of a change to hospital staff members
@@ -2413,4 +2420,28 @@ function Hospital:setCampaignData(campaign_data)
   for key, value in pairs(campaign_data) do
     self[key] = value
   end
+end
+
+--! Finds a random room with significantly long queues
+--!return room or nil The chosen room in the hospital or nil for no room busy enough
+function Hospital:getRandomBusyRoom()
+  local long_queue_rooms, active_rooms, total_queue = {}, 0, 0
+  for _, room in pairs(self.world.rooms) do
+    if room.is_active and room.door.queue then
+      total_queue = total_queue + #room.door.queue
+      active_rooms = active_rooms + 1
+      if #room.door.queue > 7 then
+        long_queue_rooms[#long_queue_rooms + 1] = room
+      end
+    end
+  end
+  if #long_queue_rooms == 0 then return end
+
+  local busy_threshold = 1.5 * total_queue / active_rooms
+  local chosen_room = long_queue_rooms[math.random(1, #long_queue_rooms)]
+  if #chosen_room.door.queue >= busy_threshold then return chosen_room end
+end
+
+function Hospital:adviseDiscoverDisease()
+  -- Nothing to do, override in a derived class.
 end

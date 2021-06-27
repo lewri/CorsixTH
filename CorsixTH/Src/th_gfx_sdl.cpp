@@ -26,9 +26,11 @@ SOFTWARE.
 #ifdef CORSIX_TH_USE_FREETYPE2
 #include "th_gfx_font.h"
 #endif
+
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
 #include <limits>
@@ -37,6 +39,14 @@ SOFTWARE.
 
 #include "th_map.h"
 
+#if !SDL_VERSION_ATLEAST(2, 0, 10)
+// On older SDL versions, floating point rendering was not available so we fall
+// back to integer methods / types.
+#define SDL_FRect SDL_Rect
+#define SDL_RenderCopyF SDL_RenderCopy
+#define SDL_RenderCopyExF SDL_RenderCopyEx
+#endif
+
 full_colour_renderer::full_colour_renderer(int iWidth, int iHeight)
     : width(iWidth), height(iHeight) {
   x = 0;
@@ -44,6 +54,14 @@ full_colour_renderer::full_colour_renderer(int iWidth, int iHeight)
 }
 
 namespace {
+
+constexpr double pi = 3.14159265358979323846;
+
+//! The number of game ticks between jelly the jelly effect activating.
+constexpr int jelly_effect_period = 540;
+
+//! The number of game ticks the jelly effect is active for when it runs.
+constexpr int jelly_effect_duration = 90;
 
 //! Convert a colour to an equivalent grey scale level.
 /*!
@@ -93,6 +111,53 @@ uint8_t convert_6bit_to_8bit_colour_component(uint8_t colour_component) {
   constexpr uint8_t mask_6bit = 0x3F;
   return static_cast<uint8_t>(std::lround(
       (colour_component & mask_6bit) * static_cast<double>(0xFF) / mask_6bit));
+}
+
+//! Get the enclosing rect of an SDL_Rect scaled by the given scale factor.
+//  Scaling the rect is location dependent, as non-integer scale factors
+//  require that same size rects be +/-1 pixel different in size depending
+//  on location.
+/*!
+    @param rect Pointer to the SDL_Rect to be scaled.
+    @param scale_factor Scale to be applied to the rectangle.
+    @param[out] dst_rect Enclosing SDL_Rect of rect scaled by scale_factor.
+ */
+void getEnclosingScaleRect(const SDL_Rect* rect, double scale_factor,
+                           SDL_Rect* dst_rect) {
+  // When scaling a rect, we use the scaled position of the bottom-right corner
+  // to determine the size depending on where on the screen the rect is. Compute
+  // width and height first so that we can support when rect == dst_rect.
+  int dst_x = static_cast<int>(scale_factor * rect->x);
+  int dst_y = static_cast<int>(scale_factor * rect->y);
+  dst_rect->w =
+      static_cast<int>(ceil(scale_factor * (rect->x + rect->w))) - dst_x;
+  dst_rect->h =
+      static_cast<int>(ceil(scale_factor * (rect->y + rect->h))) - dst_y;
+  dst_rect->x = dst_x;
+  dst_rect->y = dst_y;
+}
+
+//! Get the scaled rect of an SDL_Rect scaled by the given scale factor.
+//  On SDL < 2.0.10 this falls back to using getEnclosingScaleRect.
+/*!
+    @param rect Pointer to the SDL_Rect to be scaled.
+    @param scale_factor Scale to be applied to the rectangle.
+    @param[out] dst_rect Enclosing SDL_FRect of rect scaled by scale_factor.
+ */
+void getScaleRect(const SDL_Rect* rect, double scale_factor,
+                  SDL_FRect* dst_rect) {
+#if SDL_VERSION_ATLEAST(2, 0, 10)
+  // If using SDL 2.0.10 or newer, we can use floats to get better precision
+  // on scaled rendering.
+  dst_rect->x = static_cast<float>(rect->x * scale_factor);
+  dst_rect->y = static_cast<float>(rect->y * scale_factor);
+  dst_rect->w = static_cast<float>(rect->w * scale_factor);
+  dst_rect->h = static_cast<float>(rect->h * scale_factor);
+#else
+  // Prior to SDL 2.0.10, fallback to using the enclosing integer SDL_Rect for
+  // scaled rendering.
+  getEnclosingScaleRect(rect, scale_factor, dst_rect);
+#endif
 }
 
 }  // namespace
@@ -176,6 +241,7 @@ void full_colour_renderer::decode_image(const uint8_t* pImg,
             iColour = makeGreyScale(iOpacity, pImg[0], pImg[1], pImg[2]);
           else
             iColour = palette::pack_argb(iOpacity, pImg[0], pImg[1], pImg[2]);
+
           push_pixel(iColour);
           pImg += 3;
           iLength--;
@@ -186,6 +252,7 @@ void full_colour_renderer::decode_image(const uint8_t* pImg,
       case 2:  // Fixed fully transparent pixels
       {
         static const uint32_t iTransparent = palette::pack_argb(0, 0, 0, 0);
+
         while (iLength > 0) {
           push_pixel(iTransparent);
           iLength--;
@@ -251,23 +318,26 @@ void wx_storing::store_argb(uint32_t pixel) {
   *alpha_data++ = palette::get_alpha(pixel);
 }
 
-render_target::render_target() {
-  window = nullptr;
-  renderer = nullptr;
-  pixel_format = nullptr;
-  game_cursor = nullptr;
-  zoom_texture = nullptr;
-  scale_bitmaps = false;
-  blue_filter_active = false;
-  apply_opengl_clip_fix = false;
-  width = -1;
-  height = -1;
-}
+render_target::render_target()
+    : window(nullptr),
+      renderer(nullptr),
+      zoom_texture(nullptr),
+      pixel_format(nullptr),
+      blue_filter_active(false),
+      game_cursor(nullptr),
+      global_scale_factor(1.0),
+      width(-1),
+      height(-1),
+      scale_bitmaps(false),
+      apply_opengl_clip_fix(false),
+      direct_zoom(false) {}
 
 render_target::~render_target() { destroy(); }
 
 bool render_target::create(const render_target_creation_params* pParams) {
   if (renderer != nullptr) return false;
+
+  direct_zoom = pParams->direct_zoom;
 
   SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
   pixel_format = SDL_AllocFormat(SDL_PIXELFORMAT_ABGR8888);
@@ -352,6 +422,15 @@ bool render_target::set_scale_factor(double fScale, scaled_items eWhatToScale) {
 
   if (fScale <= 0.000) {
     return false;
+  } else if (eWhatToScale == scaled_items::all && direct_zoom) {
+    global_scale_factor = fScale;
+    if ((SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP) ==
+        SDL_WINDOW_FULLSCREEN_DESKTOP) {
+      // Drawing to an intermediate screen sized buffer when fullscreen results
+      // in noticeably better text rendering quality.
+      init_zoom_buffer(width, height);
+    }
+    return true;
   } else if (eWhatToScale == scaled_items::all && supports_target_textures) {
     // Draw everything from now until the next scale to zoom_texture
     // with the appropriate virtual size, which will be copied scaled to
@@ -359,24 +438,12 @@ bool render_target::set_scale_factor(double fScale, scaled_items eWhatToScale) {
     int virtWidth = static_cast<int>(width / fScale);
     int virtHeight = static_cast<int>(height / fScale);
 
-    zoom_texture =
-        SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ABGR8888,
-                          SDL_TEXTUREACCESS_TARGET, virtWidth, virtHeight);
-
-    SDL_RenderSetLogicalSize(renderer, virtWidth, virtHeight);
-    if (SDL_SetRenderTarget(renderer, zoom_texture) != 0) {
+    if (!init_zoom_buffer(virtWidth, virtHeight)) {
       std::cout << "Warning: Could not render to zoom texture - "
                 << SDL_GetError() << std::endl;
 
-      SDL_RenderSetLogicalSize(renderer, width, height);
-      SDL_DestroyTexture(zoom_texture);
-      zoom_texture = nullptr;
       return false;
     }
-
-    // Clear the new texture to transparent/black.
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_TRANSPARENT);
-    SDL_RenderClear(renderer);
 
     return true;
   } else if (0.999 <= fScale && fScale <= 1.001) {
@@ -444,6 +511,7 @@ void render_target::set_window_grab(bool bActivate) {
 bool render_target::fill_rect(uint32_t iColour, int iX, int iY, int iW,
                               int iH) {
   SDL_Rect rcDest = {iX, iY, iW, iH};
+  getEnclosingScaleRect(&rcDest, global_scale_factor, &rcDest);
 
   Uint8 r, g, b, a;
   SDL_GetRGBA(iColour, pixel_format, &r, &g, &b, &a);
@@ -470,6 +538,8 @@ void render_target::get_clip_rect(clip_rect* pRect) const {
     SDL_RenderGetLogicalSize(renderer, &renderWidth, &renderHeight);
     pRect->y = renderHeight - pRect->y - pRect->h;
   }
+
+  getEnclosingScaleRect(pRect, 1.0 / global_scale_factor, pRect);
 }
 
 void render_target::set_clip_rect(const clip_rect* pRect) {
@@ -479,7 +549,8 @@ void render_target::set_clip_rect(const clip_rect* pRect) {
     return;
   }
 
-  SDL_Rect SDLRect = {pRect->x, pRect->y, pRect->w, pRect->h};
+  SDL_Rect SDLRect;
+  getEnclosingScaleRect(pRect, global_scale_factor, &SDLRect);
 
   // For some reason, SDL treats an empty rect (h or w <= 0) as if you turned
   // off clipping, so we replace it with a rect that's outside our viewport.
@@ -556,6 +627,24 @@ bool render_target::should_scale_bitmaps(double* pFactor) {
   return true;
 }
 
+bool render_target::init_zoom_buffer(int iWidth, int iHeight) {
+  if (!supports_target_textures) return false;
+  zoom_texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ABGR8888,
+                                   SDL_TEXTUREACCESS_TARGET, iWidth, iHeight);
+  SDL_RenderSetLogicalSize(renderer, iWidth, iHeight);
+  if (SDL_SetRenderTarget(renderer, zoom_texture) != 0) {
+    SDL_RenderSetLogicalSize(renderer, width, height);
+    SDL_DestroyTexture(zoom_texture);
+    zoom_texture = nullptr;
+    return false;
+  }
+
+  // Clear the new texture to transparent/black.
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_TRANSPARENT);
+  SDL_RenderClear(renderer);
+  return true;
+}
+
 void render_target::flush_zoom_buffer() {
   if (zoom_texture == nullptr) {
     return;
@@ -616,7 +705,11 @@ SDL_Texture* render_target::create_palettized_texture(
   full_colour_storing oRenderer(pARGBPixels, iWidth, iHeight);
   oRenderer.decode_image(pPixels, pPalette, iSpriteFlags);
 
+  if (iSpriteFlags & thdf_nearest)
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
   SDL_Texture* pTexture = create_texture(iWidth, iHeight, pARGBPixels);
+  if (iSpriteFlags & thdf_nearest)
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
   delete[] pARGBPixels;
   return pTexture;
 }
@@ -669,35 +762,31 @@ void render_target::draw(SDL_Texture* pTexture, const SDL_Rect* prcSrcRect,
   if (iFlags & thdf_flip_horizontal) iSDLFlip |= SDL_FLIP_HORIZONTAL;
   if (iFlags & thdf_flip_vertical) iSDLFlip |= SDL_FLIP_VERTICAL;
 
+  SDL_FRect scaledDstRect;
+  getScaleRect(prcDstRect, global_scale_factor, &scaledDstRect);
   if (iSDLFlip != 0) {
-    SDL_RenderCopyEx(renderer, pTexture, prcSrcRect, prcDstRect, 0, nullptr,
-                     (SDL_RendererFlip)iSDLFlip);
+    SDL_RenderCopyExF(renderer, pTexture, prcSrcRect, &scaledDstRect, 0,
+                      nullptr, (SDL_RendererFlip)iSDLFlip);
   } else {
-    SDL_RenderCopy(renderer, pTexture, prcSrcRect, prcDstRect);
+    SDL_RenderCopyF(renderer, pTexture, prcSrcRect, &scaledDstRect);
   }
 }
 
-void render_target::draw_line(line* pLine, int iX, int iY) {
+void render_target::draw_line(line_sequence* pLine, int iX, int iY) {
   SDL_SetRenderDrawColor(renderer, pLine->red, pLine->green, pLine->blue,
                          pLine->alpha);
 
-  double lastX, lastY;
-  lastX = pLine->first_operation->x;
-  lastY = pLine->first_operation->y;
-
-  line::line_operation* op =
-      (line::line_operation*)(pLine->first_operation->next);
-  while (op) {
-    if (op->type == line::line_operation_type::line) {
+  double lastX = pLine->line_elements[0].x;
+  double lastY = pLine->line_elements[0].y;
+  for (const line_sequence::line_element& op : pLine->line_elements) {
+    if (op.type == line_sequence::line_command::line) {
       SDL_RenderDrawLine(
           renderer, static_cast<int>(lastX + iX), static_cast<int>(lastY + iY),
-          static_cast<int>(op->x + iX), static_cast<int>(op->y + iY));
+          static_cast<int>(op.x + iX), static_cast<int>(op.y + iY));
     }
 
-    lastX = op->x;
-    lastY = op->y;
-
-    op = (line::line_operation*)(op->next);
+    lastX = op.x;
+    lastY = op.y;
   }
 }
 
@@ -1020,7 +1109,8 @@ bool sprite_sheet::get_sprite_average_colour(size_t iSprite,
 }
 
 void sprite_sheet::draw_sprite(render_target* pCanvas, size_t iSprite, int iX,
-                               int iY, uint32_t iFlags) {
+                               int iY, uint32_t iFlags, size_t effect_ticks,
+                               animation_effect effect) {
   if (iSprite >= sprite_count || pCanvas == nullptr || pCanvas != target)
     return;
   sprite& sprite = sprites[iSprite];
@@ -1030,8 +1120,8 @@ void sprite_sheet::draw_sprite(render_target* pCanvas, size_t iSprite, int iX,
   if (!pTexture) {
     if (sprite.data == nullptr) return;
 
-    uint32_t iSprFlags =
-        (sprite.sprite_flags & ~thdf_alt32_mask) | thdf_alt32_plain;
+    uint32_t iSprFlags = (sprite.sprite_flags & ~thdf_alt32_mask) |
+                         thdf_alt32_plain | (iFlags & thdf_nearest);
     pTexture = target->create_palettized_texture(
         sprite.width, sprite.height, sprite.data, palette, iSprFlags);
     sprite.texture = pTexture;
@@ -1044,10 +1134,67 @@ void sprite_sheet::draw_sprite(render_target* pCanvas, size_t iSprite, int iX,
     }
   }
 
-  SDL_Rect rcSrc = {0, 0, sprite.width, sprite.height};
-  SDL_Rect rcDest = {iX, iY, sprite.width, sprite.height};
+  if (effect == animation_effect::glowing) {
+    // We want this to vary between 155 -> 205 -> 255.
+    // Use the target cycle length (15 cycles) to calculate the angle from 0 to
+    // 2*pi.
+    int currentVariation = static_cast<int>(
+        sin(static_cast<double>(effect_ticks % 15) / 15.0 * 2 * pi) * 50);
+    int err = SDL_SetTextureColorMod(pTexture, 0, 205 + currentVariation, 0);
+    if (err < 0) {
+      throw std::runtime_error(SDL_GetError());
+    }
+  }
 
-  pCanvas->draw(pTexture, &rcSrc, &rcDest, iFlags);
+  if (effect == animation_effect::jelly &&
+      effect_ticks % jelly_effect_period < jelly_effect_duration) {
+    int jelly_tick = static_cast<int>(effect_ticks % jelly_effect_period);
+    // Draw the sprite a few lines at a time following a sine wave x offset.
+    // To cut down on the number of draw calls, we will draw all of the lines
+    // that have the same x offset in a single draw call. This results in about
+    // a third of the draw calls as drawing each line individually.
+    // TODO: We could move this effect into render_target which is aware of the
+    // screen scale and could optimize this further when zooming out.
+    int y1 = 0;
+    int x_offset = 0;
+    // Scale the effect up as it ramps in and down as it finishes.
+    int scale =
+        std::min(jelly_tick, std::min(jelly_effect_duration - jelly_tick, 2));
+    for (int y2 = 0; y2 <= sprite.height; y2++) {
+      // TODO: Ideally this should use the offset of the current line from
+      // the map location so that multiple layers have the same jelly offset
+      // at the same vertical line. We can't just use iY because it varies as
+      // the user scrolls or zooms or the character walks.
+      int offset = static_cast<int>(
+          sin((y2 / 16.0 + static_cast<double>(effect_ticks % 50) / 50) * 2 *
+              pi) *
+          scale);
+      if (x_offset != offset || y2 == sprite.height) {
+        if (y2 > y1) {
+          // If the current offset rounds to a different value, render the
+          // previous offset and start a new offset.
+          SDL_Rect rcSrc = {0, y1, sprite.width, y2 - y1};
+          SDL_Rect rcDest = {iX + x_offset, iY + y1, sprite.width, y2 - y1};
+          pCanvas->draw(pTexture, &rcSrc, &rcDest, iFlags);
+        }
+        y1 = y2;
+        x_offset = offset;
+      }
+    }
+  } else {
+    SDL_Rect rcSrc = {0, 0, sprite.width, sprite.height};
+    SDL_Rect rcDest = {iX, iY, sprite.width, sprite.height};
+
+    pCanvas->draw(pTexture, &rcSrc, &rcDest, iFlags);
+  }
+
+  if (effect == animation_effect::glowing) {
+    // Reset back to original values
+    int err = SDL_SetTextureColorMod(pTexture, 0xFF, 0xFF, 0xFF);
+    if (err < 0) {
+      throw std::runtime_error(SDL_GetError());
+    }
+  }
 }
 
 void sprite_sheet::wx_draw_sprite(size_t iSprite, uint8_t* pRGBData,
@@ -1266,80 +1413,59 @@ void cursor::draw(render_target* pCanvas, int iX, int iY) {
 #endif
 }
 
-line::line() { initialize(); }
+line_sequence::line_sequence() { initialize(); }
 
-line::~line() {
-  line_operation* op = first_operation;
-  while (op) {
-    line_operation* next = (line_operation*)(op->next);
-    delete (op);
-    op = next;
-  }
-}
-
-void line::initialize() {
+void line_sequence::initialize() {
   width = 1;
   red = 0;
   green = 0;
   blue = 0;
   alpha = 255;
+  line_elements.clear();
 
   // We start at 0,0
-  first_operation = new line_operation(line_operation_type::move, 0, 0);
-  current_operation = first_operation;
+  move_to(0.0, 0.0);
 }
 
-void line::move_to(double fX, double fY) {
-  line_operation* previous = current_operation;
-  current_operation = new line_operation(line_operation_type::move, fX, fY);
-  previous->next = current_operation;
+void line_sequence::move_to(double fX, double fY) {
+  line_elements.emplace_back(line_command::move, fX, fY);
 }
 
-void line::line_to(double fX, double fY) {
-  line_operation* previous = current_operation;
-  current_operation = new line_operation(line_operation_type::line, fX, fY);
-  previous->next = current_operation;
+void line_sequence::line_to(double fX, double fY) {
+  line_elements.emplace_back(line_command::line, fX, fY);
 }
 
-void line::set_width(double pLineWidth) { width = pLineWidth; }
+void line_sequence::set_width(double pLineWidth) { width = pLineWidth; }
 
-void line::set_colour(uint8_t iR, uint8_t iG, uint8_t iB, uint8_t iA) {
+void line_sequence::set_colour(uint8_t iR, uint8_t iG, uint8_t iB, uint8_t iA) {
   red = iR;
   green = iG;
   blue = iB;
   alpha = iA;
 }
 
-void line::draw(render_target* pCanvas, int iX, int iY) {
+void line_sequence::draw(render_target* pCanvas, int iX, int iY) {
   pCanvas->draw_line(this, iX, iY);
 }
 
-void line::persist(lua_persist_writer* pWriter) const {
+void line_sequence::persist(lua_persist_writer* pWriter) const {
   pWriter->write_uint(static_cast<uint32_t>(red));
   pWriter->write_uint(static_cast<uint32_t>(green));
   pWriter->write_uint(static_cast<uint32_t>(blue));
   pWriter->write_uint(static_cast<uint32_t>(alpha));
-  pWriter->write_float(width);
+  pWriter->write_float<double>(width);
 
-  line_operation* op = (line_operation*)(first_operation->next);
-  uint32_t numOps = 0;
-  for (; op; numOps++) {
-    op = (line_operation*)(op->next);
-  }
-
+  uint32_t numOps = static_cast<uint32_t>(line_elements.size());
   pWriter->write_uint(numOps);
 
-  op = (line_operation*)(first_operation->next);
-  while (op) {
-    pWriter->write_uint(static_cast<uint32_t>(op->type));
-    pWriter->write_float<double>(op->x);
-    pWriter->write_float(op->y);
-
-    op = (line_operation*)(op->next);
+  for (const line_element& op : line_elements) {
+    pWriter->write_uint(static_cast<uint32_t>(op.type));
+    pWriter->write_float<double>(op.x);
+    pWriter->write_float<double>(op.y);
   }
 }
 
-void line::depersist(lua_persist_reader* pReader) {
+void line_sequence::depersist(lua_persist_reader* pReader) {
   initialize();
 
   pReader->read_uint(red);
@@ -1364,16 +1490,16 @@ void line::depersist(lua_persist_reader* pReader) {
       return;
     }
 
-    if (type_val == static_cast<uint32_t>(line_operation_type::move)) {
+    if (type_val == static_cast<uint32_t>(line_command::move)) {
       move_to(fX, fY);
-    } else if (type_val == static_cast<uint32_t>(line_operation_type::line)) {
+    } else if (type_val == static_cast<uint32_t>(line_command::line)) {
       line_to(fX, fY);
     }
   }
 }
 
 #ifdef CORSIX_TH_USE_FREETYPE2
-bool freetype_font::is_monochrome() const { return true; }
+bool freetype_font::is_monochrome() const { return false; }
 
 void freetype_font::free_texture(cached_text* pCacheEntry) const {
   if (pCacheEntry->texture != nullptr) {

@@ -149,6 +149,7 @@ animation_manager::animation_manager() {
   frame_count = 0;
   element_list_count = 0;
   element_count = 0;
+  game_ticks = 0;
 }
 
 animation_manager::~animation_manager() {
@@ -260,7 +261,8 @@ bool animation_manager::load_from_th_file(
     oElement.y = static_cast<int>(pTHElement->offy) - 186;
     oElement.layer = static_cast<uint8_t>(
         pTHElement->flags >> 4);  // High nibble, layer of the element.
-    if (oElement.layer > 12) {
+
+    if (oElement.layer >= max_number_of_layers) {
       // Nothing lives on layer 6
       oElement.layer = 6;
     }
@@ -387,7 +389,7 @@ size_t animation_manager::load_elements(
     uint8_t iLayerId = input.read_uint8();
     uint32_t iFlags = input.read_uint16();
 
-    if (iLayerClass > 12) {
+    if (iLayerClass >= max_number_of_layers) {
       // Nothing lives on layer 6
       iLayerClass = 6;
     }
@@ -824,6 +826,8 @@ bool animation_manager::get_frame_secondary_marker(size_t iFrame, int* pX,
   return true;
 }
 
+void animation_manager::tick() { ++game_ticks; }
+
 bool animation_manager::hit_test(size_t iFrame, const ::layers& oLayers, int iX,
                                  int iY, uint32_t iFlags, int iTestX,
                                  int iTestY) const {
@@ -895,7 +899,9 @@ bool animation_manager::hit_test(size_t iFrame, const ::layers& oLayers, int iX,
 
 void animation_manager::draw_frame(render_target* pCanvas, size_t iFrame,
                                    const ::layers& oLayers, int iX, int iY,
-                                   uint32_t iFlags) const {
+                                   uint32_t iFlags,
+                                   animation_effect patient_effect,
+                                   size_t patient_effect_offset) const {
   if (iFrame >= frame_count) {
     return;
   }
@@ -930,6 +936,14 @@ void animation_manager::draw_frame(render_target* pCanvas, size_t iFrame,
       }
     }
 
+    // Only apply patient animation effect to patient sprites. Layer 0, 0
+    // represents non-patient sprites such as doors, benches, etc.
+    // TODO: Some animations such as leaving radiation chamber have part of
+    // patient in layer 0, 0, so this condition is not quite correct.
+    animation_effect render_effect =
+        (oElement.layer > 0 || oElement.layer_id > 0) ? patient_effect
+                                                      : animation_effect::none;
+    size_t effect_ticks = game_ticks + patient_effect_offset;
     if (iFlags & thdf_flip_horizontal) {
       int iWidth;
       int iHeight;
@@ -938,11 +952,12 @@ void animation_manager::draw_frame(render_target* pCanvas, size_t iFrame,
 
       oElement.element_sprite_sheet->draw_sprite(
           pCanvas, oElement.sprite, iX - oElement.x - iWidth, iY + oElement.y,
-          iPassOnFlags | (oElement.flags ^ thdf_flip_horizontal));
+          iPassOnFlags | (oElement.flags ^ thdf_flip_horizontal), effect_ticks,
+          render_effect);
     } else {
       oElement.element_sprite_sheet->draw_sprite(
           pCanvas, oElement.sprite, iX + oElement.x, iY + oElement.y,
-          iPassOnFlags | oElement.flags);
+          iPassOnFlags | oElement.flags, effect_ticks, render_effect);
     }
   }
 }
@@ -1145,10 +1160,12 @@ void animation::draw(render_target* pCanvas, int iDestX, int iDestY) {
       rcNew.w = 64;
       clip_rect_intersection(rcNew, rcOld);
       pCanvas->set_clip_rect(&rcNew);
-      manager->draw_frame(pCanvas, frame_index, layers, iDestX, iDestY, flags);
+      manager->draw_frame(pCanvas, frame_index, layers, iDestX, iDestY, flags,
+                          patient_effect, patient_effect_offset);
       pCanvas->set_clip_rect(&rcOld);
     } else
-      manager->draw_frame(pCanvas, frame_index, layers, iDestX, iDestY, flags);
+      manager->draw_frame(pCanvas, frame_index, layers, iDestX, iDestY, flags,
+                          patient_effect, patient_effect_offset);
   }
 }
 
@@ -1298,7 +1315,7 @@ bool THAnimation_is_multiple_frame_animation(drawable* pSelf) {
 animation_base::animation_base() : drawable() {
   x_relative_to_tile = 0;
   y_relative_to_tile = 0;
-  for (int i = 0; i < 13; ++i) {
+  for (int i = 0; i < max_number_of_layers; ++i) {
     layers.layer_contents[i] = 0;
   }
   flags = 0;
@@ -1316,6 +1333,8 @@ animation::animation()
   draw_fn = THAnimation_draw;
   hit_test_fn = THAnimation_hit_test;
   is_multiple_frame_animation_fn = THAnimation_is_multiple_frame_animation;
+  patient_effect = animation_effect::none;
+  patient_effect_offset = rand();
 }
 
 void animation::persist(lua_persist_writer* pWriter) const {
@@ -1359,8 +1378,7 @@ void animation::persist(lua_persist_writer* pWriter) const {
   // Not a uint, for compatibility
   pWriter->write_int((int)sound_to_play);
 
-  // For compatibility
-  pWriter->write_int(0);
+  pWriter->write_int(static_cast<int>(patient_effect));
 
   if (flags & thdf_crop) {
     pWriter->write_int(crop_column);
@@ -1379,7 +1397,7 @@ void animation::persist(lua_persist_writer* pWriter) const {
   }
 
   // Write the layers
-  int iNumLayers = 13;
+  int iNumLayers = max_number_of_layers;
   for (; iNumLayers >= 1; --iNumLayers) {
     if (layers.layer_contents[iNumLayers - 1] != 0) break;
   }
@@ -1436,6 +1454,7 @@ void animation::depersist(lua_persist_reader* pReader) {
     if (!pReader->read_int(iDummy)) break;
     if (iDummy >= 0) sound_to_play = (unsigned int)iDummy;
     if (!pReader->read_int(iDummy)) break;
+    patient_effect = static_cast<animation_effect>(iDummy);
     if (flags & thdf_crop) {
       if (!pReader->read_int(crop_column)) {
         break;
@@ -1461,9 +1480,15 @@ void animation::depersist(lua_persist_reader* pReader) {
       break;
     }
 
-    if (iNumLayers > 13) {
-      if (!pReader->read_byte_stream(layers.layer_contents, 13)) break;
-      if (!pReader->read_byte_stream(nullptr, iNumLayers - 13)) break;
+    if (iNumLayers > max_number_of_layers) {
+      if (!pReader->read_byte_stream(layers.layer_contents,
+                                     max_number_of_layers)) {
+        break;
+      }
+      if (!pReader->read_byte_stream(nullptr,
+                                     iNumLayers - max_number_of_layers)) {
+        break;
+      }
     } else {
       if (!pReader->read_byte_stream(layers.layer_contents, iNumLayers)) break;
     }
@@ -1477,6 +1502,10 @@ void animation::depersist(lua_persist_reader* pReader) {
   } while (false);
 
   pReader->set_error("Cannot depersist animation instance");
+}
+
+void animation::set_patient_effect(animation_effect patient_effect) {
+  this->patient_effect = patient_effect;
 }
 
 void animation::tick() {
@@ -1670,7 +1699,7 @@ void animation::set_morph_target(animation* pMorphTarget, int iDurationFactor) {
 void animation::set_frame(size_t iFrame) { frame_index = iFrame; }
 
 void animation_base::set_layer(int iLayer, int iId) {
-  if (0 <= iLayer && iLayer <= 12) {
+  if (0 <= iLayer && iLayer < max_number_of_layers) {
     layers.layer_contents[iLayer] = static_cast<uint8_t>(iId);
   }
 }
@@ -1789,7 +1818,7 @@ void sprite_render_list::persist(lua_persist_writer* pWriter) const {
   }
 
   // Write the layers
-  int iNumLayers = 13;
+  int iNumLayers = max_number_of_layers;
   for (; iNumLayers >= 1; --iNumLayers) {
     if (layers.layer_contents[iNumLayers - 1] != 0) {
       break;
@@ -1834,12 +1863,14 @@ void sprite_render_list::depersist(lua_persist_reader* pReader) {
     return;
   }
 
-  if (iNumLayers > 13) {
-    if (!pReader->read_byte_stream(layers.layer_contents, 13)) {
+  if (iNumLayers > max_number_of_layers) {
+    if (!pReader->read_byte_stream(layers.layer_contents,
+                                   max_number_of_layers)) {
       return;
     }
 
-    if (!pReader->read_byte_stream(nullptr, iNumLayers - 13)) {
+    if (!pReader->read_byte_stream(nullptr,
+                                   iNumLayers - max_number_of_layers)) {
       return;
     }
   } else {

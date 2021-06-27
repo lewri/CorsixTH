@@ -70,7 +70,6 @@ function UICheats:UICheats(ui)
   self.modal_class = "cheats"
   self.esc_closes = true
   self.resizable = false
-  self:setDefaultPosition(0.2, 0.4)
 
   local y = 10
   self:addBevelPanel(20, y, 260, 20, col_caption):setLabel(_S.cheats_window.caption)
@@ -106,6 +105,8 @@ function UICheats:UICheats(ui)
 
   y = y + 60
   self:setSize(300, y)
+  -- Position should be set after all panels/buttons are made
+  self:setDefaultPosition(0.2, 0.4)
   self:updateCheatedStatus()
 end
 
@@ -116,6 +117,10 @@ function UICheats:updateCheatedStatus()
 end
 
 function UICheats:buttonClicked(num)
+  if self.ui.hospital.world:isUserActionProhibited() then
+    --TODO: Prevent selectx.wav playing with this
+    return self.ui:playSound("wrong2.wav")
+  end
   if self.cheats:performCheat(num) then
     self.cheats.announceCheat(self.ui)
     self:updateCheatedStatus()

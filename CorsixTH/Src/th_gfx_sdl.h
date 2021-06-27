@@ -22,6 +22,7 @@ SOFTWARE.
 
 #ifndef CORSIX_TH_TH_GFX_SDL_H_
 #define CORSIX_TH_TH_GFX_SDL_H_
+
 #include "config.h"
 
 #include <SDL.h>
@@ -30,6 +31,7 @@ SOFTWARE.
 
 #include "persist_lua.h"
 #include "th.h"
+#include "th_gfx_common.h"
 
 class cursor;
 
@@ -335,7 +337,7 @@ class render_target {
                               const uint32_t* pPixels) const;
   void draw(SDL_Texture* pTexture, const SDL_Rect* prcSrcRect,
             const SDL_Rect* prcDstRect, int iFlags);
-  void draw_line(line* pLine, int iX, int iY);
+  void draw_line(line_sequence* pLine, int iX, int iY);
 
  private:
   SDL_Window* window;
@@ -345,6 +347,7 @@ class render_target {
   bool blue_filter_active;
   cursor* game_cursor;
   double bitmap_scale_factor;  ///< Bitmap scale factor.
+  double global_scale_factor;  ///< Global scale factor.
   int width;
   int height;
   int cursor_x;
@@ -356,7 +359,9 @@ class render_target {
   // ClipRects in opengl and opengles.
   // see: https://bugzilla.libsdl.org/show_bug.cgi?id=2700
   bool apply_opengl_clip_fix;
+  bool direct_zoom;
 
+  bool init_zoom_buffer(int iWidth, int iHeight);
   void flush_zoom_buffer();
 };
 
@@ -524,7 +529,8 @@ class sprite_sheet {
       @param iFlags Flags to apply for drawing.
   */
   void draw_sprite(render_target* pCanvas, size_t iSprite, int iX, int iY,
-                   uint32_t iFlags);
+                   uint32_t iFlags, size_t effect_ticks = 0u,
+                   animation_effect effect = animation_effect::none);
 
   //! Test whether a sprite was hit.
   /*!
@@ -640,10 +646,9 @@ class cursor {
   int hotspot_y;
 };
 
-class line {
+class line_sequence {
  public:
-  line();
-  ~line();
+  line_sequence();
 
   void move_to(double fX, double fY);
 
@@ -662,20 +667,17 @@ class line {
   friend class render_target;
   void initialize();
 
-  enum class line_operation_type : uint32_t { move = 0, line = 1 };
+  enum class line_command : uint32_t { move = 0, line = 1 };
 
-  class line_operation : public link_list {
+  class line_element {
    public:
-    line_operation_type type;
+    line_command type;
     double x, y;
-    line_operation(line_operation_type type, double x, double y)
-        : type(type), x(x), y(y) {
-      next = nullptr;
-    }
+    line_element(line_command type, double x, double y)
+        : type(type), x(x), y(y) {}
   };
 
-  line_operation* first_operation;
-  line_operation* current_operation;
+  std::vector<line_element> line_elements;
   double width;
   uint8_t red, green, blue, alpha;
 };

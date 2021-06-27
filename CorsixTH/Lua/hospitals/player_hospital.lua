@@ -196,6 +196,12 @@ function PlayerHospital:monthlyAdviceChecks()
   local current_month = today:monthOfYear()
   local current_year = today:year()
 
+  if not self:hasStaffedDesk() then
+    self:checkReceptionAdvice(current_month, current_year)
+    -- No other checks should happen in this month
+    return
+  end
+
   -- Check for advice on money.
   if not self.world.free_build_mode then
     if self.balance < 2000 and self.balance >= -500 then
@@ -213,8 +219,6 @@ function PlayerHospital:monthlyAdviceChecks()
       self:giveAdvice({_A.warnings.pay_back_loan})
     end
   end
-
-  self:checkReceptionAdvice(current_month, current_year)
 end
 
 --! Make players aware of the need for a receptionist and desk.
@@ -222,7 +226,6 @@ end
 --!param current_year (int) Current game year.
 function PlayerHospital:checkReceptionAdvice(current_month, current_year)
   if current_year > 1 then return end -- Playing too long.
-  if self:hasStaffedDesk() then return end -- Staffed desk available, all done.
 
   local num_receptionists = self:countStaffOfCategory("Receptionist", 1)
   if num_receptionists ~= 0 and current_month > 2 and not self.adviser_data.reception_advice then
@@ -339,20 +342,8 @@ end
 --! Once a month the advisor may warn about long queues.
 --! Rooms requiring a doctor occasionally trigger the generic message
 function PlayerHospital:warnForLongQueues()
-  local queue_rooms, total_queue = {}, 0
-  for _, room in pairs(self.world.rooms) do
-    if #room.door.queue then
-      total_queue = total_queue + #room.door.queue
-    end
-    if #room.door.queue > 7 then
-      queue_rooms[#queue_rooms + 1] = room
-    end
-  end
-  if #queue_rooms == 0 or total_queue == 0 then return end
-
-  local busy_threshold = 1.5 * total_queue / #self.world.rooms
-  local chosen_room = queue_rooms[math.random(1, #queue_rooms)]
-  if busy_threshold > #chosen_room.door.queue then return end
+  local chosen_room = self:getRandomBusyRoom()
+  if not chosen_room then return end
   chosen_room = chosen_room.room_info
   -- Required staff that is not nurse is doctor, researcher, surgeon or psych
   if chosen_room.required_staff and not chosen_room.required_staff["Nurse"]
@@ -364,6 +355,26 @@ function PlayerHospital:warnForLongQueues()
     self:giveAdvice(warn_msgs)
   else
     self.world.ui.adviser:say(_A.warnings.queues_too_long)
+  end
+end
+
+function PlayerHospital:adviseDiscoverDisease(disease)
+ -- Generate a message about the discovery
+  local message = {
+    {text = _S.fax.disease_discovered.discovered_name:format(disease.name)},
+    {text = disease.cause, offset = 12},
+    {text = disease.symptoms, offset = 12},
+    {text = disease.cure, offset = 12},
+    choices = {
+      {text = _S.fax.disease_discovered.close_text, choice = "close"},
+    },
+  }
+  self.world.ui.bottom_panel:queueMessage("disease", message, nil, 25*24, 1)
+
+  -- If the drug casebook is open, update it.
+  local window = self.world.ui:getWindow(UICasebook)
+  if window then
+    window:updateDiseaseList()
   end
 end
 
@@ -379,10 +390,9 @@ end
 
 -- Called at the end of each day.
 function PlayerHospital:onEndMonth()
-  -- Advise the player on cash flow.
-  if self:hasStaffedDesk() then
-    self:monthlyAdviceChecks()
-  end
+  -- Advise the player on the need for a staffed reception desk and cash flow.
+  self:monthlyAdviceChecks()
+
   self.adviser_data.cured_died_message = nil -- Enable the message again.
 
   -- Check if a player has won the level at months 3, 6 and 9. The annual report
@@ -396,6 +406,29 @@ function PlayerHospital:onEndMonth()
   if check_months[self.world.game_date:monthOfYear()] then self.world:checkIfGameWon() end
 
   Hospital.onEndMonth(self)
+end
+
+--! Give visual warning that player doesn't have enough $ to build
+-- Let the message remain until cancelled by the player as it is being displayed behind the town map
+function PlayerHospital:adviseCannotAffordPlot()
+  self.world.ui.adviser:say(_A.warnings.cannot_afford_2, true, true)
+end
+
+--! Tell the player, through the advisor, about the impact of casebook prices
+--!param judgment (string - under, over, fair) The judgment of the price,
+-- from Hospital:computePriceLevelImpact
+--!param name (string) The name of the casebook entry of the diagnosis or disease
+function PlayerHospital:advisePriceLevelImpact(judgment, name)
+  local message
+  if judgment == "under" then
+    message = _A.warnings.low_prices:format(name)
+  elseif judgment == "over" then
+    message = _A.warnings.high_prices:format(name)
+  else
+    assert(judgment == "fair", "Price level impact judgements must be under, over or fair")
+    message = _A.warnings.fair_prices:format(name)
+  end
+  self.world.ui.adviser:say(message)
 end
 
 function PlayerHospital:afterLoad(old, new)

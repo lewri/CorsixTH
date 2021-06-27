@@ -654,7 +654,7 @@ function GameUI:onMouseUp(code, x, y)
               local room_cost = room:calculateRemovalCost()
               self:setEditRoom(false)
               -- show confirmation dialog for removing the room
-              self:addWindow(UIConfirmDialog(self,_S.confirmation.remove_destroyed_room:format(room_cost),
+              self:addWindow(UIConfirmDialog(self, false, _S.confirmation.remove_destroyed_room:format(room_cost),
               --[[persistable:remove_destroyed_room_confirm_dialog]]function()
                 local world = room.world
                 UIEditRoom:removeRoom(false, room, world)
@@ -1176,7 +1176,7 @@ function GameUI:setEditRoom(enabled)
     -- If the actual editing hasn't started yet but is on its way,
     -- activate the room again.
     if class.is(self.edit_room, Room) and self.cursor == self.waiting_cursor then
-      self.edit_room.is_active = true
+      self.app.world:markRoomAsBuilt(self.edit_room)
     else
       -- If we are currently editing a room it may happen that we need to abort it.
       -- Also remove any dialog where the user is buying items.
@@ -1248,7 +1248,7 @@ end
 --! Offers a confirmation window to quit the game and return to main menu
 -- NB: overrides UI.quit, do NOT call it from here
 function GameUI:quit()
-  self:addWindow(UIConfirmDialog(self, _S.confirmation.quit, --[[persistable:gameui_confirm_quit]] function()
+  self:addWindow(UIConfirmDialog(self, false, _S.confirmation.quit, --[[persistable:gameui_confirm_quit]] function()
     self.app:loadMainMenu()
   end))
 end

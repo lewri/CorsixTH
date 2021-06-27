@@ -111,6 +111,10 @@ function World:World(app)
   -- This is false when the game is paused.
   self.user_actions_allowed = true
 
+  -- The system pause method is used as an additional layer to pause the game, where the user
+  -- needs to deal with a recoverable error
+  self.system_pause = false
+
   -- In Free Build mode?
   if tonumber(self.map.level_number) then
     self.free_build_mode = false
@@ -246,6 +250,7 @@ function World:setUI(ui)
   self.ui:addKeyHandler("ingame_zoom_in_more", self, self.adjustZoom, 5)
   self.ui:addKeyHandler("ingame_zoom_out", self, self.adjustZoom, -1)
   self.ui:addKeyHandler("ingame_zoom_out_more", self, self.adjustZoom, -5)
+  self.ui:addKeyHandler("ingame_reset_zoom", self, self.resetZoom)
 end
 
 function World:adjustZoom(delta)
@@ -266,6 +271,10 @@ function World:adjustZoom(delta)
   end
 
   return self.ui:setZoom(scr_w / virtual_width)
+end
+
+function World:resetZoom()
+  return self.ui:setZoom(1)
 end
 
 --! Initialize the game level (available diseases, winning conditions).
@@ -920,7 +929,7 @@ function World:setSpeed(speed)
   if self:isCurrentSpeed(speed) then
     return
   end
-  if speed == "Pause" then
+  if speed == "Pause" or self.system_pause then
     -- stop screen shaking if there was an earthquake in progress
     if self.next_earthquake.active then
       self.ui:endShakeScreen()
@@ -956,6 +965,7 @@ end
 
 --! Dedicated function to allow unpausing by pressing 'p' again
 function World:pauseOrUnpause()
+  if self:isSystemPauseActive() then return end -- System pause takes precedence
   if not self:isCurrentSpeed("Pause") then
     self:setSpeed("Pause")
   elseif self.prev_speed then
@@ -963,9 +973,22 @@ function World:pauseOrUnpause()
   end
 end
 
+--! Sets the system_pause parameter
+--!param state (bool)
+function World:setSystemPause(state)
+  self.system_pause = state
+end
+
+--! Reports the system pause status
+--!return (bool) true is system pause is active, else false
+function World:isSystemPauseActive()
+  return self.system_pause
+end
+
 --! Function to check if player can perform actions when paused
 --!return (bool) Returns true if player hasn't allowed editing while paused
 function World:isUserActionProhibited()
+  if self:isSystemPauseActive() then return true end
   return self:isCurrentSpeed("Pause") and not self.user_actions_allowed
 end
 
@@ -1046,6 +1069,7 @@ function World:onTick()
     self.game_date = new_game_date
 
     for i = 1, self.hours_per_tick do
+      self.anims:tick()
       for _, hospital in ipairs(self.hospitals) do
         hospital:tick()
       end
@@ -1502,8 +1526,6 @@ function World:winGame(player_no)
     if self:isCurrentSpeed("Speed Up") then
       self:previousSpeed()
     end
-    self:setSpeed("Pause")
-    self.ui.app.video:setBlueFilterActive(false)
     self.ui.bottom_panel:queueMessage("information", message, nil, 0, 2, callback)
     self.ui.bottom_panel:openLastMessage()
   end
@@ -1871,11 +1893,11 @@ end
 --!param patient Patient to float above.
 --!param amount Amount of money to display.
 function World:newFloatingDollarSign(patient, amount)
+  if self.free_build_mode or patient.hospital ~= self:getLocalPlayerHospital() then
+    return
+  end
   if not self.floating_dollars then
     self.floating_dollars = {}
-  end
-  if self.free_build_mode then
-    return
   end
   local spritelist = TH.spriteList()
   spritelist:setPosition(-17, -60)
@@ -2716,6 +2738,7 @@ if old < 153 then
 
   self.savegame_version = new
   self.release_version = TheApp:getVersion(new)
+  self.system_pause = false -- Reset flag on load
 end
 
 function World:playLoadedEntitySounds()
