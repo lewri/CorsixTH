@@ -1473,39 +1473,25 @@ end
 -- a specific savegame version is from.
 function App:getVersion(version)
   local ver = version or self.savegame_version
-  if ver > 156 then
-    return "Trunk"
-  elseif ver > 138 then
-    return "v0.65"
-  elseif ver > 134 then
-    return "v0.64"
-  elseif ver > 127 then
-    return "v0.63"
-  elseif ver > 122 then
-    return "v0.62"
-  elseif ver > 111 then
-    return "v0.61"
-  elseif ver > 105 then
-    return "v0.60"
-  elseif ver > 91 then
-    return "0.50"
-  elseif ver > 78 then
-    return "0.40"
-  elseif ver > 72 then
-    return "0.30"
-  elseif ver > 66 then
-    return "0.21"
-  elseif ver > 54 then
-    return "0.20"
-  elseif ver > 53 then
-    return "0.11"
-  elseif ver > 51 then
-    return "0.10"
-  elseif ver > 45 then
-    return "0.01"
-  else
-    return "Beta 8 or earlier"
-  end
+  local rangemap_versions = {
+    {upper = 45, value = "Beta 8 or earlier"},
+    {upper = 51, value = "v0.01"},
+    {upper = 53, value = "v0.10"},
+    {upper = 54, value = "v0.11"},
+    {upper = 66, value = "v0.20"},
+    {upper = 72, value = "v0.21"},
+    {upper = 78, value = "v0.30"},
+    {upper = 91, value = "v0.40"},
+    {upper = 105, value = "v0.50"},
+    {upper = 111, value = "v0.60"},
+    {upper = 122, value = "v0.61"},
+    {upper = 127, value = "v0.62"},
+    {upper = 134, value = "v0.63"},
+    {upper = 138, value = "v0.64"},
+    {upper = 156, value = "v0.65"}, -- Some users had v0.65.1 but no version number was specified
+    {value = "Trunk"}
+  }
+  return rangeMapLookup(ver, rangemap_versions)
 end
 
 function App:save(filename)
