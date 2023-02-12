@@ -337,7 +337,20 @@ function Patient:die()
   else
     self:setNextAction(MeanderAction():setCount(1))
   end
-  self:queueAction(DieAction())
+  -- FIXME: Addresses issue 2278 temporarily (a patient sometimes won't die on a bench)
+  local queued_on_bench = false
+  for i, action in ipairs(self.action_queue) do
+    if action and action.name == "use_object" and action.object.object_type.id == "bench" then
+      if self.action_queue[i+1] and self.action_queue[i+1].name == "queue" then
+        self.action_queue[i+1]:onChangeQueuePosition(self)
+        self:setNextAction(DieAction()) -- Die action must be front-loaded
+        queued_on_bench = true
+        break
+      end
+    end
+  end
+  if not queued_on_bench then self:queueAction(DieAction()) end
+
   self:setDynamicInfoText(_S.dynamic_info.patient.actions.dying)
 end
 
@@ -626,16 +639,6 @@ function Patient:tickDay()
     if not self:getRoom() and not self:getCurrentAction().is_leaving then
       self:setMood("sad6", "deactivate")
       self:die()
-      for i, action in ipairs(self.action_queue) do
-        if action and action.name == "use_object" and action.object.object_type.id == "bench" then
-          if self.action_queue[i+1] and self.action_queue[i+1].name == "queue" then
-            self.action_queue[i+1]:onChangeQueuePosition(self)
-            self:setNextAction(DieAction())
-          end
-          break
-        end
-      end
-      --self:die()
     end
     -- Patient died, will die when they leave the room, will be cured, or is leaving
     -- the hospital. Regardless we do not need to adjust any other attribute
