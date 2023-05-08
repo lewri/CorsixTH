@@ -32,6 +32,13 @@
 <div class="method_list">
  <h4>Method Index</h4>
  <ul>
+ <li class="self">
+ <a href="_0_1_patient.html#_0_1_patient_1__check_if_cure_room">_checkIfCureRoom</a>(<span class="p">room</span>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1__handle_empty_action_queue">_handleEmptyActionQueue</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1__tick">_tick</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
@@ -129,6 +136,7 @@
  </li>
  <li class="self">
  <a href="_0_1_patient.html#_0_1_patient_1go_home">goHome</a>(<span class="p">reason</span>, <span class="p">disease_id</span>)
+ (overrides <a href="_0_1_humanoid.html#_0_1_humanoid_1go_home">Humanoid:goHome</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1going_to_use_object">goingToUseObject</a>(<span class="p">object_type</span>)
@@ -239,6 +247,9 @@
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="self">
+ <a href="_0_1_patient.html#_0_1_patient_1set_dynamic_info_text">setDynamicInfoText</a>(<span class="p">action_string</span>)
+ </li>
+ <li class="self">
  <a href="_0_1_patient.html#_0_1_patient_1set_hospital">setHospital</a>(<span class="p">hospital</span>)
  (overrides <a href="_0_1_humanoid.html#_0_1_humanoid_1set_hospital">Humanoid:setHospital</a>)
  </li>
@@ -283,11 +294,15 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_entity.html#_0_1_entity_1set_waiting_for_sound_effects_to_be_turned_on">setWaitingForSoundEffectsToBeTurnedOn</a>(<span class="p">state</span>)
+ <a href="_0_1_entity.html#_0_1_entity_1set_waiting_for_sound_effects_to_be_turned_on">setWaitingForSoundEffectsToBeTurnedOn</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="self">
  <a href="_0_1_patient.html#_0_1_patient_1shake_fist">shakeFist</a>()
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1start_action">startAction</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="self">
  <a href="_0_1_patient.html#_0_1_patient_1tap_foot">tapFoot</a>()
@@ -332,7 +347,7 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="self">
- <a href="_0_1_patient.html#_0_1_patient_1update_dynamic_info">updateDynamicInfo</a>(<span class="p">action_string</span>)
+ <a href="_0_1_patient.html#_0_1_patient_1update_dynamic_info">updateDynamicInfo</a>()
  </li>
  <li class="self">
  <a href="_0_1_patient.html#_0_1_patient_1update_message">updateMessage</a>(<span class="p">choice</span>)
@@ -411,6 +426,9 @@
  (*)
  </li>
  <li><span class="p">falling_anim</span>
+ </li>
+ <li><span class="p">fire</span>
+ (*)
  </li>
  <li><span class="p">getServiceQuality</span>
  (*)
@@ -581,6 +599,23 @@
  </p>
  </div>
  <div class="method">
+ <h5><a name="_0_1_patient_1__check_if_cure_room">function Patient:_checkIfCureRoom(<span class="p">room</span>)</a></h5>
+ <p>
+ Checks if the room the patient is in is the final treatment room for their disease
+NB: Check diagnosed status as some illnesses use Psych for diagnosis and treatment<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">room</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L539">line 539 of Lua/entities/humanoids/patient.lua</a>.
+ </p>
+ </div>
+ <div class="method">
  <h5><a name="_0_1_patient_1add_to_treatment_history">function Patient:addToTreatmentHistory(<span class="p">room</span>)</a></h5>
  <p>
  <strong>Parameters:</strong>
@@ -592,7 +627,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L918">line 918 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L930">line 930 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -613,7 +648,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1after_load">Humanoid:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1067">line 1067 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1070">line 1070 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -629,7 +664,7 @@
  <td class="d">: The id of the disease to test</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L292">line 292 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L290">line 290 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -644,7 +679,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L346">line 346 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L347">line 347 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -659,13 +694,13 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L111">line 111 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L109">line 109 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1check_watch">function Patient:checkWatch()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L430">line 430 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L435">line 435 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -682,14 +717,14 @@ called when they are done using a diagnosis room<br/><br/>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L168">line 168 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L166">line 166 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1cure">function Patient:cure()</a></h5>
  <p>
  Change patient internal state to "cured".<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L320">line 320 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L318">line 318 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -697,27 +732,27 @@ called when they are done using a diagnosis room<br/><br/>
  <p>
  Despawns the patient and removes them from the hospital<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1despawn">Humanoid:despawn</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L528">line 528 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L533">line 533 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1die">function Patient:die()</a></h5>
  <p>
  Patient died, process the event.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L327">line 327 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L325">line 325 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1falling">function Patient:falling()</a></h5>
  <p>
  Animations for when there is an earth quake<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L352">line 352 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L359">line 359 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1falling_announce">function Patient:fallingAnnounce()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L379">line 379 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L386">line 386 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -734,7 +769,7 @@ called when they are done using a diagnosis room<br/><br/>
  <td class="d">: casebook entry for the treatment.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L234">line 234 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L232">line 232 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -742,7 +777,7 @@ called when they are done using a diagnosis room<br/><br/>
  <p>
  Decide the ID of the disease or treatment that the patient is paying for.<br/><br/>
  not be decided.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L216">line 216 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L214">line 214 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -750,7 +785,7 @@ called when they are done using a diagnosis room<br/><br/>
  <p>
  If the patient is not a vaccination candidate then
  give them the arrow icon and candidate status<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1050">line 1050 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1053">line 1053 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -773,7 +808,8 @@ param disease_id (string): When the reason is "over_priced" this is the<br/><br/
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L451">line 451 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1go_home">Humanoid:goHome</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L456">line 456 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -799,20 +835,20 @@ param disease_id (string): When the reason is "over_priced" this is the<br/><br/
  <td class="d"> Indicator to insert an additional action before resuming.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1123">line 1123 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1144">line 1144 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1is_male_patient">function Patient:isMalePatient()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1114">line 1114 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1131">line 1131 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1is_treatment_effective">function Patient:isTreatmentEffective()</a></h5>
  <p>
  Either the patient is cured, or he/she dies.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L302">line 302 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L300">line 300 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -829,7 +865,7 @@ incrementValue can be either positive or negative.<br/><br/>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L155">line 155 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L153">line 153 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -847,7 +883,7 @@ in the vicinity through this function.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_entity.html#_0_1_entity_1notify_new_object">Entity:notifyNewObject</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L897">line 897 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L909">line 909 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -863,7 +899,7 @@ in the vicinity through this function.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1notify_new_room">Humanoid:notifyNewRoom</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L851">line 851 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L863">line 863 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -890,21 +926,21 @@ in the vicinity through this function.<br/><br/>
  <div class="method">
  <h5><a name="_0_1_patient_1pee">function Patient:pee()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L413">line 413 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L418">line 418 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1remove_vaccination_candidate_status">function Patient:removeVaccinationCandidateStatus()</a></h5>
  <p>
  Remove the vaccination candidate icon and status from the patient<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1058">line 1058 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L1061">line 1061 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1set_diagnosed">function Patient:setDiagnosed()</a></h5>
  <p>
  Mark patient as being diagnosed.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L142">line 142 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L140">line 140 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -923,6 +959,22 @@ in the vicinity through this function.<br/><br/>
  </p>
  </div>
  <div class="method">
+ <h5><a name="_0_1_patient_1set_dynamic_info_text">function Patient:setDynamicInfoText(<span class="p">action_string</span>)</a></h5>
+ <p>
+ Sets the dynamic text currently in use by the patient<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">action_string</td>
+ <td class="t">string</td>
+ <td class="d"> What text to say in dynamic text</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L944">line 944 of Lua/entities/humanoids/patient.lua</a>.
+ </p>
+ </div>
+ <div class="method">
  <h5><a name="_0_1_patient_1set_hospital">function Patient:setHospital(<span class="p">hospital</span>)</a></h5>
  <p>
  Sets the hospital for the patient - additionally removing them from a
@@ -938,7 +990,7 @@ are not debug or emergency patients are made to seek a reception desk.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1set_hospital">Humanoid:setHospital</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L201">line 201 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L199">line 199 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -960,20 +1012,20 @@ are not debug or emergency patients are made to seek a reception desk.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_entity.html#_0_1_entity_1set_tile">Entity:setTile</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L858">line 858 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L870">line 870 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1shake_fist">function Patient:shakeFist()</a></h5>
  <p>
  Perform 'shake fist' action.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L393">line 393 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L398">line 398 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1tap_foot">function Patient:tapFoot()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L444">line 444 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L449">line 449 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -983,7 +1035,7 @@ are not debug or emergency patients are made to seek a reception desk.<br/><br/>
 For example if thirst gets over a certain level (now: 0.7), the patient
 tries to find a drinks machine nearby.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1tick_day">Humanoid:tickDay</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L534">line 534 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L547">line 547 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -991,22 +1043,15 @@ tries to find a drinks machine nearby.<br/><br/>
  <p>
  will die. The patient may or may not agree to pay for the treatment<br/><br/>
  depending on whether they consider the price reasonable.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L263">line 263 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L261">line 261 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_patient_1update_dynamic_info">function Patient:updateDynamicInfo(<span class="p">action_string</span>)</a></h5>
+ <h5><a name="_0_1_patient_1update_dynamic_info">function Patient:updateDynamicInfo()</a></h5>
  <p>
- <strong>Parameters:</strong>
- <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
- <tr>
- <td class="n">action_string</td>
- <td class="t">?</td>
- <td class="d">?</td>
- </tr>
- </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L932">line 932 of Lua/entities/humanoids/patient.lua</a>.
+ Updates a patient's dynamic info<br/><br/>
+ Can be called direct to refresh only<br/><br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L951">line 951 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1022,19 +1067,19 @@ tries to find a drinks machine nearby.<br/><br/>
  <td class="d"> The choice that needs updating (currently "research" or "guess_cure").</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L987">line 987 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L997">line 997 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1vomit">function Patient:vomit()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L400">line 400 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L405">line 405 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_patient_1yawn">function Patient:yawn()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L437">line 437 of Lua/entities/humanoids/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/patient.lua#L442">line 442 of Lua/entities/humanoids/patient.lua</a>.
  </p>
  </div>
 </div>

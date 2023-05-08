@@ -34,6 +34,10 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1__handle_empty_action_queue">_handleEmptyActionQueue</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1__tick">_tick</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
@@ -156,10 +160,6 @@
  <li class="self">
  <a href="_0_1_receptionist.html#_0_1_receptionist_1is_tiring">isTiring</a>()
  (overrides <a href="_0_1_staff.html#_0_1_staff_1is_tiring">Staff:isTiring</a>)
- </li>
- <li class="self">
- <a href="_0_1_receptionist.html#_0_1_receptionist_1leave_announce">leaveAnnounce</a>()
- (overrides <a href="_0_1_staff.html#_0_1_staff_1leave_announce">Staff:leaveAnnounce</a>)
  </li>
  <li class="self">
  <a href="_0_1_receptionist.html#_0_1_receptionist_1needs_work_station">needsWorkStation</a>()
@@ -289,8 +289,12 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_entity.html#_0_1_entity_1set_waiting_for_sound_effects_to_be_turned_on">setWaitingForSoundEffectsToBeTurnedOn</a>(<span class="p">state</span>)
+ <a href="_0_1_entity.html#_0_1_entity_1set_waiting_for_sound_effects_to_be_turned_on">setWaitingForSoundEffectsToBeTurnedOn</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1start_action">startAction</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1tick">tick</a>()
@@ -399,6 +403,9 @@
  <li><span class="p">get_up_anim</span>
  (*)
  </li>
+ <li><span class="p">goHome</span>
+ (*)
+ </li>
  <li><span class="p">going_home</span>
  (*)
  </li>
@@ -429,6 +436,10 @@
  </li>
  <li><span class="p">layers</span>
  (*)
+ </li>
+ <li><span class="p">leave_priority</span>
+ </li>
+ <li><span class="p">leave_sounds</span>
  </li>
  <li><span class="p">message_callback</span>
  (*)
@@ -586,7 +597,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1after_load">Staff:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L101">line 101 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L95">line 95 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -594,7 +605,7 @@
  <p>
  Receptionists do not need rest<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1check_if_need_rest">Staff:checkIfNeedRest</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L71">line 71 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L65">line 65 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -612,48 +623,41 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1fulfills_criterion">Staff:fulfillsCriterion</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L87">line 87 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L81">line 81 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_receptionist_1get_drawing_layer">function Receptionist:getDrawingLayer()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1get_drawing_layer">Staff:getDrawingLayer</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L93">line 93 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L87">line 87 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_receptionist_1is_resting">function Receptionist:isResting()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1is_resting">Staff:isResting</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L53">line 53 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L50">line 50 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_receptionist_1is_tiring">function Receptionist:isTiring()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1is_tiring">Staff:isTiring</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L49">line 49 of Lua/entities/humanoids/staff/receptionist.lua</a>.
- </p>
- </div>
- <div class="method">
- <h5><a name="_0_1_receptionist_1leave_announce">function Receptionist:leaveAnnounce()</a></h5>
- <p>
- <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1leave_announce">Staff:leaveAnnounce</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L44">line 44 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L46">line 46 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_receptionist_1needs_work_station">function Receptionist:needsWorkStation()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L62">line 62 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L59">line 59 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_receptionist_1on_place_in_corridor">function Receptionist:onPlaceInCorridor()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1on_place_in_corridor">Staff:onPlaceInCorridor</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L76">line 76 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L70">line 70 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -669,14 +673,14 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1set_profile">Staff:setProfile</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L57">line 57 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L54">line 54 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_receptionist_1tick_day">function Receptionist:tickDay()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1tick_day">Staff:tickDay</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L37">line 37 of Lua/entities/humanoids/staff/receptionist.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/receptionist.lua#L39">line 39 of Lua/entities/humanoids/staff/receptionist.lua</a>.
  </p>
  </div>
 </div>

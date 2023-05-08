@@ -55,7 +55,15 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1add_tile_object">addTileObject</a>(<span class="p">object_category</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1add_to_epidemic">addToEpidemic</a>(<span class="p">patient</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1advise_boiler_breakdown">adviseBoilerBreakdown</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -63,16 +71,28 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1advise_discover_disease">adviseDiscoverDisease</a>()
+ <a href="_0_1_hospital.html#_0_1_hospital_1advise_discover_disease">adviseDiscoverDisease</a>(<span class="p">disease</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1advise_price_level_impact">advisePriceLevelImpact</a>()
+ <a href="_0_1_hospital.html#_0_1_hospital_1advise_plants">advisePlants</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1advise_price_level_impact">advisePriceLevelImpact</a>(<span class="p">judgment</span>, <span class="p">name</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="self">
  <a href="_0_1_a_i_hospital.html#_0_1_a_i_hospital_1after_load">afterLoad</a>(<span class="p">old</span>, <span class="p">new</span>)
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1after_load">Hospital:afterLoad</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1announce_repair">announceRepair</a>(<span class="p">room</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1announce_staff_leave">announceStaffLeave</a>(<span class="p">staff</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1assign_handyman_to_task">assignHandymanToTask</a>(<span class="p">handyman</span>, <span class="p">taskIndex</span>, <span class="p">taskType</span>)
@@ -100,10 +120,6 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1check_emergency_over">checkEmergencyOver</a>()
- (inherited from <a href="_0_1_hospital.html">Hospital</a>)
- </li>
- <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1cold_warning">coldWarning</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -235,11 +251,11 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1has_staffed_desk">hasStaffedDesk</a>()
+ <a href="_0_1_hospital.html#_0_1_hospital_1give_advice">giveAdvice</a>(<span class="p">msgs</span>, <span class="p">rnd_frac</span>, <span class="p">stay_up</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1hot_warning">hotWarning</a>()
+ <a href="_0_1_hospital.html#_0_1_hospital_1has_staffed_desk">hasStaffedDesk</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -275,6 +291,30 @@
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1log_transaction">Hospital:logTransaction</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1make_emergency_end_fax">makeEmergencyEndFax</a>(<span class="p">rescued_patients</span>, <span class="p">total</span>, <span class="p">max_bonus</span>, <span class="p">earned</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1make_emergency_start_fax">makeEmergencyStartFax</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1make_no_diagnosis_room_fax">makeNoDiagnosisRoomFax</a>(<span class="p">patient</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1make_no_treatment_room_fax">makeNoTreatmentRoomFax</a>(<span class="p">patient</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1make_raise_request">makeRaiseRequest</a>(<span class="p">amount</span>, <span class="p">staff</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1make_vip_end_fax">makeVipEndFax</a>(<span class="p">vip_rating</span>, <span class="p">name</span>, <span class="p">cash_reward</span>, <span class="p">vip_message</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1manage_epidemics">manageEpidemics</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -291,7 +331,11 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1msg_plant">msgPlant</a>()
+ <a href="_0_1_hospital.html#_0_1_hospital_1msg_multi_reception_desks">msgMultiReceptionDesks</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1msg_need_first_reception_desk">msgNeedFirstReceptionDesk</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -316,6 +360,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1on_end_year">onEndYear</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1on_spawn_v_i_p">onSpawnVIP</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -347,6 +395,10 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1remove_message">removeMessage</a>(<span class="p">humanoid</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1remove_patient">removePatient</a>(<span class="p">patient</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -364,6 +416,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1remove_staff">removeStaff</a>(<span class="p">staff</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1remove_tile_object">removeTileObject</a>(<span class="p">object_category</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -387,7 +443,7 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1show_gates_to_hell">showGatesToHell</a>(<span class="p">_entity</span>)
+ <a href="_0_1_hospital.html#_0_1_hospital_1show_gates_to_hell">showGatesToHell</a>(<span class="p">entity</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -440,9 +496,6 @@
  (*)
  </li>
  <li><span class="p">acc_research_cost</span>
- (*)
- </li>
- <li><span class="p">announce_vip</span>
  (*)
  </li>
  <li><span class="p">autopsy_discovered</span>
@@ -685,6 +738,9 @@
  <li><span class="p">sodas_sold</span>
  (*)
  </li>
+ <li><span class="p">spawn_rate_cheat</span>
+ (*)
+ </li>
  <li><span class="p">staff</span>
  (*)
  </li>
@@ -695,6 +751,9 @@
  (*)
  </li>
  <li><span class="p">thirst_msg</span>
+ (*)
+ </li>
+ <li><span class="p">tile_object_counts</span>
  (*)
  </li>
  <li><span class="p">toilet_msg</span>
@@ -773,21 +832,21 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1after_load">Hospital:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L49">line 49 of Lua/hospitals/ai_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L46">line 46 of Lua/hospitals/ai_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_a_i_hospital_1log_transaction">function AIHospital:logTransaction()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1log_transaction">Hospital:logTransaction</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L45">line 45 of Lua/hospitals/ai_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L42">line 42 of Lua/hospitals/ai_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_a_i_hospital_1spawn_patient">function AIHospital:spawnPatient()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1spawn_patient">Hospital:spawnPatient</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L41">line 41 of Lua/hospitals/ai_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/ai_hospital.lua#L38">line 38 of Lua/hospitals/ai_hospital.lua</a>.
  </p>
  </div>
 </div>
