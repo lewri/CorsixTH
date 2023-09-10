@@ -277,7 +277,7 @@ function TrainingRoom:onHumanoidLeave(humanoid)
 end
 
 function TrainingRoom:afterLoad(old, new)
-  if old < 178 then
+  if old < 183 then
     -- Calculate the new training factor, unless we're currently editing the room
     if self.built then
       local fx, fy = self:getEntranceXY(true)
