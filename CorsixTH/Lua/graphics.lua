@@ -116,40 +116,62 @@ function Graphics:Graphics(app)
   self.custom_graphics_folder = graphics_folder
 end
 
+function Graphics._isFile(path)
+  local lfs = require("lfs")
+  return path and lfs.attributes(path, "mode") == "file"
+end
+
+function Graphics:_loadFontData(font_path)
+  if not Graphics._isFile(font_path) then return nil end
+
+  local font_handle = font_path and io.open(font_path, "rb")
+  if not font_handle then return nil end
+
+  local font_data = font_handle:read("*a")
+  font_handle:close()
+  return font_data
+end
+
 --! Tries to load the font file given in the config file as unicode_font.
 --! If it is not found it tries to find one in the operating system.
 function Graphics:loadFontFile()
-  local lfs = require("lfs")
-  local function check(path) return path and lfs.attributes(path, "mode") == "file" end
-  -- Load the Unicode font, if there is one specified.
+  local loaded_font_path
+
+  -- Try the Unicode font, if there is one specified.
   local config_path = self.app.config.unicode_font
-  -- Try a font that commonly comes with the operating system.
-  local os_path, font_file
-  local windir = os.getenv("WINDIR")
-  if windir and windir ~= "" then
-    os_path = windir .. pathsep .. "Fonts" .. pathsep .. "ARIALUNI.TTF"
-  elseif self.app.os == "macos" then
-    os_path = "/Library/Fonts/Arial Unicode.ttf"
+  self.ttf_font_data = self:_loadFontData(config_path)
+  if self.ttf_font_data then
+    loaded_font_path = config_path
+
   else
-    os_path = "/usr/share/fonts/truetype/arphic/uming.ttc"
-  end
-  if check(config_path) then font_file = config_path
-  elseif check(os_path) then
-    font_file = os_path
-    print("Configured unicode font not found, using " .. font_file .. " instead.")
-    print("This will be written to the config file.")
-  elseif config_path ~= nil then
-    print("Configured unicode font not found, no fallback available.")
-    return
-  end
-  local font = font_file and io.open(font_file, "rb")
-  if font then
-    self.ttf_font_data = font:read("*a")
-    font:close()
-    if self.ttf_font_data and self.app.config.unicode_font ~= font_file then
-      self.app.config.unicode_font = font_file
-      self.app:saveConfig()
+    -- Try a font that commonly comes with the operating system.
+    local os_path
+    local windir = os.getenv("WINDIR")
+    if windir and windir ~= "" then
+      os_path = windir .. pathsep .. "Fonts" .. pathsep .. "ARIALUNI.TTF"
+    elseif self.app.os == "macos" then
+      os_path = "/Library/Fonts/Arial Unicode.ttf"
+    else
+      os_path = "/usr/share/fonts/truetype/arphic/uming.ttc"
     end
+    self.ttf_font_data = self:_loadFontData(os_path)
+
+    if self.ttf_font_data then
+      loaded_font_path = os_path
+
+    else
+      -- No font file found.
+      if config_path ~= nil then
+        print("Configured unicode font not found, no fallback available.")
+      end
+      return
+    end
+  end
+
+  -- Adjust unicode font in the configuration if needed.
+  if self.ttf_font_data and self.app.config.unicode_font ~= loaded_font_file then
+    self.app.config.unicode_font = loaded_font_file
+    self.app:saveConfig()
   end
 end
 
@@ -407,10 +429,7 @@ function Graphics:loadLanguageFont(name, sprite_table, ...)
     local cache = self.cache.language_fonts[name]
     font = cache and cache[sprite_table]
     if not font then
-      font = TH.freetype_font()
-      -- TODO: Choose face based on "name" rather than always using same face.
-      font:setFace(self.ttf_font_data)
-      font:setSheet(sprite_table)
+      font = Graphics.lf:_constructTtfFont(self.ttf_font_data, sprite_table)
       self.reload_functions_last[font] = font_reloader
 
       if not cache then
@@ -421,6 +440,14 @@ function Graphics:loadLanguageFont(name, sprite_table, ...)
     end
   end
   self.load_info[font] = {self.loadLanguageFont, self, name, sprite_table, ...}
+  return font
+end
+
+function Graphics._constructTtfFont(font_data, sprite_table)
+  local font = TH.freetype_font()
+  -- TODO: Choose face based on "name" rather than always using same face.
+  font:setFace(self.ttf_font_data)
+  font:setSheet(sprite_table)
   return font
 end
 

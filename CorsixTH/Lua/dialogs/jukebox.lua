@@ -40,6 +40,16 @@ function UIJukebox:UIJukebox(app)
   self.white_font = app.gfx:loadFont("QData", "Font01V")
   self.blue_font = app.gfx:loadFont("QData", "Font02V")
 
+  if TH.freetype_font then
+    local font_data = self.app.gfx:_loadFontData("/usr/share/fonts/truetype/material-design-icons-iconfont/MaterialIcons-Regular.ttf")
+
+    -- Boldly copied from app.lua, lines 197..200, but it makes little sense to me.
+    local builtin_font = self.gfx:loadBuiltinFont()
+    self.materials = Graphics._constructTtfFont(font_data, builtin_font:getSheet())
+  else
+    print("no font available")
+  end
+
   -- Dialog head (current track title & exit button)
   self:addPanel(389, 0, 0)
   for x = 30, self.width - 61, 24 do
