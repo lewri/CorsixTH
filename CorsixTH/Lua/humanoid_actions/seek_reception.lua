@@ -30,6 +30,31 @@ function SeekReceptionAction:SeekReceptionAction()
   self:HumanoidAction("seek_reception")
 end
 
+--! Get size of a tile in screen pixels.
+--!return ({xsize, ysize}) Size of a tile in pixels.
+local function getTileSize()
+  local ui = TheApp.ui
+  local _, top_y = ui:WorldToScreen(1, 1)
+  local _, bottom_y = ui:WorldToScreen(2, 2)
+  local left_x, _ = ui:WorldToScreen(1, 2)
+  local right_x, _ = ui:WorldToScreen(2, 1)
+  return {right_x - left_x, bottom_y - top_y}
+end
+
+--! Decide whether the tile with its top at (tile_top_x, tile_top_y) is
+--  at least partially visible.
+--!param tile_top_x (int) screen X coordinate of the top of the tile.
+--!param tile_top_y (int) screen Y coordinate of the top of the tile.
+--!param tile_size (array of ints) Size of a tile in screen pixels.
+--!param scr_size (array of ints) Size of the screen in pixels.
+--!return Whether the tile is at least partly visible at the screen.
+local function isTileOnScreen(tile_top_x, tile_top_y, tile_size, scr_size)
+  if tile_top_y + tile_size[2] < 0 then return false end
+  if tile_top_y >= scr_size[2] then return false end
+  if tile_top_x + tile_size[1] / 2 < 0 then return false end
+  return not (tile_top_x - tile_size[1] / 2 >= scr_size[1])
+end
+
 --! Can the humanoid join the reception queue at the given position?
 --!param humanoid (Humanoid) Humanoid going to the reception.
 --!param x (int) X coordinate of the tile to consider.
