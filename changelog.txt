@@ -17,7 +17,7 @@ CorsixTH 0.68.0 - released October 2024
 * More cheats!
 * [Experimental] Right mouse panning can now be used instead of using the
   middle mouse button. Enable it in the configuration file
-* [Experimental] We’re closer to fully implementing falling actions! Get a
+* [Experimental] We're closer to fully implementing falling actions! Get a
   sneak peek and get the chance to push people over by enabling it in the
   configuration file/debug menu
 
@@ -57,7 +57,7 @@ CorsixTH 0.68.0 - released October 2024
 # Bug Fixes
 * Swing (double) doors will no longer crash your game if you built rooms that
   used them while paused
-* Fixed a bug for NVIDIA users who didn’t like graphical corruption when
+* Fixed a bug for NVIDIA users who didn't like graphical corruption when
   playing fullscreen at non-native resolutions
 * Games should no longer crash irrecoverably because you have a 4k monitor :) 
 * The game will now exit to the main menu cleanly if a problem occurred trying
