@@ -61,7 +61,7 @@
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_staff.html#_0_1_staff_1check_if_waited_too_long">checkIfWaitedTooLong</a>()
+ <a href="_0_1_staff.html#_0_1_staff_1check_if_waited_too_long_for_raise">checkIfWaitedTooLongForRaise</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
@@ -85,6 +85,10 @@
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1find_objects_in_square">findObjectsInSquare</a>(<span class="p">size</span>, <span class="p">object_spec</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1finish_action">finishAction</a>(<span class="p">action</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
@@ -97,6 +101,10 @@
  (overrides <a href="_0_1_staff.html#_0_1_staff_1fulfills_criterion">Staff:fulfillsCriterion</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1get_attribute">getAttribute</a>(<span class="p">attribute</span>, <span class="p">default_value</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1get_current_action">getCurrentAction</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
@@ -105,8 +113,8 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_staff.html#_0_1_staff_1get_drawing_layer">getDrawingLayer</a>()
- (inherited from <a href="_0_1_staff.html">Staff</a>)
+ <a href="_0_1_entity.html#_0_1_entity_1get_drawing_layer">getDrawingLayer</a>()
+ (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1get_dynamic_info">getDynamicInfo</a>()
@@ -137,6 +145,10 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1has_dressing_and_leaving_action">hasDressingAndLeavingAction</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1has_leaving_action">hasLeavingAction</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
@@ -148,12 +160,28 @@
  <a href="_0_1_handyman.html#_0_1_handyman_1interrupt_handyman_task">interruptHandymanTask</a>()
  </li>
  <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1is_crack_up_tired">isCrackUpTired</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_entering_room">isEnteringRoom</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1is_idle">isIdle</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_knocking_door">isKnockingDoor</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1is_leaving">isLeaving</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1is_meandering">isMeandering</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1is_mood_active">isMoodActive</a>(<span class="p">mood</span>)
@@ -165,6 +193,14 @@
  </li>
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1is_tiring">isTiring</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_type">isType</a>(<span class="p">humanoid_class</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1is_very_tired">isVeryTired</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
@@ -186,6 +222,10 @@
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1on_destroy">onDestroy</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_handyman.html#_0_1_handyman_1on_pickup">onPickup</a>()
+ (overrides <a href="_0_1_staff.html#_0_1_staff_1on_pickup">Staff:onPickup</a>)
  </li>
  <li class="self">
  <a href="_0_1_handyman.html#_0_1_handyman_1on_place_in_corridor">onPlaceInCorridor</a>()
@@ -220,6 +260,10 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1remove_queued_staff_message">removeQueuedStaffMessage</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1request_raise">requestRaise</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
@@ -251,6 +295,10 @@
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1set_if_hover_moods_visible">setIfHoverMoodsVisible</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1set_layer">setLayer</a>(<span class="p">layer</span>, <span class="p">id</span>)
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
@@ -265,6 +313,10 @@
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1set_next_action">setNextAction</a>(<span class="p">action</span>, <span class="p">high_priority</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1set_pickup">setPickup</a>(<span class="p">ui</span>, <span class="p">window_to_close</span>)
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1set_position">setPosition</a>(<span class="p">x</span>, <span class="p">y</span>)
@@ -417,6 +469,9 @@
  <li><span class="p">going_home</span>
  (*)
  </li>
+ <li><span class="p">going_to_die</span>
+ (*)
+ </li>
  <li><span class="p">going_to_staffroom</span>
  </li>
  <li><span class="p">has_fallen</span>
@@ -428,6 +483,9 @@
  <li><span class="p">hospital</span>
  </li>
  <li><span class="p">hover_cursor</span>
+ (*)
+ </li>
+ <li><span class="p">hover_moods</span>
  (*)
  </li>
  <li><span class="p">humanoid_class</span>
@@ -452,6 +510,9 @@
  (*)
  </li>
  <li><span class="p">mood_info</span>
+ (*)
+ </li>
+ <li><span class="p">mood_marker</span>
  (*)
  </li>
  <li><span class="p">next_room_to_visit</span>
@@ -556,9 +617,6 @@
  <li><span class="p">waiting_for_staffroom</span>
  (*)
  </li>
- <li><span class="p">waiting_on_other_staff</span>
- (*)
- </li>
  <li><span class="p">walk_anims</span>
  (*)
  </li>
@@ -625,7 +683,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L156">line 156 of Lua/entities/humanoids/staff/handyman.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L161">line 161 of Lua/entities/humanoids/staff/handyman.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -670,6 +728,13 @@
  <div class="method">
  <h5><a name="_0_1_handyman_1interrupt_handyman_task">function Handyman:interruptHandymanTask()</a></h5>
  <p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L101">line 101 of Lua/entities/humanoids/staff/handyman.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_handyman_1on_pickup">function Handyman:onPickup()</a></h5>
+ <p>
+ <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1on_pickup">Staff:onPickup</a>.<br/>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L96">line 96 of Lua/entities/humanoids/staff/handyman.lua</a>.
  </p>
  </div>
@@ -683,7 +748,7 @@
  <div class="method">
  <h5><a name="_0_1_handyman_1search_for_handyman_task">function Handyman:searchForHandymanTask()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L106">line 106 of Lua/entities/humanoids/staff/handyman.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L111">line 111 of Lua/entities/humanoids/staff/handyman.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -707,7 +772,7 @@
  <p>
  If the staff member had a task outstanding, unassigning them from that task.
 Tasks with no handyman assigned will be eligible for reassignment by the hospital.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L177">line 177 of Lua/entities/humanoids/staff/handyman.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/handyman.lua#L182">line 182 of Lua/entities/humanoids/staff/handyman.lua</a>.
  </p>
  </div>
 </div>

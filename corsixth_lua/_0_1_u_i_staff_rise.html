@@ -32,11 +32,11 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -44,7 +44,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -108,6 +108,10 @@
  <a href="_0_1_window.html#_0_1_window_1hit_test_panel">hitTestPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">panel</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
  <li class="self">
  <a href="_0_1_u_i_staff_rise.html#_0_1_u_i_staff_rise_1increase_salary">increaseSalary</a>()
  </li>
@@ -132,7 +136,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="self">
@@ -204,6 +208,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1set_size">setSize</a>(<span class="p">width</span>, <span class="p">height</span>, <span class="p">apply_ui_scale</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1start_button_blinking">startButtonBlinking</a>(<span class="p">button_index</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -220,6 +228,9 @@
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">black_font</span>
@@ -363,7 +374,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1after_load">Window:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L189">line 189 of Lua/dialogs/staff_rise.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L192">line 192 of Lua/dialogs/staff_rise.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -404,13 +415,13 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L149">line 149 of Lua/dialogs/staff_rise.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L152">line 152 of Lua/dialogs/staff_rise.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_staff_rise_1fire_staff">function UIStaffRise:fireStaff()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L175">line 175 of Lua/dialogs/staff_rise.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L179">line 179 of Lua/dialogs/staff_rise.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -436,7 +447,7 @@
  <div class="method">
  <h5><a name="_0_1_u_i_staff_rise_1increase_salary">function UIStaffRise:increaseSalary()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L181">line 181 of Lua/dialogs/staff_rise.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/staff_rise.lua#L185">line 185 of Lua/dialogs/staff_rise.lua</a>.
  </p>
  </div>
  <div class="method">

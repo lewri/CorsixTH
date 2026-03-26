@@ -68,7 +68,15 @@
  <a href="_0_1_vip.html#_0_1_vip_1evaluate_room">evaluateRoom</a>()
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1find_objects_in_square">findObjectsInSquare</a>(<span class="p">size</span>, <span class="p">object_spec</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1finish_action">finishAction</a>(<span class="p">action</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1get_attribute">getAttribute</a>(<span class="p">attribute</span>, <span class="p">default_value</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
@@ -80,8 +88,8 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_humanoid.html#_0_1_humanoid_1get_drawing_layer">getDrawingLayer</a>()
- (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ <a href="_0_1_entity.html#_0_1_entity_1get_drawing_layer">getDrawingLayer</a>()
+ (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1get_dynamic_info">getDynamicInfo</a>()
@@ -111,7 +119,19 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1has_dressing_and_leaving_action">hasDressingAndLeavingAction</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1has_leaving_action">hasLeavingAction</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_entering_room">isEnteringRoom</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_knocking_door">isKnockingDoor</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
@@ -120,6 +140,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1is_mood_active">isMoodActive</a>(<span class="p">mood</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_type">isType</a>(<span class="p">humanoid_class</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
@@ -189,6 +213,10 @@
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1set_hospital">setHospital</a>(<span class="p">hospital</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_vip.html#_0_1_vip_1set_if_hover_moods_visible">setIfHoverMoodsVisible</a>()
+ (overrides <a href="_0_1_humanoid.html#_0_1_humanoid_1set_if_hover_moods_visible">Humanoid:setIfHoverMoodsVisible</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1set_layer">setLayer</a>(<span class="p">layer</span>, <span class="p">id</span>)
@@ -365,6 +393,9 @@
  </li>
  <li><span class="p">going_home</span>
  </li>
+ <li><span class="p">going_to_die</span>
+ (*)
+ </li>
  <li><span class="p">has_fallen</span>
  (*)
  </li>
@@ -374,6 +405,8 @@
  <li><span class="p">hospital</span>
  </li>
  <li><span class="p">hover_cursor</span>
+ </li>
+ <li><span class="p">hover_moods</span>
  </li>
  <li><span class="p">humanoid_class</span>
  (*)
@@ -394,6 +427,8 @@
  </li>
  <li><span class="p">mood_info</span>
  (*)
+ </li>
+ <li><span class="p">mood_marker</span>
  </li>
  <li><span class="p">name</span>
  </li>
@@ -456,7 +491,6 @@
  (*)
  </li>
  <li><span class="p">slow_animation</span>
- (*)
  </li>
  <li><span class="p">speed</span>
  (*)
@@ -548,13 +582,13 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1after_load">Humanoid:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L455">line 455 of Lua/entities/humanoids/vip.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L458">line 458 of Lua/entities/humanoids/vip.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_vip_1evaluate_room">function Vip:evaluateRoom()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L183">line 183 of Lua/entities/humanoids/vip.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L188">line 188 of Lua/entities/humanoids/vip.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -568,7 +602,7 @@
  <p>
  --VIP is leaving--<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1go_home">Humanoid:goHome</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L167">line 167 of Lua/entities/humanoids/vip.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L172">line 172 of Lua/entities/humanoids/vip.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -577,13 +611,21 @@
  --VIP has left--<br/><br/>
  Called when the vip is out of the hospital grounds<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1on_destroy">Humanoid:onDestroy</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L223">line 223 of Lua/entities/humanoids/vip.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L226">line 226 of Lua/entities/humanoids/vip.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_vip_1set_if_hover_moods_visible">function Vip:setIfHoverMoodsVisible()</a></h5>
+ <p>
+ Disable showing VIP mood on hover<br/><br/>
+ <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1set_if_hover_moods_visible">Humanoid:setIfHoverMoodsVisible</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L167">line 167 of Lua/entities/humanoids/vip.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_vip_1set_v_i_p_rating">function Vip:setVIPRating()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L242">line 242 of Lua/entities/humanoids/vip.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/vip.lua#L245">line 245 of Lua/entities/humanoids/vip.lua</a>.
  </p>
  </div>
  <div class="method">

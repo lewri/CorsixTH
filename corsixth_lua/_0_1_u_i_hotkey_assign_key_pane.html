@@ -24,7 +24,7 @@
  <h2 class="class">UIHotkeyAssignKeyPane Class</h2>
 <h3 class="class">Child window for setting key bindings</h3> 
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L555">line 555 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L556">line 556 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_u_i_hotkey_assign_key_pane.html">UIHotkeyAssignKeyPane</a>
  » <a href="_0_1_window.html">Window</a>
 </div>
@@ -32,11 +32,11 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -44,7 +44,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -103,6 +103,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1make_button_on_panel">makeButtonOnPanel</a>(<span class="p">panel</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">sprite</span>, <span class="p">on_click</span>, <span class="p">on_click_self</span>, <span class="p">on_rightclick</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -123,7 +127,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -197,6 +201,10 @@
  <a href="_0_1_window.html#_0_1_window_1set_position">setPosition</a>(<span class="p">x</span>, <span class="p">y</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1set_size">setSize</a>(<span class="p">width</span>, <span class="p">height</span>, <span class="p">apply_ui_scale</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
  <li class="self">
  <a href="_0_1_u_i_hotkey_assign_key_pane.html#_0_1_u_i_hotkey_assign_key_pane_1set_visible">setVisible</a>(<span class="p">visibility</span>)
  </li>
@@ -217,6 +225,9 @@
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">blink_counter</span>
@@ -341,7 +352,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L561">line 561 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L562">line 562 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -356,7 +367,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L614">line 614 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L615">line 615 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -371,7 +382,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L618">line 618 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L619">line 619 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -386,7 +397,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L610">line 610 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/hotkey_assign.lua#L611">line 611 of Lua/dialogs/resizables/hotkey_assign.lua</a>.
  </p>
  </div>
 </div>

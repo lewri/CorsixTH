@@ -37,11 +37,11 @@
  <a href="_0_1_u_i_save_game.html#_0_1_u_i_save_game_1abort_name">abortName</a>()
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -49,7 +49,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -132,6 +132,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1make_button_on_panel">makeButtonOnPanel</a>(<span class="p">panel</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">sprite</span>, <span class="p">on_click</span>, <span class="p">on_click_self</span>, <span class="p">on_rightclick</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -152,7 +156,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -194,6 +198,10 @@
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1on_world_tick">onWorldTick</a>()
  (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1override_min_size">overrideMinSize</a>(<span class="p">min_width</span>, <span class="p">min_height</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1remove_all_panels">removeAllPanels</a>()
@@ -255,6 +263,9 @@
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">background_panel</span>
@@ -405,7 +416,7 @@
  <h5><a name="_0_1_u_i_save_game_1abort_name">function UISaveGame:abortName()</a></h5>
  <p>
  Function called when textbox is aborted (e.g. by pressing escape)<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L60">line 60 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L61">line 61 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -422,7 +433,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_file_browser.html#_0_1_u_i_file_browser_1choice_made">UIFileBrowser:choiceMade</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L84">line 84 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L86">line 86 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -430,7 +441,7 @@
  <p>
  Function called when textbox is confirmed (e.g. by pressing enter)<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_u_i_file_browser.html#_0_1_u_i_file_browser_1confirm_name">UIFileBrowser:confirmName</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L73">line 73 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L74">line 74 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -446,7 +457,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L98">line 98 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L100">line 100 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -463,7 +474,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_file_browser.html#_0_1_u_i_file_browser_1set_input_value">UIFileBrowser:setInputValue</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L66">line 66 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L67">line 67 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -479,7 +490,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L89">line 89 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browsers/save_game.lua#L91">line 91 of Lua/dialogs/resizables/file_browsers/save_game.lua</a>.
  </p>
  </div>
 </div>

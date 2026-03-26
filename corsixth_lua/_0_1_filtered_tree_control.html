@@ -25,7 +25,7 @@
 <h3 class="class">A sortable tree control that accommodates a certain file type and also possibly shows
 their last modification dates.</h3> 
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L79">line 79 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L68">line 68 of Lua/dialogs/resizables/file_browser.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_filtered_tree_control.html">FilteredTreeControl</a>
  » <a href="_0_1_tree_control.html">TreeControl</a>
  » <a href="_0_1_window.html">Window</a>
@@ -34,11 +34,11 @@ their last modification dates.</h3>
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -46,7 +46,7 @@ their last modification dates.</h3>
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -110,6 +110,10 @@ their last modification dates.</h3>
  (inherited from <a href="_0_1_tree_control.html">TreeControl</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1make_button_on_panel">makeButtonOnPanel</a>(<span class="p">panel</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">sprite</span>, <span class="p">on_click</span>, <span class="p">on_click_self</span>, <span class="p">on_rightclick</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -130,7 +134,7 @@ their last modification dates.</h3>
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -214,6 +218,10 @@ their last modification dates.</h3>
  (inherited from <a href="_0_1_tree_control.html">TreeControl</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1set_size">setSize</a>(<span class="p">width</span>, <span class="p">height</span>, <span class="p">apply_ui_scale</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_tree_control.html#_0_1_tree_control_1set_value_change_callback">setValueChangeCallback</a>(<span class="p">callback</span>)
  (inherited from <a href="_0_1_tree_control.html">TreeControl</a>)
  </li>
@@ -243,6 +251,9 @@ their last modification dates.</h3>
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">blink_counter</span>
@@ -429,7 +440,7 @@ their last modification dates.</h3>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L86">line 86 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L75">line 75 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -460,7 +471,7 @@ their last modification dates.</h3>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_tree_control.html#_0_1_tree_control_1draw_extra_on_row">TreeControl:drawExtraOnRow</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L145">line 145 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L134">line 134 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -481,19 +492,19 @@ their last modification dates.</h3>
  <td class="d">Either "ascending" or "descending"</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L121">line 121 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L110">line 110 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_filtered_tree_control_1sort_by_date">function FilteredTreeControl:sortByDate()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L113">line 113 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L102">line 102 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_filtered_tree_control_1sort_by_name">function FilteredTreeControl:sortByName()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L105">line 105 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L94">line 94 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
 </div>

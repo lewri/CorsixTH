@@ -24,7 +24,7 @@
  <h2 class="class">UIPatient Class</h2>
 <h3 class="class">Individual patient information dialog</h3> 
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L28">line 28 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L29">line 29 of Lua/dialogs/patient.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_u_i_patient.html">UIPatient</a>
  » <a href="_0_1_window.html">Window</a>
 </div>
@@ -32,11 +32,11 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -44,7 +44,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -72,7 +72,7 @@
  (overrides <a href="_0_1_window.html#_0_1_window_1draw">Window:draw</a>)
  </li>
  <li class="self">
- <a href="_0_1_u_i_patient.html#_0_1_u_i_patient_1draw_bar">drawBar</a>(<span class="p">canvas</span>, <span class="p">xbase</span>, <span class="p">ybase</span>, <span class="p">xpos</span>, <span class="p">ypos</span>, <span class="p">value</span>)
+ <a href="_0_1_u_i_patient.html#_0_1_u_i_patient_1draw_bar">drawBar</a>(<span class="p">canvas</span>, <span class="p">sprite</span>, <span class="p">ybase</span>, <span class="p">xpos</span>, <span class="p">ypos</span>, <span class="p">value</span>)
  </li>
  <li class="self">
  <a href="_0_1_u_i_patient.html#_0_1_u_i_patient_1draw_health_history">drawHealthHistory</a>(<span class="p">canvas</span>, <span class="p">x</span>, <span class="p">y</span>)
@@ -115,6 +115,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1make_button_on_panel">makeButtonOnPanel</a>(<span class="p">panel</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">sprite</span>, <span class="p">on_click</span>, <span class="p">on_click_self</span>, <span class="p">on_rightclick</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -135,7 +139,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -216,6 +220,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1set_size">setSize</a>(<span class="p">width</span>, <span class="p">height</span>, <span class="p">apply_ui_scale</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1start_button_blinking">startButtonBlinking</a>(<span class="p">button_index</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -241,6 +249,9 @@
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">blink_counter</span>
@@ -368,7 +379,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L34">line 34 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L35">line 35 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -389,7 +400,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1after_load">Window:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L349">line 349 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L359">line 359 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -415,11 +426,11 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1draw">Window:draw</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L133">line 133 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L135">line 135 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_u_i_patient_1draw_bar">function UIPatient:drawBar(<span class="p">canvas</span>, <span class="p">xbase</span>, <span class="p">ybase</span>, <span class="p">xpos</span>, <span class="p">ypos</span>, <span class="p">value</span>)</a></h5>
+ <h5><a name="_0_1_u_i_patient_1draw_bar">function UIPatient:drawBar(<span class="p">canvas</span>, <span class="p">sprite</span>, <span class="p">ybase</span>, <span class="p">xpos</span>, <span class="p">ypos</span>, <span class="p">value</span>)</a></h5>
  <p>
  Draw a bar in the patient dialogue window.<br/><br/>
  <strong>Parameters:</strong>
@@ -431,9 +442,9 @@
  <td class="d">Canvas to draw at.</td>
  </tr>
  <tr>
- <td class="n">xbase</td>
+ <td class="n">sprite</td>
  <td class="t">?</td>
- <td class="d">Horizontal base position.</td>
+ <td class="d">The sprite to draw</td>
  </tr>
  <tr>
  <td class="n">ybase</td>
@@ -456,7 +467,7 @@
  <td class="d">Fraction to draw.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L119">line 119 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L120">line 120 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -482,13 +493,14 @@
  <td class="d"> Y position of the top-left of the graph.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L184">line 184 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L191">line 191 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1draw_treatment_history">function UIPatient:drawTreatmentHistory(<span class="p">canvas</span>, <span class="p">x</span>, <span class="p">y</span>)</a></h5>
  <p>
- List the treatments that were performed on the patient.<br/><br/>
+ List the treatments that were performed on the patient.
+This text is always capitalised.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
@@ -508,19 +520,19 @@
  <td class="d"> Y position of the top of the list.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L174">line 174 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L179">line 179 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1go_home">function UIPatient:goHome()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L313">line 313 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L323">line 323 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1guess_disease">function UIPatient:guessDisease()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L328">line 328 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L338">line 338 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -541,7 +553,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1hit_test">Window:hitTest</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L345">line 345 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L355">line 355 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -557,7 +569,7 @@
  <td class="d"> If given, the fraction of warmth of the patient.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L103">line 103 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L104">line 104 of Lua/dialogs/patient.lua</a>.
  <br/><strong>Note:</strong> Is a function rather than a method. 
  </p>
  </div>
@@ -584,7 +596,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_down">Window:onMouseDown</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L222">line 222 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L231">line 231 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -615,7 +627,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_move">Window:onMouseMove</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L252">line 252 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L261">line 261 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -641,46 +653,46 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_up">Window:onMouseUp</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L227">line 227 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L236">line 236 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1on_tick">function UIPatient:onTick()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_tick">Window:onTick</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L266">line 266 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L275">line 275 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1register_key_handlers">function UIPatient:registerKeyHandlers()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L96">line 96 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L97">line 97 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1scroll_to_patient">function UIPatient:scrollToPatient()</a></h5>
  <p>
  Scrolls the map to the position of the patient which this dialog belongs to<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L257">line 257 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L266">line 266 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1update_information">function UIPatient:updateInformation()</a></h5>
  <p>
  Go through the buttons in the patient dialog to check whether they should be visible<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L273">line 273 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L282">line 282 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1view_diseases">function UIPatient:viewDiseases()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L323">line 323 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L333">line 333 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_patient_1view_queue">function UIPatient:viewQueue()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L302">line 302 of Lua/dialogs/patient.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/patient.lua#L312">line 312 of Lua/dialogs/patient.lua</a>.
  </p>
  </div>
 </div>

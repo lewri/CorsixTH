@@ -55,6 +55,10 @@
  <a href="_0_1_hospital.html#_0_1_hospital_1__fix_boiler">_fixBoiler</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1__get_average_humanoids_attribute">_getAverageHumanoidsAttribute</a>(<span class="p">humanoids</span>, <span class="p">attribute</span>, <span class="p">default_value</span>, <span class="p">min_count</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
  <li class="self">
  <a href="_0_1_player_hospital.html#_0_1_player_hospital_1__warn_for_long_queues">_warnForLongQueues</a>()
  </li>
@@ -99,6 +103,10 @@
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1advise_discover_disease">Hospital:adviseDiscoverDisease</a>)
  </li>
  <li class="self">
+ <a href="_0_1_player_hospital.html#_0_1_player_hospital_1advise_no_g_p_office">adviseNoGPOffice</a>()
+ (overrides <a href="_0_1_hospital.html#_0_1_hospital_1advise_no_g_p_office">Hospital:adviseNoGPOffice</a>)
+ </li>
+ <li class="self">
  <a href="_0_1_player_hospital.html#_0_1_player_hospital_1advise_plants">advisePlants</a>(<span class="p">placed</span>)
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1advise_plants">Hospital:advisePlants</a>)
  </li>
@@ -127,7 +135,15 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1can_accept_patients">canAcceptPatients</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1can_concentrate_research">canConcentrateResearch</a>(<span class="p">disease</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1cancel_epidemics">cancelEpidemics</a>(<span class="p">disease</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -213,6 +229,10 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1find_assigned_tasks_to_handyman">findAssignedTasksToHandyman</a>(<span class="p">handyman</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1find_handyman_task_subtable">findHandymanTaskSubtable</a>(<span class="p">taskType</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -221,7 +241,7 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_hospital.html#_0_1_hospital_1get_average_patient_attribute">getAveragePatientAttribute</a>(<span class="p">attribute</span>, <span class="p">default_value</span>)
+ <a href="_0_1_hospital.html#_0_1_hospital_1get_average_patient_attribute">getAveragePatientAttribute</a>(<span class="p">attribute</span>, <span class="p">default_value</span>, <span class="p">min_count</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
@@ -269,6 +289,10 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1get_staffed_desks">getStaffedDesks</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1get_task_object">getTaskObject</a>(<span class="p">taskIndex</span>, <span class="p">taskType</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -283,6 +307,10 @@
  <li class="self">
  <a href="_0_1_player_hospital.html#_0_1_player_hospital_1give_advice">giveAdvice</a>(<span class="p">msgs</span>, <span class="p">rnd_frac</span>, <span class="p">stay_up</span>)
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1give_advice">Hospital:giveAdvice</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1had_patients">hadPatients</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1has_staffed_desk">hasStaffedDesk</a>()
@@ -400,6 +428,10 @@
  (overrides <a href="_0_1_hospital.html#_0_1_hospital_1on_spawn_v_i_p">Hospital:onSpawnVIP</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1open">open</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1pay_supplier_for_drug">paySupplierForDrug</a>(<span class="p">disease_id</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -460,6 +492,10 @@
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1reset_death_count">resetDeathCount</a>()
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1resolve_emergency">resolveEmergency</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
@@ -499,6 +535,14 @@
  <a href="_0_1_hospital.html#_0_1_hospital_1tick">tick</a>()
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
  </li>
+ <li class="self">
+ <a href="_0_1_player_hospital.html#_0_1_player_hospital_1tick_earthquake">tickEarthquake</a>(<span class="p">stage</span>)
+ (overrides <a href="_0_1_hospital.html#_0_1_hospital_1tick_earthquake">Hospital:tickEarthquake</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_hospital.html#_0_1_hospital_1unassign_handyman_tasks">unassignHandymanTasks</a>(<span class="p">handyman</span>)
+ (inherited from <a href="_0_1_hospital.html">Hospital</a>)
+ </li>
  <li class="inherited">
  <a href="_0_1_hospital.html#_0_1_hospital_1unconditional_change_reputation">unconditionalChangeReputation</a>(<span class="p">valueChange</span>)
  (inherited from <a href="_0_1_hospital.html">Hospital</a>)
@@ -520,9 +564,6 @@
 <div class="member_list">
  <h4>Member Index</h4>
  <ul>
- <li><span class="p">_initResearch</span>
- (*)
- </li>
  <li><span class="p">acc_heating</span>
  (*)
  </li>
@@ -585,6 +626,8 @@
  (*)
  </li>
  <li><span class="p">epidemic</span>
+ </li>
+ <li><span class="p">epidemics_disabled</span>
  (*)
  </li>
  <li><span class="p">free_build_mode</span>
@@ -674,7 +717,6 @@
  (*)
  </li>
  <li><span class="p">num_visitors</span>
- (*)
  </li>
  <li><span class="p">num_visitors_ty</span>
  (*)
@@ -747,9 +789,6 @@
  <li><span class="p">research_dep_built</span>
  (*)
  </li>
- <li><span class="p">research_rooms</span>
- (*)
- </li>
  <li><span class="p">room_discoveries</span>
  (*)
  </li>
@@ -775,7 +814,6 @@
  (*)
  </li>
  <li><span class="p">staff</span>
- (*)
  </li>
  <li><span class="p">staff_room_msg</span>
  (*)
@@ -850,14 +888,14 @@
  <h5><a name="_0_1_player_hospital_1__advise_benches">function PlayerHospital:_adviseBenches()</a></h5>
  <p>
  Private function to check if patients have adequate seating<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L156">line 156 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L158">line 158 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_player_hospital_1__advise_drinks_machines">function PlayerHospital:_adviseDrinksMachines()</a></h5>
  <p>
  Private function to check if patients are getting thirsty<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L232">line 232 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L234">line 234 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -865,7 +903,7 @@
  <p>
  Private function to check warmth of the patients.<br/><br/>
  Only too hot or cold triggers advice<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L192">line 192 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L194">line 194 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -873,7 +911,7 @@
  <p>
  Private function to check warmth of the staff.<br/><br/>
  Only too hot or cold triggers advise<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L216">line 216 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L218">line 218 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -881,21 +919,21 @@
  <p>
  This must occur after monthly maintenance and salary costs<br/><br/>
  or it may give invalid advice<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L112">line 112 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L114">line 114 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_player_hospital_1__advise_staff_room">function PlayerHospital:_adviseStaffRoom()</a></h5>
  <p>
  Private function to warn about lack of a staff room.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L136">line 136 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L138">line 138 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_player_hospital_1__advise_toilets">function PlayerHospital:_adviseToilets()</a></h5>
  <p>
  Private function to warn about a lack of toilets.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L146">line 146 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L148">line 148 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -903,7 +941,7 @@
  <p>
  Private function to advise about long queues<br/><br/>
  Rooms requiring a doctor occasionally trigger the generic message<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L249">line 249 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L251">line 251 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -920,7 +958,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_boiler_breakdown">Hospital:adviseBoilerBreakdown</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L455">line 455 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L457">line 457 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -929,7 +967,7 @@
  Give visual warning that player doesn't have enough $ to build
 Let the message remain until cancelled by the player as it is being displayed behind the town map<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_cannot_afford_plot">Hospital:adviseCannotAffordPlot</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L536">line 536 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L552">line 552 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -945,7 +983,17 @@ Let the message remain until cancelled by the player as it is being displayed be
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_discover_disease">Hospital:adviseDiscoverDisease</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L435">line 435 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L437">line 437 of Lua/hospitals/player_hospital.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_player_hospital_1advise_no_g_p_office">function PlayerHospital:adviseNoGPOffice()</a></h5>
+ <p>
+ Give advice that a patient is waiting for the player to build a GP's office
+Called when a patient has passed reception and is waiting for a room to be built.
+Each piece of advice is only given once per month<br/><br/>
+ <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_no_g_p_office">Hospital:adviseNoGPOffice</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L828">line 828 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -962,7 +1010,7 @@ Let the message remain until cancelled by the player as it is being displayed be
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_plants">Hospital:advisePlants</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L268">line 268 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L270">line 270 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -985,7 +1033,7 @@ from Hospital:computePriceLevelImpact</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1advise_price_level_impact">Hospital:advisePriceLevelImpact</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L542">line 542 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L558">line 558 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1006,7 +1054,7 @@ from Hospital:computePriceLevelImpact</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1after_load">Hospital:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L771">line 771 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L845">line 845 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1023,7 +1071,7 @@ from Hospital:computePriceLevelImpact</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1announce_repair">Hospital:announceRepair</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L468">line 468 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L470">line 470 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1040,7 +1088,7 @@ from Hospital:computePriceLevelImpact</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1announce_staff_leave">Hospital:announceStaffLeave</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L573">line 573 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L589">line 589 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1061,7 +1109,7 @@ from Hospital:computePriceLevelImpact</td>
  <td class="d"> Current game year.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L291">line 291 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L293">line 293 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1069,7 +1117,7 @@ from Hospital:computePriceLevelImpact</td>
  <p>
  Makes the fax which may spawn a VIP<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1create_vip">Hospital:createVip</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L707">line 707 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L723">line 723 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1105,7 +1153,7 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1give_advice">Hospital:giveAdvice</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L382">line 382 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L384">line 384 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1137,7 +1185,7 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1make_emergency_end_fax">Hospital:makeEmergencyEndFax</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L694">line 694 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L710">line 710 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1145,7 +1193,7 @@ call actually says something.</td>
  <p>
  Makes the fax at the start of an emergency<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1make_emergency_start_fax">Hospital:makeEmergencyStartFax</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L639">line 639 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L655">line 655 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1162,7 +1210,7 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1make_no_diagnosis_room_fax">Hospital:makeNoDiagnosisRoomFax</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L617">line 617 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L633">line 633 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1179,7 +1227,7 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1make_no_treatment_room_fax">Hospital:makeNoTreatmentRoomFax</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L579">line 579 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L595">line 595 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1201,7 +1249,7 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1make_raise_request">Hospital:makeRaiseRequest</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L559">line 559 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L575">line 575 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1233,14 +1281,14 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1make_vip_end_fax">Hospital:makeVipEndFax</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L729">line 729 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L745">line 745 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_player_hospital_1monthly_advice_checks">function PlayerHospital:monthlyAdviceChecks()</a></h5>
  <p>
  Give advice to the player at the end of a month.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L278">line 278 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L280">line 280 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1248,7 +1296,7 @@ call actually says something.</td>
  <p>
  Give the user possibly a message about a cured patient.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_cured">Hospital:msgCured</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L403">line 403 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L405">line 405 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1256,7 +1304,7 @@ call actually says something.</td>
  <p>
  Give the user possibly a message about a dead patient.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_killed">Hospital:msgKilled</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L419">line 419 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L421">line 421 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1264,7 +1312,7 @@ call actually says something.</td>
  <p>
  Give advice about having more desks.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_multi_reception_desks">Hospital:msgMultiReceptionDesks</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L343">line 343 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L345">line 345 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1272,7 +1320,7 @@ call actually says something.</td>
  <p>
  Give advice to the user about the need to buy the first reception desk.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_need_first_reception_desk">Hospital:msgNeedFirstReceptionDesk</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L320">line 320 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L322">line 322 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1280,7 +1328,7 @@ call actually says something.</td>
  <p>
  Give advice to the user about having bought a reception desk.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1msg_reception_desk">Hospital:msgReceptionDesk</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L330">line 330 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L332">line 332 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1288,7 +1336,7 @@ call actually says something.</td>
  <p>
  Called at the end of each day.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1on_end_day">Hospital:onEndDay</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L484">line 484 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L486">line 486 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1296,14 +1344,14 @@ call actually says something.</td>
  <p>
  Called at the end of each day.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1on_end_month">Hospital:onEndMonth</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L516">line 516 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L532">line 532 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_player_hospital_1on_spawn_v_i_p">function PlayerHospital:onSpawnVIP()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1on_spawn_v_i_p">Hospital:onSpawnVIP</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L480">line 480 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L482">line 482 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1320,7 +1368,7 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1play_sound">Hospital:playSound</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L764">line 764 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L780">line 780 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1337,7 +1385,7 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1remove_message">Hospital:removeMessage</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L721">line 721 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L737">line 737 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -1354,7 +1402,25 @@ call actually says something.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1show_gates_to_hell">Hospital:showGatesToHell</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L368">line 368 of Lua/hospitals/player_hospital.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L370">line 370 of Lua/hospitals/player_hospital.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_player_hospital_1tick_earthquake">function PlayerHospital:tickEarthquake(<span class="p">stage</span>)</a></h5>
+ <p>
+ The UI parts of earthquake ticks<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">stage</td>
+ <td class="t">string</td>
+ <td class="d"> Stage of the active earthquake. This must be one of the following,
+"warning_start", "main_start", "end", "pause", "small_damage", "large damage", "sound"</td>
+ </tr>
+ </table></p><p>
+ <strong>Overrides:</strong> <a href="_0_1_hospital.html#_0_1_hospital_1tick_earthquake">Hospital:tickEarthquake</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/hospitals/player_hospital.lua#L787">line 787 of Lua/hospitals/player_hospital.lua</a>.
  </p>
  </div>
 </div>

@@ -32,11 +32,11 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -44,7 +44,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -105,6 +105,10 @@
  <a href="_0_1_window.html#_0_1_window_1hit_test_panel">hitTestPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">panel</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
  <li class="self">
  <a href="_0_1_u_i_adviser.html#_0_1_u_i_adviser_1idle">idle</a>()
  </li>
@@ -129,7 +133,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -203,6 +207,10 @@
  <a href="_0_1_window.html#_0_1_window_1set_position">setPosition</a>(<span class="p">x</span>, <span class="p">y</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1set_size">setSize</a>(<span class="p">width</span>, <span class="p">height</span>, <span class="p">apply_ui_scale</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
  <li class="self">
  <a href="_0_1_u_i_adviser.html#_0_1_u_i_adviser_1show">show</a>()
  </li>
@@ -226,6 +234,9 @@
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">balloon_width</span>
@@ -375,7 +386,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1after_load">Window:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L273">line 273 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L286">line 286 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -391,7 +402,7 @@
  <td class="d"> Text to check</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L128">line 128 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L133">line 133 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -417,14 +428,14 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1draw">Window:draw</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L180">line 180 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L185">line 185 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_adviser_1hide">function UIAdviser:hide()</a></h5>
  <p>
  Hides the adviser by running the appropriate animation.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L119">line 119 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L124">line 124 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -432,7 +443,7 @@
  <p>
  Makes the adviser idle for a while before disappearing.
 This means that the text bubble is removed.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L107">line 107 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L112">line 112 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -458,14 +469,14 @@ This means that the text bubble is removed.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_down">Window:onMouseDown</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L199">line 199 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L210">line 210 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_adviser_1on_tick">function UIAdviser:onTick()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_tick">Window:onTick</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L227">line 227 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L240">line 240 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -493,7 +504,7 @@ until the next say() call is made. Useful for the tutorial.</td>
 and shows this new one instead.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L139">line 139 of Lua/dialogs/adviser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/adviser.lua#L144">line 144 of Lua/dialogs/adviser.lua</a>.
  </p>
  </div>
  <div class="method">

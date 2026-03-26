@@ -36,7 +36,7 @@
  <span><a href="_0_1_announcer.html" class="class">Announcer</a> - Announces audible messages to the player.</span>
 </li>
  <li>
- <span><a href="_0_1_app.html" class="class">App</a> - CorsixTH 0.67 release</span>
+ <span><a href="_0_1_app.html" class="class">App</a> - Load palette on init</span>
 </li>
  <li>
  <span><a href="_0_1_audio.html" class="class">Audio</a> - Layer which handles the Lua-facing side of loading and playing audio.</span>
@@ -55,6 +55,12 @@
  It should be able to do adjustments with regards to days in given month and so on.
  Date objects should be immutable and that is why date adjustments return new objects
  instead of modifying the current one.</span>
+</li>
+ <li>
+ <span><a href="_0_1_earthquake.html" class="class">Earthquake</a> - Manages all earthquakes in the world</span>
+</li>
+ <li>
+ <span><a href="_0_1_end_conditions.html" class="class">EndConditions</a></span>
 </li>
  <li>
  <span><a href="_0_1_entity.html" class="class">Entity</a> - Abstraction for visible gameplay things which sit somewhere on the map.</span>
@@ -158,7 +164,7 @@
  <span><a href="_0_1_reception_desk.html" class="class">ReceptionDesk</a></span>
 </li>
  <li>
- <span><a href="_0_1_side_object.html" class="class">SideObject</a></span>
+ <span><a href="_0_1_side_object.html" class="class">SideObject</a> - An object that lives on the edge of a tile.</span>
 </li>
  <li>
  <span><a href="_0_1_surgeon_screen.html" class="class">SurgeonScreen</a></span>
@@ -410,6 +416,9 @@ room.handyman_call_sound = "maint011.wav"</span>
  <span><a href="_0_1_strings.html" class="class">Strings</a> - Layer which handles the loading of localised text.</span>
 </li>
  <li>
+ <span><a href="_0_1_subtitle_queue.html" class="class">SubtitleQueue</a> - First in, first out queue for concurrently displayed subtitles</span>
+</li>
+ <li>
  <span><a href="_0_1_textbox.html" class="class">Textbox</a> - A window element used to enter text</span>
 </li>
  <li>
@@ -444,6 +453,9 @@ that meets a given file extension criterion.</span>
  <li>
  <span><a href="_0_1_window.html" class="class">Window</a> - Base class for user-interface dialogs.</span>
  <ul class="subclass_hierarchy">
+ <li>
+ <span><a href="_0_1_subtitles.html" class="class">Subtitles</a> - UI display area for announcer subtitles</span>
+</li>
  <li>
  <span><a href="_0_1_tree_control.html" class="class">TreeControl</a> - A control (to be placed on a window) which allows the user to navigate a
 tree of items and select one item from it.</span>
@@ -578,6 +590,9 @@ their last modification dates.</span>
  <span><a href="_0_1_u_i_choose_font.html" class="class">UIChooseFont</a> - Window where the user can choose a font file.</span>
 </li>
  <li>
+ <span><a href="_0_1_u_i_choose_soundfont.html" class="class">UIChooseSoundfont</a> - Window where the user can choose a soundfont file.</span>
+</li>
+ <li>
  <span><a href="_0_1_u_i_load_game.html" class="class">UILoadGame</a> - Load Game Window</span>
 </li>
  <li>
@@ -599,6 +614,9 @@ their last modification dates.</span>
 </li>
  <li>
  <span><a href="_0_1_u_i_lua_console.html" class="class">UILuaConsole</a> - Interactive Lua Console for ingame debugging.</span>
+</li>
+ <li>
+ <span><a href="_0_1_u_i_machine_menu.html" class="class">UIMachineMenu</a> - Interactive Machine List</span>
 </li>
  <li>
  <span><a href="_0_1_u_i_main_menu.html" class="class">UIMainMenu</a> - Class for main menu window.</span>
@@ -634,6 +652,9 @@ their last modification dates.</span>
 </li>
  <li>
  <span><a href="_0_1_u_i_shift_scroll_speed.html" class="class">UIShiftScrollSpeed</a> - A window for setting the scroll speed of the camera while pressing the SHIFT key..</span>
+</li>
+ <li>
+ <span><a href="_0_1_u_i_sound_settings.html" class="class">UISoundSettings</a></span>
 </li>
  <li>
  <span><a href="_0_1_u_i_tip_of_the_day.html" class="class">UITipOfTheDay</a> - Tip of the Day Window</span>

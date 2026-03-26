@@ -22,8 +22,9 @@
  </ul>
  <div class="content">
  <h2 class="class">SideObject Class</h2>
+<h3 class="class">An object that lives on the edge of a tile.</h3> 
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/objects/bin.lua#L43">line 43 of Lua/objects/bin.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/object.lua#L904">line 904 of Lua/entities/object.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_side_object.html">SideObject</a>
  » <a href="_0_1_object.html">Object</a>
  » <a href="_0_1_entity.html">Entity</a>
@@ -53,7 +54,7 @@
  </li>
  <li class="self">
  <a href="_0_1_side_object.html#_0_1_side_object_1get_drawing_layer">getDrawingLayer</a>()
- (overrides <a href="_0_1_object.html#_0_1_object_1get_drawing_layer">Object:getDrawingLayer</a>)
+ (overrides <a href="_0_1_entity.html#_0_1_entity_1get_drawing_layer">Entity:getDrawingLayer</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1get_dynamic_info">getDynamicInfo</a>()
@@ -80,7 +81,15 @@
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1increment_used_count">incrementUsedCount</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1init_orientation">initOrientation</a>(<span class="p">direction</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1is_machine">isMachine</a>()
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
@@ -196,7 +205,7 @@
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_object.html#_0_1_object_1update_dynamic_info">updateDynamicInfo</a>(<span class="p">only_update</span>)
+ <a href="_0_1_object.html#_0_1_object_1update_dynamic_info">updateDynamicInfo</a>()
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  </ul>
@@ -221,13 +230,13 @@
  <li><span class="p">hospital</span>
  (*)
  </li>
- <li><span class="p">init_anim_flags</span>
- (*)
- </li>
  <li><span class="p">layers</span>
  (*)
  </li>
  <li><span class="p">mood_info</span>
+ (*)
+ </li>
+ <li><span class="p">mood_marker</span>
  (*)
  </li>
  <li><span class="p">num_animation_ticks</span>
@@ -323,14 +332,14 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/objects/bin.lua#L48">line 48 of Lua/objects/bin.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/object.lua#L910">line 910 of Lua/entities/object.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_side_object_1get_drawing_layer">function SideObject:getDrawingLayer()</a></h5>
  <p>
- <strong>Overrides:</strong> <a href="_0_1_object.html#_0_1_object_1get_drawing_layer">Object:getDrawingLayer</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/objects/bin.lua#L52">line 52 of Lua/objects/bin.lua</a>.
+ <strong>Overrides:</strong> <a href="_0_1_entity.html#_0_1_entity_1get_drawing_layer">Entity:getDrawingLayer</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/object.lua#L914">line 914 of Lua/entities/object.lua</a>.
  </p>
  </div>
 </div>

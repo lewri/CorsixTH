@@ -31,6 +31,10 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
+ <a href="_0_1_room.html#_0_1_room_1__are_patients_wanting_to_enter">_arePatientsWantingToEnter</a>()
+ (inherited from <a href="_0_1_room.html">Room</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_room.html#_0_1_room_1__check_wait_toggle_valid_target">_checkWaitToggleValidTarget</a>()
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
@@ -41,6 +45,10 @@
  <li class="self">
  <a href="_0_1_research_room.html#_0_1_research_room_1after_load">afterLoad</a>(<span class="p">old</span>, <span class="p">new</span>)
  (overrides <a href="_0_1_room.html#_0_1_room_1after_load">Room:afterLoad</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_room.html#_0_1_room_1calculate_happiness_factor">calculateHappinessFactor</a>()
+ (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_room.html#_0_1_room_1calculate_removal_cost">calculateRemovalCost</a>()
@@ -67,10 +75,6 @@
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_room.html#_0_1_room_1create_dealt_with_patient_callback">createDealtWithPatientCallback</a>(<span class="p">humanoid</span>)
- (inherited from <a href="_0_1_room.html">Room</a>)
- </li>
- <li class="inherited">
  <a href="_0_1_room.html#_0_1_room_1create_enter_action">createEnterAction</a>(<span class="p">humanoid_entering</span>, <span class="p">callback</span>)
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
@@ -90,7 +94,7 @@
  <a href="_0_1_research_room.html#_0_1_research_room_1do_staff_use_cycle">doStaffUseCycle</a>(<span class="p">staff</span>, <span class="p">previous_object</span>)
  </li>
  <li class="inherited">
- <a href="_0_1_room.html#_0_1_room_1find_work_for_staff">findWorkForStaff</a>()
+ <a href="_0_1_room.html#_0_1_room_1enter_edit_mode">enterEditMode</a>()
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
  <li class="inherited">
@@ -114,7 +118,15 @@
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_room.html#_0_1_room_1get_patients">getPatients</a>()
+ (inherited from <a href="_0_1_room.html">Room</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_room.html#_0_1_room_1get_required_staff_criteria">getRequiredStaffCriteria</a>()
+ (inherited from <a href="_0_1_room.html">Room</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_room.html#_0_1_room_1get_room_machine">getRoomMachine</a>()
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
  <li class="inherited">
@@ -139,6 +151,14 @@
  </li>
  <li class="inherited">
  <a href="_0_1_room.html#_0_1_room_1is_diagnosis_room_for_patient">isDiagnosisRoomForPatient</a>(<span class="p">patient</span>)
+ (inherited from <a href="_0_1_room.html">Room</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_room.html#_0_1_room_1is_room_in_demand">isRoomInDemand</a>()
+ (inherited from <a href="_0_1_room.html">Room</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_room.html#_0_1_room_1lock_room_on_repair">lockRoomOnRepair</a>()
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
  <li class="inherited">
@@ -197,6 +217,10 @@
  <a href="_0_1_room.html#_0_1_room_1try_to_find_nearby_patients">tryToFindNearbyPatients</a>()
  (inherited from <a href="_0_1_room.html">Room</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_room.html#_0_1_room_1unlock_room_on_repair">unlockRoomOnRepair</a>()
+ (inherited from <a href="_0_1_room.html">Room</a>)
+ </li>
  </ul>
 </div>
 <div class="member_list">
@@ -220,6 +244,9 @@
  <li><span class="p">door2</span>
  (*)
  </li>
+ <li><span class="p">happiness_factor</span>
+ (*)
+ </li>
  <li><span class="p">height</span>
  (*)
  </li>
@@ -235,6 +262,9 @@
  (*)
  </li>
  <li><span class="p">is_active</span>
+ (*)
+ </li>
+ <li><span class="p">manual_repair</span>
  (*)
  </li>
  <li><span class="p">maximum_patients</span>

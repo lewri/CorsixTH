@@ -33,11 +33,11 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -48,7 +48,7 @@
  <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1add_objects">addObjects</a>(<span class="p">object_list</span>, <span class="p">pay_for</span>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -113,6 +113,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1make_button_on_panel">makeButtonOnPanel</a>(<span class="p">panel</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">sprite</span>, <span class="p">on_click</span>, <span class="p">on_click_self</span>, <span class="p">on_rightclick</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -133,7 +137,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -159,9 +163,9 @@
  <a href="_0_1_window.html#_0_1_window_1on_mouse_down">onMouseDown</a>(<span class="p">button</span>, <span class="p">x</span>, <span class="p">y</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
- <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1on_mouse_move">onMouseMove</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">dx</span>, <span class="p">dy</span>)
- (inherited from <a href="_0_1_window.html">Window</a>)
+ <li class="self">
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1on_mouse_move">onMouseMove</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">dx</span>, <span class="p">dy</span>)
+ (overrides <a href="_0_1_window.html#_0_1_window_1on_mouse_move">Window:onMouseMove</a>)
  </li>
  <li class="self">
  <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1on_mouse_up">onMouseUp</a>(<span class="p">button</span>, <span class="p">x</span>, <span class="p">y</span>)
@@ -238,6 +242,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1set_size">setSize</a>(<span class="p">width</span>, <span class="p">height</span>, <span class="p">apply_ui_scale</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1start_button_blinking">startButtonBlinking</a>(<span class="p">button_index</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -256,12 +264,17 @@
  <li><span class="p">active_button</span>
  (*)
  </li>
+ <li><span class="p">active_hover_index</span>
+ </li>
  <li><span class="p">active_index</span>
  </li>
  <li><span class="p">active_scrollbar</span>
  (*)
  </li>
  <li><span class="p">anims</span>
+ </li>
+ <li><span class="p">apply_ui_scale</span>
+ (*)
  </li>
  <li><span class="p">blink_counter</span>
  (*)
@@ -307,6 +320,8 @@
  </li>
  <li><span class="p">hotkeyboxes</span>
  (*)
+ </li>
+ <li><span class="p">hover_sound</span>
  </li>
  <li><span class="p">key_handlers</span>
  (*)
@@ -439,7 +454,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L163">line 163 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L164">line 164 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -460,7 +475,7 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1after_load">Window:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L841">line 841 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L886">line 886 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -480,26 +495,26 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L774">line 774 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L819">line 819 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1cancel">function UIPlaceObjects:cancel()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L318">line 318 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L322">line 322 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1clear_blueprint">function UIPlaceObjects:clearBlueprint()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L573">line 573 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L618">line 618 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1close">function UIPlaceObjects:close()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1close">Window:close</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L310">line 310 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L314">line 314 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -525,13 +540,13 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1draw">Window:draw</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L535">line 535 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L540">line 540 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1next_orientation">function UIPlaceObjects:nextOrientation()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L427">line 427 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L431">line 431 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -552,7 +567,38 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_cursor_world_position_change">Window:onCursorWorldPositionChange</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L808">line 808 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L853">line 853 of Lua/dialogs/place_objects.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_u_i_place_objects_1on_mouse_move">function UIPlaceObjects:onMouseMove(<span class="p">x</span>, <span class="p">y</span>, <span class="p">dx</span>, <span class="p">dy</span>)</a></h5>
+ <p>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">x</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">y</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">dx</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">dy</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ </table></p><p>
+ <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_move">Window:onMouseMove</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L592">line 592 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -578,7 +624,7 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_up">Window:onMouseUp</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L451">line 451 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L455">line 455 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -593,13 +639,13 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L479">line 479 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L484">line 484 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1register_key_handlers">function UIPlaceObjects:registerKeyHandlers()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L92">line 92 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L93">line 93 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -614,7 +660,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L282">line 282 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L286">line 286 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -640,7 +686,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L239">line 239 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L242">line 242 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -660,7 +706,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L292">line 292 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L296">line 296 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -676,7 +722,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L98">line 98 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L99">line 99 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -691,7 +737,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L832">line 832 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L877">line 877 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -706,7 +752,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L322">line 322 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L326">line 326 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -726,7 +772,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L591">line 591 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L636">line 636 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -741,13 +787,13 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L370">line 370 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L374">line 374 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1try_next_orientation">function UIPlaceObjects:tryNextOrientation()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L443">line 443 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L447">line 447 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
 </div>

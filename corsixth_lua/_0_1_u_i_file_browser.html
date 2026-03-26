@@ -24,21 +24,21 @@
  <h2 class="class">UIFileBrowser Class</h2>
 <h3 class="class">A file browser with a scrollbar. Used by load_game and save_game.</h3> 
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L154">line 154 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L144">line 144 of Lua/dialogs/resizables/file_browser.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_u_i_file_browser.html">UIFileBrowser</a>
  » <a href="_0_1_u_i_resizable.html">UIResizable</a>
  » <a href="_0_1_window.html">Window</a>
- <br/><strong>Subclasses:</strong> <a href="_0_1_u_i_choose_font.html">UIChooseFont</a>, <a href="_0_1_u_i_load_game.html">UILoadGame</a>, <a href="_0_1_u_i_load_map.html">UILoadMap</a>, <a href="_0_1_u_i_save_game.html">UISaveGame</a>, <a href="_0_1_u_i_save_map.html">UISaveMap</a>
+ <br/><strong>Subclasses:</strong> <a href="_0_1_u_i_choose_font.html">UIChooseFont</a>, <a href="_0_1_u_i_choose_soundfont.html">UIChooseSoundfont</a>, <a href="_0_1_u_i_load_game.html">UILoadGame</a>, <a href="_0_1_u_i_load_map.html">UILoadMap</a>, <a href="_0_1_u_i_save_game.html">UISaveGame</a>, <a href="_0_1_u_i_save_map.html">UISaveMap</a>
 </div>
 <div class="method_list">
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -46,7 +46,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -119,6 +119,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1make_button_on_panel">makeButtonOnPanel</a>(<span class="p">panel</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">sprite</span>, <span class="p">on_click</span>, <span class="p">on_click_self</span>, <span class="p">on_rightclick</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -139,7 +143,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -181,6 +185,10 @@
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1on_world_tick">onWorldTick</a>()
  (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1override_min_size">overrideMinSize</a>(<span class="p">min_width</span>, <span class="p">min_height</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1remove_all_panels">removeAllPanels</a>()
@@ -238,6 +246,9 @@
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">background_panel</span>
@@ -364,7 +375,7 @@
 </div>
 <div class="methods">
  <div class="method">
- <h5><a name="_0_1_u_i_file_browser_1_u_i_file_browser">function UIFileBrowser:UIFileBrowser(<span class="p">ui</span>, <span class="p">mode</span>, <span class="p">title</span>, <span class="p">vertical_size</span>, <span class="p">root</span>, <span class="p">show_dates</span>)</a></h5>
+ <h5><a name="_0_1_u_i_file_browser_1_u_i_file_browser">function UIFileBrowser:UIFileBrowser(<span class="p">ui</span>, <span class="p">mode</span>, <span class="p">title</span>, <span class="p">vertical_size</span>, <span class="p">root</span>, <span class="p">show_dates</span>, <span class="p">submit_text</span>)</a></h5>
  <p>
  Constructs the dialog.<br/><br/>
  <strong>Parameters:</strong>
@@ -387,27 +398,32 @@
  </tr>
  <tr>
  <td class="n">vertical_size</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="t">number</td>
+ <td class="d"></td>
  </tr>
  <tr>
  <td class="n">root</td>
  <td class="t">?</td>
- <td class="d">?</td>
+ <td class="d"></td>
  </tr>
  <tr>
  <td class="n">show_dates</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="t">boolean</td>
+ <td class="d"> Whether to show date last modified</td>
+ </tr>
+ <tr>
+ <td class="n">submit_text</td>
+ <td class="t">string</td>
+ <td class="d"> Optional alternative labelling of the OK button</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L166">line 166 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L156">line 156 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_file_browser_1button_back">function UIFileBrowser:buttonBack()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L243">line 243 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L237">line 237 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -423,7 +439,7 @@
  <td class="d"> user selected element</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L237">line 237 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L231">line 231 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -439,7 +455,7 @@
  <td class="d"> Name of the file chosen.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L226">line 226 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L220">line 220 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -456,7 +472,7 @@
  <td class="d"> Name of the file chosen</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L231">line 231 of Lua/dialogs/resizables/file_browser.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/file_browser.lua#L225">line 225 of Lua/dialogs/resizables/file_browser.lua</a>.
  </p>
  </div>
 </div>

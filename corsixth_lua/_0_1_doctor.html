@@ -24,7 +24,7 @@
  <h2 class="class">Doctor Class</h2>
 <h3 class="class">A Doctor (Researcher,Surgan,Psychologist)</h3> 
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L26">line 26 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L27">line 27 of Lua/entities/humanoids/staff/doctor.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_doctor.html">Doctor</a>
  » <a href="_0_1_staff.html">Staff</a>
  » <a href="_0_1_humanoid.html">Humanoid</a>
@@ -33,6 +33,9 @@
 <div class="method_list">
  <h4>Method Index</h4>
  <ul>
+ <li class="self">
+ <a href="_0_1_doctor.html#_0_1_doctor_1__calculate_training_performance">_calculateTrainingPerformance</a>(<span class="p">doc_atd</span>, <span class="p">con_skill</span>, <span class="p">class_size</span>)
+ </li>
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1__handle_empty_action_queue">_handleEmptyActionQueue</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
@@ -58,7 +61,7 @@
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_staff.html#_0_1_staff_1check_if_waited_too_long">checkIfWaitedTooLong</a>()
+ <a href="_0_1_staff.html#_0_1_staff_1check_if_waited_too_long_for_raise">checkIfWaitedTooLongForRaise</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
@@ -82,6 +85,10 @@
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1find_objects_in_square">findObjectsInSquare</a>(<span class="p">size</span>, <span class="p">object_spec</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1finish_action">finishAction</a>(<span class="p">action</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
@@ -94,6 +101,10 @@
  (overrides <a href="_0_1_staff.html#_0_1_staff_1fulfills_criterion">Staff:fulfillsCriterion</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1get_attribute">getAttribute</a>(<span class="p">attribute</span>, <span class="p">default_value</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1get_current_action">getCurrentAction</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
@@ -102,8 +113,8 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_staff.html#_0_1_staff_1get_drawing_layer">getDrawingLayer</a>()
- (inherited from <a href="_0_1_staff.html">Staff</a>)
+ <a href="_0_1_entity.html#_0_1_entity_1get_drawing_layer">getDrawingLayer</a>()
+ (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1get_dynamic_info">getDynamicInfo</a>()
@@ -134,16 +145,35 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1has_dressing_and_leaving_action">hasDressingAndLeavingAction</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1has_leaving_action">hasLeavingAction</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_doctor.html#_0_1_doctor_1has_specialism">hasSpecialism</a>(<span class="p">trait</span>)
  </li>
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1increase_wage">increaseWage</a>(<span class="p">amount</span>)
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1is_crack_up_tired">isCrackUpTired</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_entering_room">isEnteringRoom</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1is_idle">isIdle</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_knocking_door">isKnockingDoor</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="self">
  <a href="_0_1_doctor.html#_0_1_doctor_1is_learning">isLearning</a>()
@@ -154,6 +184,10 @@
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1is_leaving">isLeaving</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1is_meandering">isMeandering</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1is_mood_active">isMoodActive</a>(<span class="p">mood</span>)
@@ -168,6 +202,14 @@
  </li>
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1is_tiring">isTiring</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_type">isType</a>(<span class="p">humanoid_class</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1is_very_tired">isVeryTired</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
@@ -189,6 +231,10 @@
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1on_destroy">onDestroy</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_doctor.html#_0_1_doctor_1on_pickup">onPickup</a>()
+ (overrides <a href="_0_1_staff.html#_0_1_staff_1on_pickup">Staff:onPickup</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1on_place_in_corridor">onPlaceInCorridor</a>()
@@ -223,12 +269,19 @@
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1remove_queued_staff_message">removeQueuedStaffMessage</a>()
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1request_raise">requestRaise</a>()
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1reset_animation">resetAnimation</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
+ </li>
+ <li class="self">
+ <a href="_0_1_doctor.html#_0_1_doctor_1reset_surgeon_state">resetSurgeonState</a>()
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1set_animation">setAnimation</a>(<span class="p">animation</span>, <span class="p">flags</span>)
@@ -254,6 +307,10 @@
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1set_if_hover_moods_visible">setIfHoverMoodsVisible</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1set_layer">setLayer</a>(<span class="p">layer</span>, <span class="p">id</span>)
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
@@ -268,6 +325,10 @@
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1set_next_action">setNextAction</a>(<span class="p">action</span>, <span class="p">high_priority</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_staff.html#_0_1_staff_1set_pickup">setPickup</a>(<span class="p">ui</span>, <span class="p">window_to_close</span>)
+ (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1set_position">setPosition</a>(<span class="p">x</span>, <span class="p">y</span>)
@@ -322,7 +383,7 @@
  (overrides <a href="_0_1_staff.html#_0_1_staff_1tostring">Staff:tostring</a>)
  </li>
  <li class="self">
- <a href="_0_1_doctor.html#_0_1_doctor_1train_skill">trainSkill</a>(<span class="p">consultant</span>, <span class="p">trait</span>, <span class="p">skill_thres</span>, <span class="p">room_factor</span>, <span class="p">staff_count</span>)
+ <a href="_0_1_doctor.html#_0_1_doctor_1train_skills">trainSkills</a>(<span class="p">consultant</span>, <span class="p">room_factor</span>, <span class="p">student_count</span>)
  </li>
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1unexpect_from_room">unexpectFromRoom</a>(<span class="p">dest_room</span>)
@@ -349,7 +410,7 @@
  (inherited from <a href="_0_1_staff.html">Staff</a>)
  </li>
  <li class="self">
- <a href="_0_1_doctor.html#_0_1_doctor_1update_skill">updateSkill</a>(<span class="p">consultant</span>, <span class="p">trait</span>, <span class="p">amount</span>)
+ <a href="_0_1_doctor.html#_0_1_doctor_1update_skill">updateSkill</a>(<span class="p">trait</span>, <span class="p">amount</span>)
  </li>
  <li class="inherited">
  <a href="_0_1_staff.html#_0_1_staff_1update_speed">updateSpeed</a>()
@@ -387,6 +448,7 @@
  (*)
  </li>
  <li><span class="p">attributes</span>
+ (*)
  </li>
  <li><span class="p">build_callback</span>
  (*)
@@ -425,6 +487,9 @@
  <li><span class="p">going_home</span>
  (*)
  </li>
+ <li><span class="p">going_to_die</span>
+ (*)
+ </li>
  <li><span class="p">going_to_staffroom</span>
  (*)
  </li>
@@ -439,7 +504,11 @@
  <li><span class="p">hover_cursor</span>
  (*)
  </li>
+ <li><span class="p">hover_moods</span>
+ (*)
+ </li>
  <li><span class="p">humanoid_class</span>
+ (*)
  </li>
  <li><span class="p">in_room</span>
  (*)
@@ -461,6 +530,9 @@
  (*)
  </li>
  <li><span class="p">mood_info</span>
+ (*)
+ </li>
+ <li><span class="p">mood_marker</span>
  (*)
  </li>
  <li><span class="p">next_room_to_visit</span>
@@ -563,9 +635,6 @@
  <li><span class="p">waiting_for_staffroom</span>
  (*)
  </li>
- <li><span class="p">waiting_on_other_staff</span>
- (*)
- </li>
  <li><span class="p">walk_anims</span>
  (*)
  </li>
@@ -590,14 +659,41 @@
  <td class="d">Arguments to base class constructor.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L32">line 32 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L33">line 33 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_doctor_1__calculate_training_performance">function Doctor._calculateTrainingPerformance(<span class="p">doc_atd</span>, <span class="p">con_skill</span>, <span class="p">class_size</span>)</a></h5>
+ <p>
+ Generate the performance factor of the training room<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">doc_atd</td>
+ <td class="t">number</td>
+ <td class="d"> Attention to detail of student</td>
+ </tr>
+ <tr>
+ <td class="n">con_skill</td>
+ <td class="t">number</td>
+ <td class="d"> Skill level of consultant</td>
+ </tr>
+ <tr>
+ <td class="n">class_size</td>
+ <td class="t">number</td>
+ <td class="d"> Total students in the training room</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L177">line 177 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <br/><strong>Note:</strong> Is a function rather than a method. 
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_doctor_1advise_wrong_person_for_this_room">function Doctor:adviseWrongPersonForThisRoom()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1advise_wrong_person_for_this_room">Staff:adviseWrongPersonForThisRoom</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L267">line 267 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L345">line 345 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -618,7 +714,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1after_load">Staff:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L279">line 279 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L357">line 357 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -636,27 +732,59 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1fulfills_criterion">Staff:fulfillsCriterion</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L255">line 255 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L333">line 333 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_doctor_1has_specialism">function Doctor:hasSpecialism(<span class="p">trait</span>)</a></h5>
+ <p>
+ Confirm doctor has specialism<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">trait</td>
+ <td class="t">string</td>
+ <td class="d"> what to check (in is_xxx format)</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L165">line 165 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_doctor_1is_learning">function Doctor:isLearning()</a></h5>
  <p>
  Determine if the staff member should increase their skills<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L119">line 119 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L96">line 96 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_doctor_1is_learning_on_the_job">function Doctor:isLearningOnTheJob()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L129">line 129 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L107">line 107 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_doctor_1is_researching">function Doctor:isResearching()</a></h5>
  <p>
  Determine if the staff member should contribute to research<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L110">line 110 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L87">line 87 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_doctor_1on_pickup">function Doctor:onPickup()</a></h5>
+ <p>
+ <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1on_pickup">Staff:onPickup</a>.<br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L311">line 311 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_doctor_1reset_surgeon_state">function Doctor:resetSurgeonState()</a></h5>
+ <p>
+ Function resets "Surgeon" state for Doctor.
+Useful for case when on picking up Doctor from Operating Theatre
+we need to switching him back to regular clothes and type.<br/><br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L316">line 316 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -671,7 +799,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L228">line 228 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L292">line 292 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -687,21 +815,21 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1set_profile">Staff:setProfile</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L138">line 138 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L116">line 116 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_doctor_1tick">function Doctor:tick()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1tick">Staff:tick</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L96">line 96 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L73">line 73 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_doctor_1tick_day">function Doctor:tickDay()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1tick_day">Staff:tickDay</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L38">line 38 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L39">line 39 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -710,73 +838,61 @@
  Return string representation<br/><br/>
  Adds Doctor statistics for a "Doctor" object<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_staff.html#_0_1_staff_1tostring">Staff:tostring</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L287">line 287 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L365">line 365 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_doctor_1train_skill">function Doctor:trainSkill(<span class="p">consultant</span>, <span class="p">trait</span>, <span class="p">skill_thres</span>, <span class="p">room_factor</span>, <span class="p">staff_count</span>)</a></h5>
+ <h5><a name="_0_1_doctor_1train_skills">function Doctor:trainSkills(<span class="p">consultant</span>, <span class="p">room_factor</span>, <span class="p">student_count</span>)</a></h5>
  <p>
+ any amount towards a specialist skill being taught<br/><br/>
+ There are detailed explanations on the logic to these calculations in the Wiki<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
  <tr>
  <td class="n">consultant</td>
- <td class="t">?</td>
- <td class="d">?</td>
- </tr>
- <tr>
- <td class="n">trait</td>
- <td class="t">?</td>
- <td class="d">?</td>
- </tr>
- <tr>
- <td class="n">skill_thres</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="t">entity</td>
+ <td class="d"> The person teaching the student</td>
  </tr>
  <tr>
  <td class="n">room_factor</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="t">number</td>
+ <td class="d"> What score training objects in the room give</td>
  </tr>
  <tr>
- <td class="n">staff_count</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="n">student_count</td>
+ <td class="t">number</td>
+ <td class="d"> Total number of students present</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L185">line 185 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L208">line 208 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_doctor_1update_skill">function Doctor:updateSkill(<span class="p">consultant</span>, <span class="p">trait</span>, <span class="p">amount</span>)</a></h5>
+ <h5><a name="_0_1_doctor_1update_skill">function Doctor:updateSkill(<span class="p">trait</span>, <span class="p">amount</span>)</a></h5>
  <p>
+ Assign skill points<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
  <tr>
- <td class="n">consultant</td>
- <td class="t">?</td>
- <td class="d">?</td>
- </tr>
- <tr>
  <td class="n">trait</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="t">string</td>
+ <td class="d"> The trait of focus</td>
  </tr>
  <tr>
  <td class="n">amount</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="t">number</td>
+ <td class="d"> The amount granted</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L143">line 143 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L121">line 121 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_doctor_1update_staff_title">function Doctor:updateStaffTitle()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L195">line 195 of Lua/entities/humanoids/staff/doctor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff/doctor.lua#L259">line 259 of Lua/entities/humanoids/staff/doctor.lua</a>.
  </p>
  </div>
 </div>

@@ -23,7 +23,7 @@
  <div class="content">
  <h2 class="class">OperatingTable Class</h2>
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/objects/machines/operating_table.lua#L117">line 117 of Lua/objects/machines/operating_table.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/objects/machines/operating_table.lua#L123">line 123 of Lua/objects/machines/operating_table.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_operating_table.html">OperatingTable</a>
  » <a href="_0_1_machine.html">Machine</a>
  » <a href="_0_1_object.html">Object</a>
@@ -45,7 +45,11 @@
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_machine.html#_0_1_machine_1calculate_smoke">calculateSmoke</a>(<span class="p">room</span>)
+ <a href="_0_1_machine.html#_0_1_machine_1calculate_is_machine_must_explode">calculateIsMachineMustExplode</a>(<span class="p">room</span>)
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1call_handyman_for_repair_if_necessary">callHandymanForRepairIfNecessary</a>(<span class="p">room</span>)
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
@@ -57,16 +61,24 @@
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1earthquake_impact">earthquakeImpact</a>(<span class="p">room</span>)
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1erase_object">eraseObject</a>()
  (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1explode_machine">explodeMachine</a>(<span class="p">room</span>)
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_machine.html#_0_1_machine_1finalize">finalize</a>(<span class="p">room</span>)
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_object.html#_0_1_object_1get_drawing_layer">getDrawingLayer</a>()
- (inherited from <a href="_0_1_object.html">Object</a>)
+ <a href="_0_1_entity.html#_0_1_entity_1get_drawing_layer">getDrawingLayer</a>()
+ (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1get_dynamic_info">getDynamicInfo</a>()
@@ -93,11 +105,23 @@
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1get_smoke_drawing_layer">getSmokeDrawingLayer</a>()
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_machine.html#_0_1_machine_1get_state">getState</a>()
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1get_walkable_tiles">getWalkableTiles</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1increment_usage_counts">incrementUsageCounts</a>(<span class="p">total_usage_only</span>, <span class="p">is_earthquake</span>)
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1increment_used_count">incrementUsedCount</a>()
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
@@ -109,11 +133,15 @@
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1is_machine">isMachine</a>()
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1is_reserved_for">isReservedFor</a>(<span class="p">user</span>)
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_machine.html#_0_1_machine_1machine_repaired">machineRepaired</a>(<span class="p">room</span>)
+ <a href="_0_1_machine.html#_0_1_machine_1machine_repaired">machineRepaired</a>(<span class="p">room</span>, <span class="p">should_reduce_strength</span>)
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="self">
@@ -137,6 +165,10 @@
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1placed">placed</a>(<span class="p">room</span>)
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1play_after_load_sound">playAfterLoadSound</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
@@ -151,6 +183,18 @@
  <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1process_type_definition">processTypeDefinition</a>(<span class="p">object_type</span>)
  (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1reduce_strength_on_repair">reduceStrengthOnRepair</a>()
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1remove_handyman_repair_task">removeHandymanRepairTask</a>()
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1remove_repairing_status">removeRepairingStatus</a>()
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1remove_reserved_user">removeReservedUser</a>(<span class="p">user</span>)
@@ -201,11 +245,7 @@
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_machine.html#_0_1_machine_1set_repairing">setRepairing</a>(<span class="p">handyman</span>)
- (inherited from <a href="_0_1_machine.html">Machine</a>)
- </li>
- <li class="inherited">
- <a href="_0_1_machine.html#_0_1_machine_1set_repairing_mode">setRepairingMode</a>(<span class="p">lock_room</span>)
+ <a href="_0_1_machine.html#_0_1_machine_1set_repairing_status">setRepairingStatus</a>()
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  <li class="inherited">
@@ -249,7 +289,11 @@
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_machine.html#_0_1_machine_1update_dynamic_info">updateDynamicInfo</a>(<span class="p">only_update</span>)
+ <a href="_0_1_machine.html#_0_1_machine_1update_dynamic_info">updateDynamicInfo</a>()
+ (inherited from <a href="_0_1_machine.html">Machine</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_machine.html#_0_1_machine_1update_smoke_display">updateSmokeDisplay</a>(<span class="p">room</span>)
  (inherited from <a href="_0_1_machine.html">Machine</a>)
  </li>
  </ul>
@@ -281,15 +325,15 @@
  <li><span class="p">hover_cursor</span>
  (*)
  </li>
- <li><span class="p">init_anim_flags</span>
- (*)
- </li>
  <li><span class="p">layers</span>
  (*)
  </li>
  <li><span class="p">master</span>
  </li>
  <li><span class="p">mood_info</span>
+ (*)
+ </li>
+ <li><span class="p">mood_marker</span>
  (*)
  </li>
  <li><span class="p">num_animation_ticks</span>
@@ -314,9 +358,6 @@
  (*)
  </li>
  <li><span class="p">repairing</span>
- (*)
- </li>
- <li><span class="p">repairing_lock_room</span>
  (*)
  </li>
  <li><span class="p">reserved_for</span>
@@ -405,7 +446,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_machine.html#_0_1_machine_1machine_used">Machine:machineUsed</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/objects/machines/operating_table.lua#L124">line 124 of Lua/objects/machines/operating_table.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/objects/machines/operating_table.lua#L130">line 130 of Lua/objects/machines/operating_table.lua</a>.
  </p>
  </div>
 </div>

@@ -33,11 +33,11 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_colour_panel">addColourPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">r</span>, <span class="p">g</span>, <span class="p">b</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -45,7 +45,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>)
+ <a href="_0_1_window.html#_0_1_window_1add_panel">addPanel</a>(<span class="p">sprite_index</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">apply_ui_scale</span>, <span class="p">draw_flags</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -110,6 +110,10 @@
  <a href="_0_1_window.html#_0_1_window_1hit_test_panel">hitTestPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">panel</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1hover_test">hoverTest</a>(<span class="p">active_hover</span>, <span class="p">mouse_x</span>, <span class="p">mouse_y</span>, <span class="p">min_x</span>, <span class="p">max_x</span>, <span class="p">min_y</span>, <span class="p">max_y</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
  <li class="self">
  <a href="_0_1_u_i_casebook.html#_0_1_u_i_casebook_1increase_pay">increasePay</a>()
  </li>
@@ -134,7 +138,7 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
- <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>)
+ <a href="_0_1_window.html#_0_1_window_1make_tooltip">makeTooltip</a>(<span class="p">text</span>, <span class="p">x</span>, <span class="p">y</span>, <span class="p">r</span>, <span class="p">b</span>, <span class="p">tooltip_x</span>, <span class="p">tooltip_y</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
@@ -218,6 +222,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1set_size">setSize</a>(<span class="p">width</span>, <span class="p">height</span>, <span class="p">apply_ui_scale</span>)
+ (inherited from <a href="_0_1_window.html">Window</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1start_button_blinking">startButtonBlinking</a>(<span class="p">button_index</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
@@ -240,6 +248,9 @@
  (*)
  </li>
  <li><span class="p">active_scrollbar</span>
+ (*)
+ </li>
+ <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
  <li><span class="p">background</span>
@@ -414,26 +425,26 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_fullscreen.html#_0_1_u_i_fullscreen_1after_load">UIFullscreen:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L396">line 396 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L403">line 403 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1close">function UICasebook:close()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1close">Window:close</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L104">line 104 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L106">line 106 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1concentrate_research">function UICasebook:concentrateResearch()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L337">line 337 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L343">line 343 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1decrease_pay">function UICasebook:decreasePay()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L318">line 318 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L324">line 324 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -459,13 +470,13 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_fullscreen.html#_0_1_u_i_fullscreen_1draw">UIFullscreen:draw</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L203">line 203 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L206">line 206 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1increase_pay">function UICasebook:increasePay()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L299">line 299 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L305">line 305 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -491,7 +502,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_fullscreen.html#_0_1_u_i_fullscreen_1on_mouse_down">UIFullscreen:onMouseDown</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L343">line 343 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L349">line 349 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -512,32 +523,32 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_wheel">Window:onMouseWheel</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L368">line 368 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L375">line 375 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1on_tick">function UICasebook:onTick()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_tick">Window:onTick</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L385">line 385 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L392">line 392 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1register_key_handlers">function UICasebook:registerKeyHandlers()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L96">line 96 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L98">line 98 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1scroll_down">function UICasebook:scrollDown()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L283">line 283 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L289">line 289 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1scroll_up">function UICasebook:scrollUp()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L267">line 267 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L273">line 273 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -553,14 +564,14 @@
  <td class="d"> Name of the disease</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L133">line 133 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L135">line 135 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_casebook_1update_disease_list">function UICasebook:updateDiseaseList()</a></h5>
  <p>
  The diseases list has been changed, update the list.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L109">line 109 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L111">line 111 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -568,7 +579,7 @@
  <p>
  Function that is called when a new entry is selected in some way<br/><br/>
  It updates all icons etc. that react to what is selected<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L146">line 146 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/fullscreen/drug_casebook.lua#L148">line 148 of Lua/dialogs/fullscreen/drug_casebook.lua</a>.
  </p>
  </div>
 </div>
