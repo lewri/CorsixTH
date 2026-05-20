@@ -1061,6 +1061,7 @@ function UI:addWindow(window)
     else
       self.app.world:setSpeed("Pause")
     end
+    self.app.world:setSystemPause(true)
     self.app.video:setBlueFilterActive(false) -- mustPause windows shouldn't cause tainting
   end
   if window.modal_class == "main" or window.modal_class == "fullscreen" then
@@ -1082,8 +1083,11 @@ function UI:removeWindow(closing_window)
       -- Don't unpause the game if we still have relevant mustPause windows
       -- or the player intentionally paused
       local pauseGame = self:checkForMustPauseWindows()
-      if not pauseGame and closing_window:mustPause() and not self.app.world.already_paused then
-        self.app.world:setSpeed(self.app.world.prev_speed)
+      if not pauseGame and closing_window:mustPause() then
+        self.app.world:setSystemPause(false)
+        if not self.app.world.already_paused then
+          self.app.world:setSpeed(self.app.world.prev_speed)
+        end
       end
     end
     if closing_window.modal_class == "main" or closing_window.modal_class == "fullscreen" then

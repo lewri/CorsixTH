@@ -2855,7 +2855,7 @@ function World:afterLoad(old, new)
   end
   self.savegame_version = new
   self.release_version = TheApp:getReleaseString(new)
-  self:setSystemPause(false) -- Reset flag on load
+  self:setSystemPause(self.ui:checkForMustPauseWindows()) -- Reset flag on load
 end
 
 function World:playLoadedEntitySounds()
