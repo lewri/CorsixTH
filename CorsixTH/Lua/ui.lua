@@ -1053,7 +1053,11 @@ function UI:addWindow(window)
     self.modal_windows[window.modal_class] = window
   end
   if self.app.world and window:mustPause() then
+    if self.app.world:isPaused() then
+      self.app.world:setAlreadyPaused(true)
+    else
     self.app.world:setSpeed("Pause")
+    end
     self.app.video:setBlueFilterActive(false) -- mustPause windows shouldn't cause tainting
   end
   if window.modal_class == "main" or window.modal_class == "fullscreen" then
@@ -1070,7 +1074,8 @@ function UI:removeWindow(closing_window)
     end
     if self.app.world and self.app.world:isCurrentSpeed("Pause") then
       local pauseGame = self:checkForMustPauseWindows()
-      if not pauseGame and closing_window:mustPause() then
+      if not pauseGame and closing_window:mustPause() and
+          not self.app.world.already_paused then
         self.app.world:setSpeed(self.app.world.prev_speed)
       end
     end

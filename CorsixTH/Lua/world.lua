@@ -80,6 +80,11 @@ function World:World(app, free_build_mode)
   -- needs to deal with a recoverable error
   self.system_pause = false
 
+  -- Some windows intentionally pause the game, record if the player was
+  -- already paused when those things happen.
+  self.already_paused = false
+
+
   -- If set, do not create salary raise requests.
   self.debug_disable_salary_raise = self.free_build_mode
   self.idle_cache = {} -- Cached queue standing positions for all queues.
@@ -762,7 +767,6 @@ function World:setSpeed(speed)
   if self:isCurrentSpeed(speed) then
     return
   end
-  tracy.Message("Changing speed to " .. speed)
   if speed == "Pause" or self.system_pause then
     self.ui.hospital:tickEarthquake("pause")
     -- By default actions are not allowed when the game is paused.
@@ -781,6 +785,7 @@ function World:setSpeed(speed)
   local new_hours_per_tick, new_tick_rate = unpack(tick_rates[speed])
 
   if was_paused then
+    self:setAlreadyPaused(false)
     TheApp.audio:onEndPause()
     self.tick_timer = new_tick_rate
   else
@@ -797,6 +802,10 @@ end
 
 function World:isPaused()
   return self:isCurrentSpeed("Pause")
+end
+
+function World:setAlreadyPaused(state)
+  self.already_paused = state
 end
 
 --! Dedicated function to allow unpausing by pressing 'p' again
