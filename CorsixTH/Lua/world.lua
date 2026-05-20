@@ -804,6 +804,9 @@ function World:isPaused()
   return self:isCurrentSpeed("Pause")
 end
 
+--! Set the state condition if an incoming pause event is being attempted
+--! on an existing player initiated pause.
+--!param state (boolean) true if paused, else false
 function World:setAlreadyPaused(state)
   self.already_paused = state
 end

@@ -1040,7 +1040,9 @@ function UI:onTick()
   return repaint
 end
 
-
+--! Adds a window to the game
+--! This also handles pause and permitted interaction behaviour as required
+--!param window (window) What is to be displayed
 function UI:addWindow(window)
   if window.closed then
     return
@@ -1053,10 +1055,11 @@ function UI:addWindow(window)
     self.modal_windows[window.modal_class] = window
   end
   if self.app.world and window:mustPause() then
-    if self.app.world:isPaused() then
+    -- Set an already paused flag on the first must pause window only
+    if self.app.world:isPaused() and not self:checkForMustPauseWindows() then
       self.app.world:setAlreadyPaused(true)
     else
-    self.app.world:setSpeed("Pause")
+      self.app.world:setSpeed("Pause")
     end
     self.app.video:setBlueFilterActive(false) -- mustPause windows shouldn't cause tainting
   end
@@ -1066,6 +1069,9 @@ function UI:addWindow(window)
   Window.addWindow(self, window)
 end
 
+--! Remove a window from the game
+--! This also handles pause and permitted interaction behaviour as required
+--!param closing_window (window) What is to be removed
 function UI:removeWindow(closing_window)
   if Window.removeWindow(self, closing_window) then
     local class = closing_window.modal_class
@@ -1073,9 +1079,10 @@ function UI:removeWindow(closing_window)
       self.modal_windows[class] = nil
     end
     if self.app.world and self.app.world:isCurrentSpeed("Pause") then
+      -- Don't unpause the game if we still have relevant mustPause windows
+      -- or the player intentionally paused
       local pauseGame = self:checkForMustPauseWindows()
-      if not pauseGame and closing_window:mustPause() and
-          not self.app.world.already_paused then
+      if not pauseGame and closing_window:mustPause() and not self.app.world.already_paused then
         self.app.world:setSpeed(self.app.world.prev_speed)
       end
     end
