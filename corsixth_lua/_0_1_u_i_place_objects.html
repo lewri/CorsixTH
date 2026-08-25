@@ -32,6 +32,18 @@
 <div class="method_list">
  <h4>Method Index</h4>
  <ul>
+ <li class="self">
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1__is_non_side_object_placement_valid">_isNonSideObjectPlacementValid</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">object</span>, <span class="p">object_orientation</span>, <span class="p">room_id</span>)
+ </li>
+ <li class="self">
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1__is_side_object_placement_valid">_isSideObjectPlacementValid</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">room_id</span>, <span class="p">passable_flag</span>, <span class="p">map</span>)
+ </li>
+ <li class="self">
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1__placement_available_here_and_other_objects_do_not_interfere">_placementAvailableHereAndOtherObjectsDoNotInterfere</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">object</span>, <span class="p">real_obj</span>, <span class="p">object_footprint</span>, <span class="p">room</span>, <span class="p">map</span>)
+ </li>
+ <li class="self">
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1__set_blueprint_partial_flags">_setBlueprintPartialFlags</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">map</span>, <span class="p">valid_placement</span>)
+ </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
@@ -77,12 +89,16 @@
  <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1clear_blueprint">clearBlueprint</a>()
  </li>
  <li class="self">
- <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1close">close</a>()
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1close">close</a>(<span class="p">move_canceled</span>)
  (overrides <a href="_0_1_window.html#_0_1_window_1close">Window:close</a>)
  </li>
  <li class="self">
  <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1draw">draw</a>(<span class="p">canvas</span>, <span class="p">x</span>, <span class="p">y</span>)
  (overrides <a href="_0_1_window.html#_0_1_window_1draw">Window:draw</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_window.html#_0_1_window_1get_real_x_y">getRealXY</a>()
+ (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1get_saved_window_position_name">getSavedWindowPositionName</a>()
@@ -184,13 +200,13 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="self">
- <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1place_object">placeObject</a>(<span class="p">dont_close_if_empty</span>)
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1place_object">placeObject</a>(<span class="p">dont_close_if_empty</span>, <span class="p">dont_remove</span>)
  </li>
  <li class="self">
  <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1register_key_handlers">registerKeyHandlers</a>()
  </li>
  <li class="self">
- <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1remove_all_objects">removeAllObjects</a>(<span class="p">refund</span>)
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1remove_all_objects">removeAllObjects</a>(<span class="p">move_canceled</span>)
  </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1remove_all_panels">removeAllPanels</a>()
@@ -201,10 +217,10 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="self">
- <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1remove_object">removeObject</a>(<span class="p">object</span>, <span class="p">dont_close_if_empty</span>, <span class="p">refund</span>)
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1remove_object">removeObject</a>(<span class="p">object</span>, <span class="p">dont_close_if_empty</span>, <span class="p">placed</span>, <span class="p">move_canceled</span>)
  </li>
  <li class="self">
- <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1remove_objects">removeObjects</a>(<span class="p">object_list</span>, <span class="p">refund</span>)
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1remove_objects">removeObjects</a>(<span class="p">object_list</span>)
  </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1remove_window">removeWindow</a>(<span class="p">window</span>)
@@ -215,6 +231,9 @@
  </li>
  <li class="self">
  <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1select_object_type">selectObjectType</a>(<span class="p">object_type</span>)
+ </li>
+ <li class="self">
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1sell">sell</a>()
  </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1send_to_bottom">sendToBottom</a>(<span class="p">window</span>)
@@ -255,6 +274,9 @@
  </li>
  <li class="self">
  <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1try_next_orientation">tryNextOrientation</a>()
+ </li>
+ <li class="self">
+ <a href="_0_1_u_i_place_objects.html#_0_1_u_i_place_objects_1undo">undo</a>()
  </li>
  </ul>
 </div>
@@ -438,6 +460,157 @@ when drawing the object as it is being moved.</td>
  </p>
  </div>
  <div class="method">
+ <h5><a name="_0_1_u_i_place_objects_1__is_non_side_object_placement_valid">function UIPlaceObjects:_isNonSideObjectPlacementValid(<span class="p">x</span>, <span class="p">y</span>, <span class="p">object</span>, <span class="p">object_orientation</span>, <span class="p">room_id</span>)</a></h5>
+ <p>
+ param room_id (integer) room id if we in a build mode.<br/><br/>
+ return (bool) is this placement not going to break path finding.<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">x</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">y</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">object</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">object_orientation</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">room_id</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L864">line 864 of Lua/dialogs/place_objects.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_u_i_place_objects_1__is_side_object_placement_valid">function UIPlaceObjects:_isSideObjectPlacementValid(<span class="p">x</span>, <span class="p">y</span>, <span class="p">room_id</span>, <span class="p">passable_flag</span>, <span class="p">map</span>)</a></h5>
+ <p>
+ param map (object) map class instance.<br/><br/>
+ return (bool) is this placement not going to break path finding.<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">x</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">y</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">room_id</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">passable_flag</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">map</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L924">line 924 of Lua/dialogs/place_objects.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_u_i_place_objects_1__placement_available_here_and_other_objects_do_not_interfere">function UIPlaceObjects:_placementAvailableHereAndOtherObjectsDoNotInterfere(<span class="p">x</span>, <span class="p">y</span>, <span class="p">object</span>, <span class="p">real_obj</span>, <span class="p">object_footprint</span>, <span class="p">room</span>, <span class="p">map</span>)</a></h5>
+ <p>
+ Function checks whether this space is available for placing an object and
+whether the space is not occupied by other objects.<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">x</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">y</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">object</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">real_obj</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">object_footprint</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">room</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">map</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L733">line 733 of Lua/dialogs/place_objects.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_u_i_place_objects_1__set_blueprint_partial_flags">function UIPlaceObjects:_setBlueprintPartialFlags(<span class="p">x</span>, <span class="p">y</span>, <span class="p">map</span>, <span class="p">valid_placement</span>)</a></h5>
+ <p>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">x</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">y</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">map</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">valid_placement</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ </table></p><p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L1021">line 1021 of Lua/dialogs/place_objects.lua</a>.
+ </p>
+ </div>
+ <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1add_objects">function UIPlaceObjects:addObjects(<span class="p">object_list</span>, <span class="p">pay_for</span>)</a></h5>
  <p>
  <strong>Parameters:</strong>
@@ -454,7 +627,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L164">line 164 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L165">line 165 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -475,7 +648,7 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1after_load">Window:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L886">line 886 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L1118">line 1118 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -495,26 +668,36 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L819">line 819 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L1051">line 1051 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1cancel">function UIPlaceObjects:cancel()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L322">line 322 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L354">line 354 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1clear_blueprint">function UIPlaceObjects:clearBlueprint()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L618">line 618 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L674">line 674 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_u_i_place_objects_1close">function UIPlaceObjects:close()</a></h5>
+ <h5><a name="_0_1_u_i_place_objects_1close">function UIPlaceObjects:close(<span class="p">move_canceled</span>)</a></h5>
  <p>
+ Close menu.<br/><br/>
+ <strong>Parameters:</strong>
+ <table class="params">
+ <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <td class="n">move_canceled</td>
+ <td class="t">bool</td>
+ <td class="d"> moving objects has been cancelled.</td>
+ </tr>
+ </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1close">Window:close</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L314">line 314 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L344">line 344 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -540,13 +723,13 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1draw">Window:draw</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L540">line 540 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L596">line 596 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1next_orientation">function UIPlaceObjects:nextOrientation()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L431">line 431 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L474">line 474 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -567,7 +750,7 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_cursor_world_position_change">Window:onCursorWorldPositionChange</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L853">line 853 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L1085">line 1085 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -598,7 +781,7 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_move">Window:onMouseMove</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L592">line 592 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L648">line 648 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -624,11 +807,11 @@ when drawing the object as it is being moved.</td>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_up">Window:onMouseUp</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L455">line 455 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L498">line 498 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_u_i_place_objects_1place_object">function UIPlaceObjects:placeObject(<span class="p">dont_close_if_empty</span>)</a></h5>
+ <h5><a name="_0_1_u_i_place_objects_1place_object">function UIPlaceObjects:placeObject(<span class="p">dont_close_if_empty</span>, <span class="p">dont_remove</span>)</a></h5>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
@@ -638,8 +821,13 @@ when drawing the object as it is being moved.</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
+ <tr>
+ <td class="n">dont_remove</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L484">line 484 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L531">line 531 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -649,22 +837,23 @@ when drawing the object as it is being moved.</td>
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_u_i_place_objects_1remove_all_objects">function UIPlaceObjects:removeAllObjects(<span class="p">refund</span>)</a></h5>
+ <h5><a name="_0_1_u_i_place_objects_1remove_all_objects">function UIPlaceObjects:removeAllObjects(<span class="p">move_canceled</span>)</a></h5>
  <p>
+ Remove all items from the menu.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
  <tr>
- <td class="n">refund</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="n">move_canceled</td>
+ <td class="t">bool</td>
+ <td class="d"> moving objects has been cancelled.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L286">line 286 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L314">line 314 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_u_i_place_objects_1remove_object">function UIPlaceObjects:removeObject(<span class="p">object</span>, <span class="p">dont_close_if_empty</span>, <span class="p">refund</span>)</a></h5>
+ <h5><a name="_0_1_u_i_place_objects_1remove_object">function UIPlaceObjects:removeObject(<span class="p">object</span>, <span class="p">dont_close_if_empty</span>, <span class="p">placed</span>, <span class="p">move_canceled</span>)</a></h5>
  <p>
  precondition: self.active_index has to correspond to the object to be removed<br/><br/>
  <strong>Parameters:</strong>
@@ -681,16 +870,21 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  <tr>
- <td class="n">refund</td>
+ <td class="n">placed</td>
+ <td class="t">?</td>
+ <td class="d">?</td>
+ </tr>
+ <tr>
+ <td class="n">move_canceled</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L242">line 242 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L244">line 244 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_u_i_place_objects_1remove_objects">function UIPlaceObjects:removeObjects(<span class="p">object_list</span>, <span class="p">refund</span>)</a></h5>
+ <h5><a name="_0_1_u_i_place_objects_1remove_objects">function UIPlaceObjects:removeObjects(<span class="p">object_list</span>)</a></h5>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
@@ -700,13 +894,8 @@ when drawing the object as it is being moved.</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- <tr>
- <td class="n">refund</td>
- <td class="t">?</td>
- <td class="d">?</td>
- </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L296">line 296 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L326">line 326 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -722,7 +911,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L99">line 99 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L100">line 100 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -737,7 +926,14 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L877">line 877 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L1109">line 1109 of Lua/dialogs/place_objects.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_u_i_place_objects_1sell">function UIPlaceObjects:sell()</a></h5>
+ <p>
+ Helper function to stop UIEditRoom going back to doors phase<br/><br/>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L358">line 358 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -752,12 +948,14 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L326">line 326 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L369">line 369 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1set_blueprint_cell">function UIPlaceObjects:setBlueprintCell(<span class="p">x</span>, <span class="p">y</span>)</a></h5>
  <p>
+ at the given coordinates or not. A gray blueprint means placement is prohibited.<br/><br/>
+ A colored blueprint means placement is permitted.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
@@ -772,7 +970,7 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L636">line 636 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L692">line 692 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -787,13 +985,19 @@ when drawing the object as it is being moved.</td>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L374">line 374 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L417">line 417 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_place_objects_1try_next_orientation">function UIPlaceObjects:tryNextOrientation()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L447">line 447 of Lua/dialogs/place_objects.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L490">line 490 of Lua/dialogs/place_objects.lua</a>.
+ </p>
+ </div>
+ <div class="method">
+ <h5><a name="_0_1_u_i_place_objects_1undo">function UIPlaceObjects:undo()</a></h5>
+ <p>
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/place_objects.lua#L365">line 365 of Lua/dialogs/place_objects.lua</a>.
  </p>
  </div>
 </div>

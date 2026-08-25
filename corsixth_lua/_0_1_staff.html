@@ -164,11 +164,16 @@
  <a href="_0_1_humanoid.html#_0_1_humanoid_1is_leaving">isLeaving</a>()
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
- <li class="self">
- <a href="_0_1_staff.html#_0_1_staff_1is_meandering">isMeandering</a>()
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_meandering">isMeandering</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_humanoid.html#_0_1_humanoid_1is_mood_active">isMoodActive</a>(<span class="p">mood</span>)
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1is_obscuring_area">isObscuringArea</a>(<span class="p">x1</span>, <span class="p">x2</span>, <span class="p">y1</span>, <span class="p">y2</span>)
  (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="self">
@@ -183,6 +188,10 @@
  </li>
  <li class="self">
  <a href="_0_1_staff.html#_0_1_staff_1is_very_tired">isVeryTired</a>()
+ </li>
+ <li class="inherited">
+ <a href="_0_1_humanoid.html#_0_1_humanoid_1leave_area">leaveArea</a>()
+ (inherited from <a href="_0_1_humanoid.html">Humanoid</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1notify_new_object">notifyNewObject</a>(<span class="p">id</span>)
@@ -203,6 +212,10 @@
  <li class="self">
  <a href="_0_1_staff.html#_0_1_staff_1on_destroy">onDestroy</a>()
  (overrides <a href="_0_1_humanoid.html#_0_1_humanoid_1on_destroy">Humanoid:onDestroy</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_entity.html#_0_1_entity_1on_pick_up">onPickUp</a>()
+ (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="self">
  <a href="_0_1_staff.html#_0_1_staff_1on_pickup">onPickup</a>()
@@ -382,6 +395,7 @@
  <h4>Member Index</h4>
  <ul>
  <li><span class="p">action_queue</span>
+ (*)
  </li>
  <li><span class="p">active_moods</span>
  (*)
@@ -615,7 +629,7 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1after_load">Humanoid:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L664">line 664 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L651">line 651 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -683,7 +697,7 @@ and go to the StaffRoom if it is.<br/><br/>
  <p>
  Estimate staff service quality based on skills, restfulness (inverse of fatigue) and happiness.<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1get_service_quality">Humanoid:getServiceQuality</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L727">line 727 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L724">line 724 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -707,27 +721,20 @@ any request raise dialogs.<br/><br/>
 the salary by.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L602">line 602 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L589">line 589 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_staff_1is_crack_up_tired">function Staff:isCrackUpTired()</a></h5>
  <p>
  Judge crack up tiredness based on the level config (which has a default of 800)<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L756">line 756 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L753">line 753 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_staff_1is_idle">function Staff:isIdle()</a></h5>
  <p>
  Function to decide if staff currently has nothing to do and can be called to a room where they're needed<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L527">line 527 of Lua/entities/humanoids/staff.lua</a>.
- </p>
- </div>
- <div class="method">
- <h5><a name="_0_1_staff_1is_meandering">function Staff:isMeandering()</a></h5>
- <p>
- Check whether staff are meandering<br/><br/>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L512">line 512 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
@@ -747,7 +754,7 @@ the salary by.</td>
  <h5><a name="_0_1_staff_1is_very_tired">function Staff:isVeryTired()</a></h5>
  <p>
  Judge tiredness based on the level config (which has a default of 700)<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L750">line 750 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L747">line 747 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -794,7 +801,7 @@ up the staff member on right click.<br/><br/>
  <h5><a name="_0_1_staff_1on_destroy">function Staff:onDestroy()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1on_destroy">Humanoid:onDestroy</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L655">line 655 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L642">line 642 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -820,7 +827,7 @@ up the staff member on right click.<br/><br/>
  <h5><a name="_0_1_staff_1request_raise">function Staff:requestRaise()</a></h5>
  <p>
  Makes the staff member request a raise of 10%, or a wage exactly in the middle of their current and a fair one, whichever is more.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L574">line 574 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L561">line 561 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -836,7 +843,7 @@ up the staff member on right click.<br/><br/>
  <td class="d"> the string to append</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L629">line 629 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L616">line 616 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -930,14 +937,14 @@ so amounts here should be appropriately small comma values.<br/><br/>
  <p>
  Return string representation<br/><br/>
  <strong>Overrides:</strong> <a href="_0_1_humanoid.html#_0_1_humanoid_1tostring">Humanoid:tostring</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L743">line 743 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L740">line 740 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_staff_1update_dynamic_info">function Staff:updateDynamicInfo()</a></h5>
  <p>
  Updates a staff member's dynamic info<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L636">line 636 of Lua/entities/humanoids/staff.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/humanoids/staff.lua#L623">line 623 of Lua/entities/humanoids/staff.lua</a>.
  </p>
  </div>
  <div class="method">

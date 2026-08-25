@@ -34,6 +34,10 @@
  <h4>Method Index</h4>
  <ul>
  <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1__get_usage_tile">_getUsageTile</a>(<span class="p">usage_position_name</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1__tick">_tick</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
@@ -52,11 +56,27 @@
  <a href="_0_1_machine.html#_0_1_machine_1call_handyman_for_repair_if_necessary">callHandymanForRepairIfNecessary</a>(<span class="p">room</span>)
  </li>
  <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1cancel_usage">cancelUsage</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1clear_dynamic_info">clearDynamicInfo</a>()
  (inherited from <a href="_0_1_entity.html">Entity</a>)
  </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1create_handyman_actions">createHandymanActions</a>(<span class="p">handyman</span>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1deny_reservation">denyReservation</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1deoccupy_tiles_by_object_footprint_at">deoccupyTilesByObjectFootprintAt</a>(<span class="p">x</span>, <span class="p">y</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1direction_parameters">directionParameters</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1earthquake_impact">earthquakeImpact</a>(<span class="p">room</span>)
@@ -70,6 +90,14 @@
  </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1finalize">finalize</a>(<span class="p">room</span>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1get_all_usage_tiles">getAllUsageTiles</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1get_complementary_passable_flag">getComplementaryPassableFlag</a>(<span class="p">passable_flag</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1get_drawing_layer">getDrawingLayer</a>()
@@ -108,6 +136,10 @@
  <a href="_0_1_object.html#_0_1_object_1get_walkable_tiles">getWalkableTiles</a>()
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1get_x_yfor_use_position">getXYforUsePosition</a>(<span class="p">object_x</span>, <span class="p">object_y</span>, <span class="p">object_layout</span>, <span class="p">usage_position_name</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1increment_usage_counts">incrementUsageCounts</a>(<span class="p">total_usage_only</span>, <span class="p">is_earthquake</span>)
  </li>
@@ -131,7 +163,7 @@
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="self">
- <a href="_0_1_machine.html#_0_1_machine_1machine_repaired">machineRepaired</a>(<span class="p">room</span>, <span class="p">should_reduce_strength</span>)
+ <a href="_0_1_machine.html#_0_1_machine_1machine_repaired">machineRepaired</a>(<span class="p">room</span>, <span class="p">strength_reducible</span>)
  </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1machine_used">machineUsed</a>(<span class="p">room</span>, <span class="p">earthquake_activated</span>)
@@ -144,6 +176,10 @@
  <a href="_0_1_machine.html#_0_1_machine_1notify_new_room">notifyNewRoom</a>(<span class="p">room</span>)
  (overrides <a href="_0_1_entity.html#_0_1_entity_1notify_new_room">Entity:notifyNewRoom</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1occupy_tiles_by_object_footprint_at">occupyTilesByObjectFootprintAt</a>(<span class="p">x</span>, <span class="p">y</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1on_click">onClick</a>(<span class="p">ui</span>, <span class="p">button</span>)
  (overrides <a href="_0_1_object.html#_0_1_object_1on_click">Object:onClick</a>)
@@ -151,6 +187,10 @@
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1on_destroy">onDestroy</a>()
  (overrides <a href="_0_1_object.html#_0_1_object_1on_destroy">Object:onDestroy</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1on_pick_up">onPickUp</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1placed">placed</a>(<span class="p">room</span>)
@@ -169,6 +209,10 @@
  </li>
  <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1process_type_definition">processTypeDefinition</a>(<span class="p">object_type</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1rebuild_passable_cell_flags">rebuildPassableCellFlags</a>()
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="self">
@@ -196,6 +240,10 @@
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1reset_usage_and_reservaton">resetUsageAndReservaton</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_object.html#_0_1_object_1set_animation">setAnimation</a>(<span class="p">animation</span>, <span class="p">flags</span>)
  (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
@@ -208,6 +256,10 @@
  </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1set_handyman_repair_position">setHandymanRepairPosition</a>(<span class="p">direction</span>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1set_invisible">setInvisible</a>(<span class="p">invisible</span>)
+ (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  <li class="inherited">
  <a href="_0_1_entity.html#_0_1_entity_1set_layer">setLayer</a>(<span class="p">layer</span>, <span class="p">id</span>)
@@ -274,6 +326,10 @@
  </li>
  <li class="self">
  <a href="_0_1_machine.html#_0_1_machine_1update_smoke_display">updateSmokeDisplay</a>(<span class="p">room</span>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_object.html#_0_1_object_1use_position_names">usePositionNames</a>()
+ (inherited from <a href="_0_1_object.html">Object</a>)
  </li>
  </ul>
 </div>
@@ -617,7 +673,7 @@ only if the room is active at the moment (e.g. not being edited)<br/><br/>
  </p>
  </div>
  <div class="method">
- <h5><a name="_0_1_machine_1machine_repaired">function Machine:machineRepaired(<span class="p">room</span>, <span class="p">should_reduce_strength</span>)</a></h5>
+ <h5><a name="_0_1_machine_1machine_repaired">function Machine:machineRepaired(<span class="p">room</span>, <span class="p">strength_reducible</span>)</a></h5>
  <p>
  Call on machine repaired.<br/><br/>
  <strong>Parameters:</strong>
@@ -629,9 +685,9 @@ only if the room is active at the moment (e.g. not being edited)<br/><br/>
  <td class="d"> machine room</td>
  </tr>
  <tr>
- <td class="n">should_reduce_strength</td>
- <td class="t">?</td>
- <td class="d">?</td>
+ <td class="n">strength_reducible</td>
+ <td class="t">bool</td>
+ <td class="d"> machine room</td>
  </tr>
  </table></p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/machine.lua#L371">line 371 of Lua/entities/machine.lua</a>.
@@ -728,7 +784,7 @@ only if the room is active at the moment (e.g. not being edited)<br/><br/>
  <div class="method">
  <h5><a name="_0_1_machine_1remove_handyman_repair_task">function Machine:removeHandymanRepairTask()</a></h5>
  <p>
- Call on machine used. After machine use increment use values accordingly.<br/><br/>
+ Call on machine repaired. Removes repair task for that machine.<br/><br/>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/machine.lua#L386">line 386 of Lua/entities/machine.lua</a>.
  </p>
  </div>
