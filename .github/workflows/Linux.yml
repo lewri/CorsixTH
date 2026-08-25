@@ -118,7 +118,7 @@ jobs:
       - name: Store generated documentation
         if: >-
           github.ref == 'refs/heads/master' &&
-          github.repository == 'CorsixTH/CorsixTH' &&
+          github.repository == 'lewri/CorsixTH' &&
           matrix.docs
         uses: actions/upload-artifact@v6
         with:
@@ -132,7 +132,7 @@ jobs:
     needs: Linux-apt-get
     if: >-
       github.ref == 'refs/heads/master' &&
-      github.repository == 'CorsixTH/CorsixTH'
+      github.repository == 'lewri/CorsixTH'
     runs-on: ubuntu-26.04
     permissions:
       contents: write
