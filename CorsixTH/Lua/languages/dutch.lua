@@ -29,6 +29,16 @@ Assistenten; Basisartsen; Specialisten
 Artsen; Zusters; Conciërges; Receptionistes
 
 ---------------------------------------------------------------------------------]]
+-- Translator warning:
+-- Theme Hospital's original bitmap fonts have a limited character set, and
+-- some letters are missing; supported characters are case-sensitive.
+-- Unsupported characters appear as "?" in game. See the supported characters:
+-- https://github.com/CorsixTH/CorsixTH/wiki/Localization
+-- Translators may use plain-character substitutions (for example, "e" for an
+-- accented "e").
+-- If substitutions are unsuitable, change Font("cp437") to Font("unicode")
+-- to use the Unicode font instead. You may translate this note into this
+-- file's language if that would help other translators.
 
 Font("cp437")
 Language("Nederlands", "Dutch", "nl", "dut", "nld")
@@ -1358,7 +1368,7 @@ tooltip = {
     browse_screenshots = "Zoek naar een andere locatie voor je screenshots map ( huidige locatie: %1% ) ",
     not_specified = "Nog geen map ingesteld!",
     font_location = "Locatie van een lettertype bestand dat de Unicode karakters van je taal kan weergeven. Als dit niet is ingesteld is het niet mogelijk talen te kiezen die meer karakters nodig hebben dan het originele spel kan tonen. Bijvoorbeeld Russisch of Chinees.",
-    reset_to_default = "Herstel de map naar de standaard locatie.",
+    reset_to_default = "Herstel de map naar de standaard locatie ( %1% )",
     default = "Standaard locatie.",
     no_font_specified = "Nog geen lettertype locatie ingesteld!",
     music_location = "Selecteer de locatie van je MP3 bestanden. Deze moet van te voren zijn gemaakt, zoek vervolgens hier naar de locatie.",

@@ -31,29 +31,29 @@ class "Graphics"
 ---@type Graphics
 local Graphics = _G["Graphics"]
 
-local cursors_name = {
-  default = 1,
-  clicked = 2,
-  resize_room = 3,
-  edit_room = 4,
-  ns_arrow = 5,
-  we_arrow = 6,
-  nswe_arrow = 7,
-  move_room = 8,
-  sleep = 9,
-  kill_rat = 10,
-  kill_rat_hover = 11,
-  epidemic_hover = 12,
-  epidemic = 13,
-  grab = 14,
-  quit = 15,
-  staff = 16,
-  repair = 17,
-  patient = 18,
-  queue = 19,
-  queue_drag = 20,
-  bank = 36,
-  banksummary = 44,
+local cursor_data = {
+  default = { id = 1, x = 0, y = 0 }, -- 18x20
+  clicked = { id = 2, x = 0, y = 0 }, -- 16x18
+  resize_room = { id = 3, x = 0, y = 0 }, -- 16x16
+  edit_room = { id = 4, x = 8, y = 9 }, -- 16x18
+  ns_arrow = { id = 5, x = 16, y = 7 }, -- 32x15
+  we_arrow = { id = 6, x = 16, y = 7 }, -- 32x15
+  nswe_arrow = { id = 7, x = 16, y = 7 }, -- 32x15
+  move_room = { id = 8, x = 5, y = 3 }, -- 10x12
+  sleep = { id = 9 , x = 0, y = 0 }, -- 17x11
+  kill_rat = { id = 10, x = 8, y = 8 }, -- 17x17
+  kill_rat_hover = { id = 11, x = 8, y = 8 }, -- 17x17
+  epidemic_hover = { id = 12, x = 0, y = 0 }, -- 21x21
+  epidemic = { id = 13, x = 0, y = 0 }, -- 21x21*
+  grab = { id = 14, x = 8, y = 14 }, -- 16x15
+  quit = { id = 15, x = 0, y = 0 }, -- 14x16
+  staff = { id = 16, x = 0, y = 0 }, -- 20x20
+  repair = { id = 17, x = 0, y = 0 }, -- 20x19
+  patient = { id = 18, x = 0, y = 0 }, -- 20x23
+  queue = { id = 19, x = 0, y = 0 }, -- 19x26
+  queue_drag = { id = 20, x = 0, y = 0 }, -- 14x16
+  bank = { id = 36, x = 5, y = 8 }, -- 10x16
+  banksummary = { id = 44, x = 8, y = 7 }, -- 15x14
 }
 local cursors_palette = {
   [36] = "Bank01V.pal",
@@ -179,27 +179,30 @@ function Graphics:loadFontFile()
 
   local function getFontPath()
     local config_err, compile_err = "", ""
+    -- Check for font specified in config file
     if config_path then
       if check(config_path) then return config_path
       else config_err = "Configured font set but not found. Check path " .. config_path
       end
     end
+    -- Check for font specified in compile options
     if compile_path then
       if check(compile_path) then return compile_path
       else compile_err = " Compiled font path set but not found. Check path " .. compile_path
       end
     end
-    local path = self.app:getFullPath({})
-    for file in lfs.dir(path) do
-      for _, ext in pairs({"%.ttc$", "%.ttf$", "%.otc$", "%.otf$"}) do
-        if file:match(ext) then
-          return path .. file
-        end
+    -- Check the CorsixTH directory for our unicode font
+    local path = self.app:getFullPath()
+    local font_names = { "CorsixTHUnicode.ttf", "GoNotoKurrent-Regular.ttf" }
+    for _, name in ipairs(font_names) do
+      if check(path .. name) then
+        return path .. name
       end
     end
     return nil, config_err .. compile_err
   end
   local font_file, err = getFontPath()
+
   if not font_file then
     print("Unicode font not found, no fallback available.", err)
     return
@@ -218,15 +221,22 @@ function Graphics:loadFontFile()
   end
 end
 
-function Graphics:loadMainCursor(id)
-  if type(id) ~= "number" then
-    id = cursors_name[id]
-  end
+function Graphics:loadMainCursor(name)
+  local cursor = cursor_data[name]
+  local id = cursor.id
   if id > 20 then -- SPointer cursors
     local cursor_palette = self:getPalette(cursors_palette[id])
-    return self:loadCursor(self:loadSpriteTable("QData", "SPointer", false, cursor_palette), id - 20)
+    return self:loadCursor(
+        self:loadSpriteTable("QData", "SPointer", false, cursor_palette),
+        id - 20,
+        cursor.x,
+        cursor.y)
   else
-    return self:loadCursor(self:loadSpriteTable("Data", "MPointer"), id)
+    return self:loadCursor(
+        self:loadSpriteTable("Data", "MPointer"),
+        id,
+        cursor.x,
+        cursor.y)
   end
 end
 
@@ -244,7 +254,8 @@ function Graphics:loadCursor(sheet, index, hot_x, hot_y)
     if not cursor:load(sheet, index, hot_x, hot_y) then
       cursor = {
         draw = function(canvas, x, y)
-          sheet:draw(canvas, index, x - hot_x, y - hot_y)
+          local cs = TheApp.config.cursor_scale
+          sheet:draw(canvas, index, x - hot_x * cs, y - hot_y * cs, { scaleFactor = cs })
         end,
       }
     else
@@ -366,11 +377,12 @@ function Graphics:loadRaw(name, width, height, dir, _paldir, pal, _transparent_2
   width = width or 640
   height = height or 480
   dir = dir or "QData"
+  pal = pal or (name .. ".pal")
   local data = self.app:readDataFile(dir, name .. ".dat")
   data = data:sub(1, width * height)
 
   local bitmap = TH.bitmap()
-  local palette = self:getPalette(pal or name .. ".pal")
+  local palette = self:getPalette(pal)
   bitmap:setPalette(palette)
   assert(bitmap:load(data, width, self.target, flags))
 
@@ -383,7 +395,8 @@ function Graphics:loadRaw(name, width, height, dir, _paldir, pal, _transparent_2
   self.reload_functions[bitmap] = bitmap_reloader
 
   self.cache.raw[name] = bitmap
-  self.load_info[bitmap] = {self.loadRaw, self, name, width, height, dir, nil, pal, nil, flags}
+  -- 0 in place of nil so that unpack doesn't break
+  self.load_info[bitmap] = {self.loadRaw, self, name, width, height, dir, 0, pal, 0, flags}
   return bitmap
 end
 
@@ -483,9 +496,11 @@ end
 
 --! Utility function to return preferred font for main menu ui
 function Graphics:loadMenuFont()
-  local font
-  if self:_isLanguageSupportedByTHAssets() then
-    font = self:loadFontAndSpriteTable("QData", "Font01V", nil, nil, { apply_ui_scale = true })
+  -- Use the defined unicode font if set
+  local font = self:hasLanguageFont("unicode")
+  if font then
+    font = self:loadLanguageFont(font, self:loadSpriteTable("QData", "Font01V"), { apply_ui_scale = true })
+  -- Otherwise, fall back to the built in font
   else
     font = self:loadBuiltinFont()
   end

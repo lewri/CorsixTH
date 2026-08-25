@@ -36,7 +36,7 @@ function UIMenuBar:UIMenuBar(ui, map_editor)
   self.on_top = true
   self.x = 0
   self.y = 0
-  self.width = app.config.width
+  self.width = app.video:getRenderSize()
   self.height = 16
   self.visible = false
   local selected_label_color = { red = 40, green = 40, blue = 250 }
@@ -103,7 +103,7 @@ function UIMenuBar:onTick()
 end
 
 function UIMenuBar:onChangeResolution()
-  self.width = self.ui.app.config.width
+  self.width = TheApp.video:getRenderSize()
 end
 
 function UIMenuBar:onChangeLanguage()
@@ -199,10 +199,8 @@ function UIMenuBar:drawMenu(menu, canvas)
   local panel_sprites_draw = panel_sprites.draw
   local x, y, w, h = menu.x * s, menu.y * s, menu.width * s, menu.height * s
 
-  -- It would be better if spriteList supported scaling directly
-  canvas:scale(s)
-  menu.render_list:draw(canvas, menu.x, menu.y)
-  canvas:scale(1)
+  menu.render_list:setScaleFactor(s)
+  menu.render_list:draw(canvas, x, y)
 
   local btmy = y + h - 6 * s
   panel_sprites_draw(panel_sprites, canvas, 3, x + w - 10 * s, y, { scaleFactor = s })
@@ -789,7 +787,7 @@ function UIMenuBar:makeGameMenu(app)
 
   local function rate(speed)
     return speed == "Normal", function()
-      app.world:setSpeed(speed)
+      app.world:setUserSpeed(speed)
     end, "", function()
       return app.world:isCurrentSpeed(speed)
     end
@@ -817,17 +815,22 @@ function UIMenuBar:makeGameMenu(app)
     :appendItem(_S.menu_charts.graphs:format(hotkey_value_label("ingame_panel_charts", hotkeys)), function() self.ui.bottom_panel:dialogCharts(true) end)
     :appendItem(_S.menu_charts.policy:format(hotkey_value_label("ingame_panel_policy", hotkeys)), function() self.ui.bottom_panel:dialogPolicy(true) end)
     :appendItem(_S.menu_charts.machine_menu:format(hotkey_value_label("ingame_panel_machineMenu", hotkeys)), function() self.ui:addWindow(UIMachineMenu(self.ui)) end)
+    :appendItem(_S.menu_charts.adviser_history:format(hotkey_value_label("ingame_panel_adviserHistory", hotkeys)), function() self.ui:addWindow(UIAdviserHistory(self.ui)) end)
     :appendItem(_S.menu_charts.briefing, function() self.ui:showBriefing() end)
   )
 
+  local function allowBlockingAreas(option)
+    return option == 2, function()
+      app.config.blocking_off_areas = option
+    end, "", function ()
+      return app.config.blocking_off_areas == option
+    end
+  end
   local function limit_camera(item)
     app.ui:limitCamera(item.checked)
   end
   local function disable_salary_raise(item)
     app.world:debugDisableSalaryRaise(item.checked)
-  end
-  local function allowBlockingAreas(item)
-    app.config.allow_blocking_off_areas = item.checked
   end
   local levels_menu = UIMenu()
   for L = 1, 12 do
@@ -840,9 +843,13 @@ function UIMenuBar:makeGameMenu(app)
   if self.ui.app.config.debug then
     self:addMenu(_S.menu.debug, UIMenu() -- Debug
       :appendMenu(_S.menu_debug.jump_to_level, levels_menu)
+      :appendMenu(_S.menu_debug.allow_blocking_off_areas, UIMenu()
+        :appendCheckItem(_S.menu_debug_overlay_blocking_off_areas.choice_1, allowBlockingAreas(1))
+        :appendCheckItem(_S.menu_debug_overlay_blocking_off_areas.choice_2, allowBlockingAreas(2))
+        :appendCheckItem(_S.menu_debug_overlay_blocking_off_areas.choice_3, allowBlockingAreas(3))
+      )
       :appendCheckItem(_S.menu_debug.limit_camera,         true, limit_camera, nil, function() return self.ui.limit_to_visible_diamond end)
       :appendCheckItem(_S.menu_debug.disable_salary_raise, false, disable_salary_raise, nil, function() return self.ui.app.world.debug_disable_salary_raise end)
-      :appendCheckItem(_S.menu_debug.allow_blocking_off_areas, false, allowBlockingAreas, nil, function() return self.ui.app.config.allow_blocking_off_areas end)
       :appendItem(_S.menu_debug.make_debug_fax,     function() self.ui:makeDebugFax() end)
       :appendItem(_S.menu_debug.make_debug_patient, function() self.ui:addWindow(UIMakeDebugPatient(self.ui)) end)
       :appendItem(_S.menu_debug.cheats:format(hotkey_value_label("ingame_showCheatWindow", hotkeys)),             function() self.ui:addWindow(UICheats(self.ui)) end)
@@ -865,7 +872,7 @@ function UIMenuBar:makeGameMenu(app)
         :appendCheckItem(_S.menu_debug_overlay.byte_7,      false, overlay(7, 7, true), "")
         :appendCheckItem(_S.menu_debug_overlay.parcel,      false, overlay("parcel"), "")
       )
-      :appendItem(_S.menu_debug.sprite_viewer, function() corsixth.require("sprite_viewer") end)
+      :appendItem(_S.menu_debug.sprite_viewer, function() corsixth.require("sprite_viewer")() end)
     )
   end
 end

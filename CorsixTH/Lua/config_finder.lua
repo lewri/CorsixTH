@@ -126,6 +126,7 @@ local function new_config_defaults()
     width = 800,
     height = 600,
     ui_scale = 1,
+    cursor_scale = 1,
     language = [[English]],
     audio = true,
     free_build_mode = false,
@@ -158,9 +159,6 @@ local function new_config_defaults()
     enable_screen_shake = true,
     enable_announcer_subtitles = false,
     autosave_frequency = 1,
-    audio_frequency = 22050,
-    audio_channels = 2,
-    audio_buffer_size = 2048,
     midi_api = nil,
     midi_port = nil,
     midi_sysex_master_volume = false,
@@ -174,7 +172,7 @@ local function new_config_defaults()
     use_new_graphics = false,
     check_for_updates = true,
     room_information_dialogs = true,
-    allow_blocking_off_areas = false,
+    blocking_off_areas = 2,
     direct_zoom = nil,
     new_machine_extra_info = true,
     player_name = [[]],
@@ -220,6 +218,7 @@ local function new_hotkeys_defaults()
     ingame_zoom_out_more = {"shift", "-"},
     ingame_reset_zoom = "0",
     ingame_setTransparent = "x",
+    ingame_sellPickedUpItem = "delete",
     ingame_toggleTransparent = {"shift", "x"},
     ingame_toggleAdvisor = {"shift", "a"},
     ingame_poopLog = {"ctrl", "d"},
@@ -237,6 +236,7 @@ local function new_hotkeys_defaults()
     ingame_panel_charts = "f8",
     ingame_panel_policy = "f9",
     ingame_panel_machineMenu = "f10",
+    ingame_panel_adviserHistory = {"ctrl", "h"},
     ingame_panel_map_alt = "t",
     ingame_panel_research_alt = "r",
     ingame_panel_casebook_alt = "c",
@@ -302,18 +302,22 @@ local function config_contents(config_values)
 -------------------------------- SETTINGS MENU --------------------------------
 -- These settings can also be changed from within the game in the settings menu
 -------------------------------------------------------------------------------
--- Screen size. Must be at least 640x480. Larger sizes will require better
--- hardware in order to maintain a playable framerate. The fullscreen setting
--- can be true or false, and the game will run windowed if not fullscreen.
--- ui_scale can be set to 1, 2, or 3 to scale the user interface for higher
--- resolution displays. For example, at 1920x1080 resolution, setting ui_scale
--- to 2 will make the interface elements twice as large.
+-- Screen size (width and height). At least: 640x480.
+-- Larger sizes will require better hardware in order to maintain a playable framerate.
+-- Fullscreen. Can be true or false.
+-- The game will run windowed if not fullscreen.
+-- ui_scale. Default: 1.
+-- Whole-number UI scaling for higher-resolution displays; decimals unsupported.
+-- Example: 1920x1080 with ui_scale = 2 makes UI elements twice as large.
+-- width/ui_scale and height/ui_scale must be at least 640x480.
+-- Example: ui_scale = 2 requires resolution >= 1280x960.
 --]=] .. '\n' ..
 param(config_values, 'fullscreen') ..
 '\n' ..
 param(config_values, 'width') ..
 param(config_values, 'height') ..
-param(config_values, 'ui_scale') .. [=[
+param(config_values, 'ui_scale') ..
+param(config_values, 'cursor_scale') .. [=[
 
 -------------------------------------------------------------------------------
 -- Language to use for ingame text. Between the square braces should be one of:
@@ -327,6 +331,7 @@ param(config_values, 'ui_scale') .. [=[
 --  Finnish               / Suomi / fi / fin
 --  French                / fr / fre / fra
 --  German                / de / ger / deu
+--  Greek                 / el / gre / ell
 --  Hungarian             / hu / hun
 --  Italian               / it / ita
 --  Japanese              / ja / jp
@@ -637,17 +642,6 @@ param(config_values, 'midi_port', '[[Midi Through:Midi Through Port-0 14:0]]') .
 ------------------------------- SPECIAL SETTINGS ------------------------------
 -- These settings can only be changed here
 -------------------------------------------------------------------------------
--- Audio playback settings.
--- These can be commented out to use the default values from the game binary.
--- Note: On some platforms, these settings may not effect MIDI playback - only
--- sound effects and music audio. If you are experiencing poor audio playback,
--- then try doubling the buffer size.
---]=] .. '\n' ..
-param(config_values, 'audio_frequency') ..
-param(config_values, 'audio_channels') ..
-param(config_values, 'audio_buffer_size') .. [=[
-
--------------------------------------------------------------------------------
 -- Advanced MIDI settings.
 -- These settings can enable better MIDI playback on some systems but may also
 -- cause issues or be unsupported on others.
@@ -691,11 +685,34 @@ param(config_values, 'shift_scroll_speed') .. [=[
 param(config_values, 'room_information_dialogs') .. [=[
 
 -------------------------------------------------------------------------------
--- If true, parts of the hospital can be made inaccessible by blocking the path
--- with rooms or objects. If false, all parts of the hospital must be kept
--- accessible, the game will disallow any attempt to blocking the path.
+-- Ability to block off areas when building and placing objects.
+--
+-- There are 3 possible options:
+--
+-- 1. Totally forbidden - requires every passable tile in the hospital
+-- to remain reachable from a hospital entrance. This avoids issues that
+-- could arise from area blocking, but it also prevents room layouts
+-- which are allowed in Theme Hospital. Before version 0.70 this was
+-- a default option in CorsixTH.
+--
+-- 2. Partially allowed - user is allowed to make dead ended, inaccessible
+-- spaces that are not accessible from the hospital entrance but only if
+-- certain conditions are met. The condition is that the rooms themselves
+-- and usable objects inside the room must remain accessible. This ensures
+-- the preservation of the hospital's functionality and ensures the validity
+-- of the path routing in the hospital. This allows user to build rooms with
+-- the same layout as in the original TH. This is a safe option.
+--
+-- 3. Completely allowed - user is allowed to make dead ended,
+-- inaccessible spaces that are not accessible from the hospital entrance.
+-- This is a dangerous feature that can lead to game crashes. Use it only
+-- at your own risk and if you fully understand why you enabling it.
+--
+-- Set '1' for '1. Totally forbidden',
+-- Set '2' for '2. Partially allowed' (Default),
+-- Set '3' for '3. Completely allowed'.
 --]=] .. '\n' ..
-param(config_values, 'allow_blocking_off_areas') .. [=[
+param(config_values, 'blocking_off_areas') .. [=[
 
 -------------------------------------------------------------------------------
 -- Direct Zoom: Avoid rendering to an intermediate texture when zooming.
@@ -806,6 +823,7 @@ param(hotkeys_values, 'ingame_panel_status') ..
 param(hotkeys_values, 'ingame_panel_charts') ..
 param(hotkeys_values, 'ingame_panel_policy') ..
 param(hotkeys_values, 'ingame_panel_machineMenu') ..
+param(hotkeys_values, 'ingame_panel_adviserHistory') ..
 param(hotkeys_values, 'ingame_panel_map_alt') ..
 param(hotkeys_values, 'ingame_panel_research_alt') ..
 param(hotkeys_values, 'ingame_panel_casebook_alt') ..
@@ -819,6 +837,11 @@ param(hotkeys_values, 'ingame_panel_hireStaff') .. [=[
 -- This key rotates objects while they are being placed.
 -- ]=] .. '\n' ..
 param(hotkeys_values, 'ingame_rotateobject') .. [=[
+
+----------------------------------Sell Object--------------------------------
+-- This key sell objects while they are being picked up.
+-- ]=] .. '\n' ..
+param(hotkeys_values, 'ingame_sellPickedUpItem') .. [=[
 
 -----------------------------------Quick Keys----------------------------------
 -- These are keys for quick saving and loading, and for quickly restarting and

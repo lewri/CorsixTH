@@ -300,10 +300,9 @@ function UI:drawTooltip(canvas)
 end
 
 function UI:draw(canvas)
-  local app = self.app
   if self.background then
     local bg_w, bg_h = self.background_width, self.background_height
-    local screen_w, screen_h = app.config.width, app.config.height
+    local screen_w, screen_h = canvas:getRenderSize()
     local factor = math.max(screen_w / bg_w, screen_h / bg_h)
     if canvas:scale(factor, "bitmap") or canvas:scale(factor) then
       self.background:draw(canvas, math.floor((screen_w - bg_w * factor) / 2), math.floor((screen_h - bg_h * factor) / 2))
@@ -547,6 +546,11 @@ function UI:setMenuBackground()
 end
 
 function UI:onChangeResolution()
+  -- Redraw cursor
+  local cursor = self.cursor
+  self.cursor = nil
+  self:setCursor(cursor)
+
   -- If we are in the main menu (== no world), reselect the background
   if not self.app.world then
     self:setMenuBackground()
@@ -604,17 +608,16 @@ function UI:changeResolution(width, height)
     return false
   end
 
-  self.app.config.width = width
-  self.app.config.height = height
+  -- If changing the aspect ratio when fullscreen the window is not resized and
+  -- the pixel size doesn't change so we need to handle updating the config and
+  -- the render dimensions ourselves.
+  if self.app.config.fullscreen then
+    self.app.config.width = width
+    self.app.config.height = height
+    self.app:saveConfig()
 
-  -- Redraw cursor
-  local cursor = self.cursor
-  self.cursor = nil
-  self:setCursor(cursor)
-  -- Save new setting in config
-  self.app:saveConfig()
-
-  self:onChangeResolution()
+    self:onChangeResolution()
+  end
 
   return true
 end
@@ -702,11 +705,6 @@ function UI:toggleFullscreen()
     toggleMode(index)
   end
 
-  -- Redraw cursor
-  local cursor = self.cursor
-  self.cursor = nil
-  self:setCursor(cursor)
-
   if success then
     -- Save new setting in config
     self.app.config.fullscreen = self.app.fullscreen
@@ -716,22 +714,36 @@ function UI:toggleFullscreen()
   return success
 end
 
---! Called when the user presses a key on the keyboard
---!param rawchar (string) The name of the key the user pressed.
-function UI:onKeyDown(rawchar, modifiers)
-  local handled = false
+--! Private function to determine the key pressed based on current modifiers
+--!param rawchar (string) The key pressed as given by SDL
+--!param modifiers (table) Current key modifiers, e.g. numlock
+--!param btn_maps (table) Used for keydown events only, a table of keys that
+-- are designated to perform mouse actions.
+--!return (string, string) Modified raw character, or false if remapped to a button.
+-- And lowercase or remapped key
+function UI:_determineKeyPressed(rawchar, modifiers, btn_maps)
   -- Apply key-remapping and normalisation
   rawchar = string.sub(rawchar,1,6) == "Keypad" and
             modifiers["numlockactive"] and string.sub(rawchar,8) or rawchar
   local key = rawchar:lower()
-  do
-    local mapped_button = self.key_to_button_remaps[key]
-    if mapped_button then
-      self:onMouseDown(mapped_button, self.cursor_x, self.cursor_y)
-      return true
-    end
-    key = self.key_remaps[key] or key
+  if btn_maps and btn_maps[key] then
+    -- Buttons remaps to mouse
+    self:onMouseDown(btn_maps[key], self.cursor_x, self.cursor_y)
+    return false
   end
+  key = self.key_remaps[key] or key
+
+  return rawchar, key
+end
+
+--! Called when the user presses a key on the keyboard
+--!param rawchar (string) The name of the key the user pressed.
+--!param modifiers (table) The current applied modifiers to key input e.g. numlock
+function UI:onKeyDown(rawchar, modifiers)
+  local handled = false
+  local rawchar_transformed, key = self:_determineKeyPressed(
+      rawchar, modifiers, self.key_to_button_remaps)
+  if not rawchar_transformed then return end
 
   -- Remove numlock modifier
   modifiers["numlockactive"] = nil
@@ -739,14 +751,14 @@ function UI:onKeyDown(rawchar, modifiers)
   -- It will not process any text at this point though.
   for _, box in ipairs(self.textboxes) do
     if box.enabled and box.active and not handled then
-      handled = box:keyInput(key, rawchar)
+      handled = box:keyInput(key, rawchar_transformed)
     end
   end
 
   -- If there is a hotkey box
   for _, hotkeybox in ipairs(self.hotkeyboxes) do
     if hotkeybox.enabled and hotkeybox.active and not handled then
-      handled = hotkeybox:keyInput(key, rawchar, modifiers)
+      handled = hotkeybox:keyInput(key, rawchar_transformed, modifiers)
     end
   end
 
@@ -766,6 +778,7 @@ function UI:onKeyDown(rawchar, modifiers)
     end
   end
 
+  -- Store information about the key
   self.buttons_down[key] = true
   self.modifiers_down = modifiers
   self.key_press_handled = handled
@@ -774,12 +787,9 @@ end
 
 --! Called when the user releases a key on the keyboard
 --!param rawchar (string) The name of the key the user pressed.
-function UI:onKeyUp(rawchar)
-  rawchar = SDL.getKeyModifiers().numlockactive and
-            string.sub(rawchar,1,6) == "Keypad" and string.sub(rawchar,8) or
-            rawchar
-  local key = rawchar:lower()
-
+--!param modifiers (table) The current applied modifiers to key input e.g. numlock
+function UI:onKeyUp(rawchar, modifiers)
+  local _, key = self:_determineKeyPressed(rawchar, modifiers)
   self.buttons_down[key] = nil
 
   -- Go through all the hotkeyboxes.
@@ -822,6 +832,10 @@ function UI:onKeyUp(rawchar)
       end
     end
   end
+
+  -- Clean up
+  self.modifiers_down = nil
+  self.key_press_handled = nil
 end
 
 function UI:onEditingText(text, start, length)
@@ -870,8 +884,9 @@ function UI:onMouseDown(code, x, y)
     self:setCursor(self.down_cursor)
     repaint = true
   end
+  local scr_w, scr_h = self.app.video:getRenderSize()
   self.down_count = self.down_count + 1
-  if x >= 3 and y >= 3 and x < self.app.config.width - 3 and y < self.app.config.height - 3 then
+  if x >= 3 and y >= 3 and x < scr_w - 3 and y < scr_h - 3 then
     self.buttons_down["mouse_"..button] = true
   end
 
@@ -973,10 +988,26 @@ end
 --! Window has been resized by the user
 --!param width (integer) New window width
 --!param height (integer) New window height
-function UI:onWindowResize(width, height)
+function UI:onWindowResized(width, height)
   if not self.app.config.fullscreen then
-    self:changeResolution(width, height)
+    self.app.config.width = width
+    self.app.config.height = height
+
+    -- Save new setting in config
+    self.app:saveConfig()
   end
+end
+
+--! Render area size has been changed
+-- This could be because the user resized the window or updated the size
+-- through settings, or on a system where the window size is independent of the
+-- render size the window could have been dragged from a HiDPI monitor to a
+-- standard DPI monitor.
+--
+--!param width (integer) New renderer width
+--!param height (integer) New renderer height
+function UI:onWindowPixelSizeChanged(width, height)
+  self:onChangeResolution()
 end
 
 function UI:onMouseMove(x, y, dx, dy)
@@ -1003,10 +1034,24 @@ function UI:onMouseMove(x, y, dx, dy)
   return repaint
 end
 
---! Process SDL_MULTIGESTURE events.
+--! Process SDL_PINCH_BEGIN events.
 --!
 --!return (boolean) event processed indicator
-function UI:onMultiGesture()
+function UI:onPinchBegin()
+  return false
+end
+
+--! Process SDL_PINCH_UPDATE events.
+--!
+--!return (boolean) event processed indicator
+function UI:onPinchUpdate()
+  return false
+end
+
+--! Process SDL_PINCH_END events.
+--!
+--!return (boolean) event processed indicator
+function UI:onPinchEnd()
   return false
 end
 
@@ -1024,7 +1069,9 @@ function UI:onTick()
   return repaint
 end
 
-
+--! Adds a window to the game
+--! This also handles pause and permitted interaction behaviour as required
+--!param window (window) What is to be displayed
 function UI:addWindow(window)
   if window.closed then
     return
@@ -1036,40 +1083,54 @@ function UI:addWindow(window)
     end
     self.modal_windows[window.modal_class] = window
   end
-  if self.app.world and window:mustPause() then
-    self.app.world:setSpeed("Pause")
-    self.app.video:setBlueFilterActive(false) -- mustPause windows shouldn't cause tainting
-  end
   if window.modal_class == "main" or window.modal_class == "fullscreen" then
     self.editing_allowed = false -- do not allow editing rooms if main windows (build, furnish, hire) are open
   end
   Window.addWindow(self, window)
+  self:_onAddWindow(window)
 end
 
+--! Remove a window from the game
+--! This also handles pause and permitted interaction behaviour as required
+--!param closing_window (window) What is to be removed
 function UI:removeWindow(closing_window)
   if Window.removeWindow(self, closing_window) then
     local class = closing_window.modal_class
     if class and self.modal_windows[class] == closing_window then
       self.modal_windows[class] = nil
     end
-    if self.app.world and self.app.world:isCurrentSpeed("Pause") then
-      local pauseGame = self:checkForMustPauseWindows()
-      if not pauseGame and closing_window:mustPause() then
-        self.app.world:setSpeed(self.app.world.prev_speed)
-      end
-    end
     if closing_window.modal_class == "main" or closing_window.modal_class == "fullscreen" then
       self.editing_allowed = true -- allow editing rooms again when main window is closed
     end
+    self:_onRemoveWindow(closing_window)
     return true
   else
     return false
   end
 end
 
+-- Function for signaling that the window is added.
+-- To pause game if the necessary requirements are met.
+--!param window (object) window added
+function UI:_onAddWindow(window)
+  if self.app.world and window:mustPause() then
+    self.app.world:mustPauseWindowAdd()
+  end
+end
+
+-- Function for signaling that the window is to be removed.
+-- To unpause game if the necessary requirements are met.
+--!param window (object) window to be removed
+function UI:_onRemoveWindow(window)
+  if self.app.world and window:mustPause() then
+    self.app.world:mustPauseWindowRemoved()
+  end
+end
+
 --! Function to check if we have any must pause windows open
 --!return (bool) Returns true if a must pause window is found
-function UI:checkForMustPauseWindows()
+function UI:anyMustPauseWindowOpen()
+  if not self.windows then return false end
   for _, window in pairs(self.windows) do
     if window:mustPause() then return true end
   end
@@ -1100,6 +1161,7 @@ end
 function UI:afterLoad(old, new)
   -- Get rid of old key handlers from save file.
   self.key_handlers = {}
+
   if old < 5 then
     self.editing_allowed = true
   end
@@ -1186,9 +1248,9 @@ end
 
 --! Triggers reset of the application (reloads .lua files)
 function UI:resetApp()
-  debug.getregistry()._RESTART = true
-  TheApp.running = false
+  self.app:reset()
 end
+
 -- Added this function as quit does not exit the application, it only exits the game to the menu screen
 function UI:exitApplication()
   self.app:abandon()

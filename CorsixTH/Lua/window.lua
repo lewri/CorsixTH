@@ -82,8 +82,11 @@ function Window:setPosition(x, y)
   self.x_original = x
   self.y_original = y
   -- Convert x and y to absolute pixel positions with regard to top/left
-  local s = self.apply_ui_scale and TheApp.config.ui_scale or 1
-  local w, h = TheApp.config.width / s, TheApp.config.height / s
+  local w, h = TheApp.video:getRenderSize()
+  if self.apply_ui_scale then
+    w = w / TheApp.config.ui_scale
+    h = h / TheApp.config.ui_scale
+  end
   if x < 0 then
     x = math.ceil(w - self.width + x)
   elseif x < 1 then
@@ -177,6 +180,7 @@ function Panel:Panel()
   self.colour = nil
   self.custom_draw = nil
   self.visible = nil
+  self.wrap_text = false
 end
 
 local panel_mt = permanent("Window.<panel_mt>", getmetatable(Panel()))
@@ -304,17 +308,17 @@ end
 --!return y and x end positions after drawing
 function Panel:drawLabel(canvas, x, y, limit)
   local text = self.label
-  local multi_line = type(text) == "table"
-  local wrapped = not self.auto_clip
   local center_y = false
-  local s = self.apply_ui_scale and TheApp.config.ui_scale or 1
+  local wrapped = not self.auto_clip
 
+  local multi_line = type(text) == "table"
   if not multi_line then
     text = {text}
-    wrapped = false
     center_y = true
+    wrapped = (self.wrap_text ~= nil) and self.wrap_text or false
   end
 
+  local s = self.apply_ui_scale and TheApp.config.ui_scale or 1
   local next_y = y + self.y * s + s
   local last_x = x + self.x * s + 2 * s
   for i, line in ipairs(text) do
@@ -362,6 +366,13 @@ end
 --!param visibility (bool) New visibility of the panel.
 function Panel:setVisible(visibility)
   self.visible = visibility
+  return self
+end
+
+--! Set whether text wrapping is enabled for this panel.
+--!param enabled (bool) Whether to text wrapping enabled.
+function Panel:setTextWrap(enabled)
+  self.wrap_text = enabled
   return self
 end
 
@@ -1018,8 +1029,10 @@ function Textbox:setActive(active)
     self.cursor_pos[2] = type(self.text) == "table" and string.len(self.text[#self.text]) or string.len(self.text)
     -- Update text
     self.panel:setLabel(self.text)
+    TheApp:startTextInput()
   else
     self.cursor_state = false
+    TheApp:stopTextInput()
   end
 
   self.active = active
@@ -1486,6 +1499,13 @@ function Window:makeHotkeyBoxOnPanel(panel, confirm_callback, abort_callback)
   return hotkeybox
 end
 
+-- Return the X and Y coordinates of the window as drawn on
+-- the screen after factoring in the ui_scale.
+function Window:getRealXY()
+  local s = self.apply_ui_scale and TheApp.config.ui_scale or 1
+  return self.x * s, self.y * s
+end
+
 function Window:draw(canvas, x, y)
   local s = self.apply_ui_scale and TheApp.config.ui_scale or 1
   x, y = x + self.x * s, y + self.y * s
@@ -1734,7 +1754,7 @@ function Window:onMouseUp(button, x, y)
 end
 
 --! This function can be used to control mousewheel input (i.e. scrolling).
---! Override this function in dervied classes, with what you'd like to happen
+--! Override this function in derived classes, with what you'd like to happen
 --! on this event.
 --!param x (int) Mousewheel has moved on the horizontal axis (-1 is
 -- leftward movement, +1 is rightward movement)
@@ -1796,7 +1816,7 @@ function Window:beginDrag(x, y)
     sx = sx - x
     sy = sy - y
     -- Calculate best positioning
-    local w, h = TheApp.config.width, TheApp.config.height
+    local w, h = TheApp.video:getRenderSize()
     if TheApp.key_modifiers.ctrl then
       local px = round(sx / (w - self.width * s), 0.1)
       local py = round(sy / (h - self.height * s), 0.1)
@@ -2143,14 +2163,23 @@ function Window:afterLoad(old, new)
     self.apply_ui_scale = true
   end
 
+  -- If a window or panel is asked to close during an afterLoad cycle we
+  -- can skip entries so use backwards iteration here instead
   if self.windows then
-    for _, w in pairs(self.windows) do
-      w:afterLoad(old, new)
+    for i = #self.windows, 1, -1 do
+      local window = self.windows[i]
+      if window then
+        window:afterLoad(old, new)
+      end
     end
   end
+
   if self.panels then
-    for _, p in pairs(self.panels) do
-      p:afterLoad(old, new)
+    for i = #self.panels, 1, -1 do
+      local panel = self.panels[i]
+      if panel then
+        panel:afterLoad(old, new)
+      end
     end
   end
 end

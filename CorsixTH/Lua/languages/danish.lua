@@ -64,6 +64,16 @@ because the letters ø and Ø is not included in the original ingame-font.
 
 
 -----------------------------------------------------------------------------]]
+-- Translator warning:
+-- Theme Hospital's original bitmap fonts have a limited character set, and
+-- some letters are missing; supported characters are case-sensitive.
+-- Unsupported characters appear as "?" in game. See the supported characters:
+-- https://github.com/CorsixTH/CorsixTH/wiki/Localization
+-- Translators may use plain-character substitutions (for example, "e" for an
+-- accented "e").
+-- If substitutions are unsuitable, change Font("cp437") to Font("unicode")
+-- to use the Unicode font instead. You may translate this note into this
+-- file's language if that would help other translators.
 
 
 -------------------------------------------------------------------------------
@@ -2642,7 +2652,7 @@ tooltip.update_window.download = "Gå til downloadsiden for den nyeste version a
 tooltip.update_window.ignore = "Ignorer denne opdatering for nu. Du vil blive påmindet igen næste gang du åbner CorsixTH"
 tooltip.folders_window.browse_font = "Led efter en anden skrifttype fil ( nuværende placering: %1% )"
 tooltip.folders_window.screenshots_location = "Normalt er skærmbilleder gemt i samme mappe som konfigurationsfilen. Hvis du gerne vil have skærmbilleder gemt et andet sted, skal du blot navigere til den pågældende mappe."
-tooltip.folders_window.reset_to_default = "Gendan biblioteket til standard placeringen"
+tooltip.folders_window.reset_to_default = "Gendan biblioteket til standard placeringen ( %1% )"
 tooltip.folders_window.back = "Luk denne menu og gå tilbage til indstillinger"
 tooltip.folders_window.browse = "Find placering af mappe"
 tooltip.folders_window.browse_screenshots = "Find en anden mappe til dine skærmbilleder ( nuværende placering: %1% ) "

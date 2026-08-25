@@ -55,6 +55,16 @@ because the letters ø and Ø is not included in the original ingame-font.
 
 
 -----------------------------------------------------------------------------]]
+-- Translator warning:
+-- Theme Hospital's original bitmap fonts have a limited character set, and
+-- some letters are missing; supported characters are case-sensitive.
+-- Unsupported characters appear as "?" in game. See the supported characters:
+-- https://github.com/CorsixTH/CorsixTH/wiki/Localization
+-- Translators may use plain-character substitutions (for example, "e" for an
+-- accented "e").
+-- If substitutions are unsuitable, change Font("cp437") to Font("unicode")
+-- to use the Unicode font instead. You may translate this note into this
+-- file's language if that would help other translators.
 
 -- TODO GENERAL: Skal det benevnes "spill", "brett", "nivå" eller noe annet?
 
@@ -205,7 +215,7 @@ tooltip = {
     browse_screenshots = "Se etter en annen lokasjon for skjermdumper  ( nåværende beliggenhet: %1% ) ",
     not_specified = "Ingen mappe er valgt enda!",
     font_location = "Lokasjon for en font som kan vise Unicode-bokstaver som er nödvendig for ditt språk. Om denne ikke velges så er bokstavtyåene begrenset til de som er i Theme Hospital.",
-    reset_to_default = "Tilbakestill mappen til standard lokasjon",
+    reset_to_default = "Tilbakestill mappen til standard lokasjon ( %1% )",
     default = "Standard lokasjon",
     no_font_specified = "Ingen font-fil er valgt enda!",
   },

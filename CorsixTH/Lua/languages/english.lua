@@ -208,6 +208,7 @@ menu_charts = {
   graphs        = "  (%1%) GRAPHS  ",
   policy        = "  (%1%) POLICY  ",
   machine_menu  = "  (%1%) MACHINES MENU",
+  adviser_history = "  (%1%) ADVISER HISTORY ",
 }
 
 menu_debug = {
@@ -227,6 +228,11 @@ menu_debug = {
   dump_gamelog                = "  (%1%) DUMP GAME LOG  ",
   map_overlay                 = "  MAP OVERLAY  ",
   sprite_viewer               = "  SPRITE VIEWER  ",
+}
+menu_debug_overlay_blocking_off_areas = {
+  choice_1 = "  TOTALLY FORBIDDEN  ",
+  choice_2 = "  PARTIALLY ALLOWED  ",
+  choice_3 = "  COMPLETELY ALLOWED  ",
 }
 menu_debug_overlay = {
   none                        = "  NONE  ",
@@ -295,6 +301,10 @@ adviser = {
     roujin_off_cheat = "Roujin's challenge deactivated. Everything will be back to normal soon.",
     norest_on_cheat = "Oh no! It appears your staff have consumed too much caffeine and no longer feel a need to rest.",
     norest_off_cheat = "Phew! Looks like that buzz finally wore off. Your staff will now rest properly.",
+    queuejump_on_cheat = "Your patients know how to queue. They let nearly dead patients go to the front of the line.",
+    queuejump_off_cheat = "People have turned selfish and are no longer letting nearly dead patients jump the queues.",
+    superdoctor_on_cheat = "A superb medical school has recommended you to their graduates! Check the staff for hire.",
+    superdoctor_off_cheat = "The medical school chief no longer recommends you to their graduates.",
   },
   staff_place_advice = {
     not_enough_lecture_chairs = "Each student doctor needs a lecture chair to sit in!",
@@ -476,6 +486,7 @@ options_window = {
   fullscreen = "Fullscreen",
   resolution = "Resolution",
   scale_ui = "UI Scale",
+  cursor_scale = "Cursor Scale",
   capture_mouse = "Capture Mouse",
   right_mouse_scrolling = "Mouse Scrolling",
   right_mouse_scrolling_option_middle = "Middle Button",
@@ -515,9 +526,12 @@ tooltip.options_window = {
   fullscreen_button = "Click to toggle fullscreen mode",
   resolution = "The resolution the game should run in",
   select_resolution = "Select a new resolution",
+  resolution_unavailable = "Resolution unavailable at current UI Scale",
   scale_ui = "Scale the user interface. Only scale options that fit the display are shown, for more increase the resolution.",
   select_ui_scale = "Select a new user interface scale",
   ui_scale_unavailable = "User interface scaling not available, please select a higher resolution first.",
+  cursor_scale = "Scale the cursor.",
+  select_cursor_scale = "Select a new cursor scale",
   capture_mouse = "Click to toggle capturing the cursor while in game",
   right_mouse_scrolling = "Toggle the mouse button that is used to scroll the map",
   width = "Enter desired screen width",
@@ -586,8 +600,6 @@ customise_window = {
   regular_patients = "Regular Patients",
   male_only = "Male Only",
   male_and_female = "Male and Female",
-  every_month = "Every Month",
-  every_day = "Every Day",
   back = "Back",
   movies = "Movies",
   intro = "Play Intro Movie",
@@ -647,7 +659,8 @@ tooltip.folders_window = {
   no_font_specified = "No font location specified yet!",
   not_specified = "No folder location specified yet!",
   default = "Default location",
-  reset_to_default = "Reset the directory to its default location",
+  reset_to_default = "Reset the directory to its default location ( %1% )",
+  clear_directory = "Clear current directory selection",
   back  = "Close this menu and go back to the Settings Menu",
 }
 
@@ -718,6 +731,7 @@ hotkey_window = {
   ingame_panel_charts = "Charts",
   ingame_panel_policy = "Policy",
   ingame_panel_machineMenu = "Machines Menu",
+  ingame_panel_adviserHistory = "Adviser History",
   ingame_panel_map_alt = "Town Map 2",
   ingame_panel_research_alt = "Research 2",
   ingame_panel_casebook_alt = "Casebook 2",
@@ -741,6 +755,7 @@ hotkey_window = {
   ingame_poopLog = "Dump Log",
   ingame_poopStrings = "Dump Strings",
   ingame_patient_gohome = "Send Home",
+  ingame_sellPickedUpItem = "Sell Picked-up Item",
   ingame_storePosition_1 = "1",
   ingame_storePosition_2 = "2",
   ingame_storePosition_3 = "3",
@@ -893,6 +908,7 @@ information = {
     cheat = "Hope you didn't click the Lose Level button by accident!",
     staff_happiness = "Your average staff happiness fell below %d%.",
     patient_happiness = "Your average patient happiness fell below %d%.",
+    months_played = "You didn't meet the level goals within %d months.",
   },
   cheat_not_possible = "You cannot use that cheat on this level.",
 }
@@ -1026,11 +1042,10 @@ tooltip.calls_dispatcher = {
 }
 
 machine_menu = {
-  percentage = "%d%",
   machine = "Machine",
+  status = "Status",
   remaining_strength = "Remain",
   total_strength = "Strength",
-  ratio = "Ratio",
   close = "Close",
 }
 
@@ -1041,16 +1056,30 @@ tooltip.machine_menu = {
   assigned = "This box is marked if a handyman is assigned to fix corresponding machine. Click to show assigned handyman.",
   remaining_strength = "This value shows remaining strength of the machine",
   total_strength = "This value shows total strength of the machine",
-  ratio = "This value shows ratio of remaining strength and total strength",
   header = {
     smoking = "Danger Indicator",
     assigned = "Repair assignment Indicator",
     machine = "Machine name",
     remaining_strength = "Remaining Strength of the machines.",
+    status = "Status of the machines.",
     total_strength = "Total Strength of the machines.",
-    ratio = "Remaining Strength to Total Strength percentage ratio of the machines.",
   },
   close = "Close the machine list dialog",
+}
+
+adviser_history = {
+  message = "Message",
+  close = "Close",
+}
+
+tooltip.adviser_history = {
+  delete_message = "Click to dismiss this message",
+  message = "List of adviser messages - Newest messages appear first",
+  header = {
+    message = "Adviser messages",
+    delete_message = "Click to delete all messages"
+  },
+  close = "Close the adviser history dialog",
 }
 
 
@@ -1110,10 +1139,14 @@ tooltip.status = {
   over = {
     staff_happiness = "Your average staff happiness should be over %d%. Currently it's %d%",
     patient_happiness = "Your average patient happiness should be over %d%. Currently it's %d%",
+    months_played = "You need to reach the end of %s %d. Currently it's %s %d",
+    years_played = "You need to reach the year %d. Currently it's the year %d",
   },
   under = {
     staff_happiness = "Your average staff happiness should not be less than %d%. Currently it's %d%",
     patient_happiness = "Your average patient happiness should not be less than %d%. Currently it's %d%",
+    months_played = "You need to win by the end of %s %d. Currently it's %s %d",
+    years_played = "You need to reach the year %d. Currently it's the year %d",
   }
 }
 
@@ -1273,7 +1306,16 @@ subtitles = {
 options_window.change_resolution = "Change resolution"
 tooltip.options_window.change_resolution = "Change the window resolution to the dimensions entered on the left"
 information.very_old_save = "There have been a lot of updates to the game since you started this level. To be sure that all features work as intended please consider restarting it."
-
+machine_menu = {
+  ratio = "Ratio",
+  percentage = "%d%",
+}
+tooltip.machine_menu = {
+  ratio = "This value shows ratio of remaining strength and total strength",
+  header = {
+    ratio = "Remaining Strength to Total Strength percentage ratio of the machines.",
+  }
+}
 cheats_window.cheats = {
  toggle_infected = show_infected,
 }
