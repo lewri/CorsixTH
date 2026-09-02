@@ -30,6 +30,7 @@ local SDL = require("sdl")
 
 local SAVEGAME_VERSION = 264 -- SDL 3
 -- HELLO GORGEOUS
+-- WHO YOU CALLING GORGEOUS
 
 class "App"
 
