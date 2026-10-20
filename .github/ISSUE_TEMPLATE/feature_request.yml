@@ -10,7 +10,10 @@ body:
   - type: textarea
     id: subjectof
     attributes:
-      label: What feature or enhancement would you like to add?
+      label: |
+        If other people like your idea, they can give this ticket a thumbs up! 👍
+        
+        What feature or enhancement would you like to add?
       description: Include a description of what feature/enhancement you would like to see in CorsixTH
     validations:
       required: true
