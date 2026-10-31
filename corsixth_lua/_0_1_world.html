@@ -1458,11 +1458,9 @@ and localized name of staff required.<br/><br/>
  <div class="method">
  <h5><a name="_0_1_world_1is_footprint_tile_buildable_or_passable">function World:isFootprintTileBuildableOrPassable(<span class="p">x</span>, <span class="p">y</span>, <span class="p">tile</span>, <span class="p">footprint</span>, <span class="p">requirement_flag</span>, <span class="p">player_id</span>)</a></h5>
  <p>
- -
-A footprint tile will either need to be buildable or passable so this function
+ A footprint tile will either need to be buildable or passable so this function
 checks if its buildable/passable using the tile's appropriate flag and then returns this
-flag's boolean value or false if the tile isn't valid.
--<br/><br/>
+flag's boolean value or false if the tile isn't valid.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
@@ -2400,10 +2398,6 @@ blue filter<br/><br/>
  <div class="method">
  <h5><a name="_0_1_world_1will_objects_footprint_tile_be_within_its_allowed_room_if_located_at">function World:willObjectsFootprintTileBeWithinItsAllowedRoomIfLocatedAt(<span class="p">x</span>, <span class="p">y</span>, <span class="p">object</span>, <span class="p">allowed_rooms_id_parameter</span>)</a></h5>
  <p>
- -
-@param allowed_rooms_id_parameter Should be nil when the object is allowed to be placed in any room.
-@return {within_room, roomId}
--<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
@@ -2425,7 +2419,7 @@ blue filter<br/><br/>
  <tr>
  <td class="n">allowed_rooms_id_parameter</td>
  <td class="t">?</td>
- <td class="d">?</td>
+ <td class="d">Should be nil when the object is allowed to be placed in any room.</td>
  </tr>
  </table></p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/world.lua#L1913">line 1913 of Lua/world.lua</a>.
