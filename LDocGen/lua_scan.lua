@@ -32,12 +32,15 @@ local function ParseComments(tokens, i, object)
       end
     -- Ignore Unix Shebang and License comments
     elseif tok[1]:sub(1, 1) ~= "#" and not tok[1]:find[[THE SOFTWARE IS PROVIDED "AS IS"]] then
-      local part = tok[1]:sub(3, -1)
-      local mkr = part:match"^%[(=*)%["
-      if mkr then
-        part = part:sub(3 + #mkr, -3 - #mkr)
-      end
-      part = part:trim()
+    local part = tok[1]:sub(tok[1]:sub(1, 3) == "---" and 4 or 3, -1)
+    local mkr = part:match("^%[(=*)%[")
+
+    if mkr then
+      part = part:sub(3 + #mkr, -3 - #mkr)
+    end
+
+    part = part:trim()
+    part = part:gsub("^@", "!", 1)
       if (not mkr) and was_short and comment_parts[1]:sub(1, 1) ~= "!" then
         -- Merge multiple short comments into a single comment part
         comment_parts[1] = part .. "\n" .. comment_parts[1]
