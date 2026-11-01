@@ -23,7 +23,7 @@
  <div class="content">
  <h2 class="class">UIMapEditor Class</h2>
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L22">line 22 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L24">line 24 of Lua/dialogs/resizables/map_editor.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_u_i_map_editor.html">UIMapEditor</a>
  » <a href="_0_1_u_i_resizable.html">UIResizable</a>
  » <a href="_0_1_window.html">Window</a>
@@ -31,6 +31,22 @@
 <div class="method_list">
  <h4>Method Index</h4>
  <ul>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__button_pressed">_buttonPressed</a>(<span class="p">setting</span>, <span class="p">func</span>, <span class="p">info</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__get_button_label">_getButtonLabel</a>(<span class="p">value</span>, <span class="p">name</span>, <span class="p">custom_labels</span>, <span class="p">default_string</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__get_option_y_pos">_getOptionYPos</a>()
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__start_new_column">_startNewColumn</a>()
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
@@ -73,6 +89,10 @@
  <a href="_0_1_window.html#_0_1_window_1bring_to_top">bringToTop</a>()
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1build_dialog">buildDialog</a>()
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
  <li class="self">
  <a href="_0_1_u_i_map_editor.html#_0_1_u_i_map_editor_1build_sprite_buttons">buildSpriteButtons</a>(<span class="p">buttons</span>)
  </li>
@@ -85,6 +105,10 @@
  </li>
  <li class="self">
  <a href="_0_1_u_i_map_editor.html#_0_1_u_i_map_editor_1copy_area">copyArea</a>()
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1create_options_element">createOptionsElement</a>(<span class="p">option_label</span>, <span class="p">option_tooltip</span>, <span class="p">setting_label</span>, <span class="p">setting_tooltip</span>, <span class="p">setting_colours</span>, <span class="p">callback</span>, <span class="p">toggle_state</span>, <span class="p">default_value</span>, <span class="p">reset_func</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
  </li>
  <li class="self">
  <a href="_0_1_u_i_map_editor.html#_0_1_u_i_map_editor_1delete_walls_at_area">deleteWallsAtArea</a>(<span class="p">coords</span>)
@@ -301,6 +325,9 @@
 <div class="member_list">
  <h4>Member Index</h4>
  <ul>
+ <li><span class="p">_current_option_index</span>
+ (*)
+ </li>
  <li><span class="p">active_button</span>
  (*)
  </li>
@@ -310,7 +337,13 @@
  <li><span class="p">apply_ui_scale</span>
  (*)
  </li>
+ <li><span class="p">autoclip</span>
+ (*)
+ </li>
  <li><span class="p">background_panel</span>
+ (*)
+ </li>
+ <li><span class="p">big_button_height</span>
  (*)
  </li>
  <li><span class="p">blink_counter</span>
@@ -327,7 +360,19 @@
  <li><span class="p">border_sprites</span>
  (*)
  </li>
+ <li><span class="p">btn_height</span>
+ (*)
+ </li>
  <li><span class="p">btn_repeat_delay</span>
+ (*)
+ </li>
+ <li><span class="p">btn_width</span>
+ (*)
+ </li>
+ <li><span class="p">built_in_font</span>
+ (*)
+ </li>
+ <li><span class="p">buttonBack</span>
  (*)
  </li>
  <li><span class="p">buttons</span>
@@ -344,12 +389,18 @@
  <li><span class="p">colour</span>
  (*)
  </li>
+ <li><span class="p">column_count</span>
+ (*)
+ </li>
  <li><span class="p">cursor</span>
  </li>
  <li><span class="p">cursor_x</span>
  (*)
  </li>
  <li><span class="p">cursor_y</span>
+ (*)
+ </li>
+ <li><span class="p">custom_back_button</span>
  (*)
  </li>
  <li><span class="p">default_button_sound</span>
@@ -359,6 +410,15 @@
  (*)
  </li>
  <li><span class="p">dragging</span>
+ (*)
+ </li>
+ <li><span class="p">entry_list</span>
+ (*)
+ </li>
+ <li><span class="p">esc_closes</span>
+ (*)
+ </li>
+ <li><span class="p">extra_height</span>
  (*)
  </li>
  <li><span class="p">height</span>
@@ -372,10 +432,28 @@
  <li><span class="p">key_handlers</span>
  (*)
  </li>
+ <li><span class="p">label_height</span>
+ (*)
+ </li>
+ <li><span class="p">label_width</span>
+ (*)
+ </li>
+ <li><span class="p">labels</span>
+ (*)
+ </li>
+ <li><span class="p">margin</span>
+ (*)
+ </li>
  <li><span class="p">min_height</span>
  (*)
  </li>
  <li><span class="p">min_width</span>
+ (*)
+ </li>
+ <li><span class="p">mode</span>
+ (*)
+ </li>
+ <li><span class="p">on_top</span>
  (*)
  </li>
  <li><span class="p">page_selectbuttons</span>
@@ -390,6 +468,9 @@
  <li><span class="p">parent</span>
  (*)
  </li>
+ <li><span class="p">reload</span>
+ (*)
+ </li>
  <li><span class="p">resizable</span>
  </li>
  <li><span class="p">sample_i</span>
@@ -398,6 +479,9 @@
  (*)
  </li>
  <li><span class="p">selected_block</span>
+ </li>
+ <li><span class="p">strings_ref</span>
+ (*)
  </li>
  <li><span class="p">textboxes</span>
  (*)
@@ -443,7 +527,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L410">line 410 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L413">line 413 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -474,7 +558,7 @@
  <td class="d"> Vertical size.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1012">line 1012 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1015">line 1015 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -491,7 +575,7 @@
  <td class="d">Index block number.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L975">line 975 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L978">line 978 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -507,7 +591,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L700">line 700 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L703">line 703 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -544,14 +628,14 @@ If they exist, return them or delete them.<br/><br/>
  <td class="d"> If set, remove the found objects.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1214">line 1214 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1217">line 1217 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1copy_area">function UIMapEditor:copyArea()</a></h5>
  <p>
  Copy area from the game.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1348">line 1348 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1351">line 1351 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -567,7 +651,7 @@ If they exist, return them or delete them.<br/><br/>
  <td class="d"> Coordinates to remove the walls.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1452">line 1452 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1455">line 1455 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -589,7 +673,7 @@ If they exist, return them or delete them.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1draw">UIResizable:draw</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L941">line 941 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L944">line 944 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -605,7 +689,7 @@ If they exist, return them or delete them.<br/><br/>
  <td class="d"> Coordinates to draw the selected sprite.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1308">line 1308 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1311">line 1311 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -636,7 +720,7 @@ If they exist, return them or delete them.<br/><br/>
  <td class="d"> Direction of the new object ("north" or "west").</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1181">line 1181 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1184">line 1184 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -673,7 +757,7 @@ the area is completely inside the world boundaries.<br/><br/>
  <td class="d"> Vertical size in tiles.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L922">line 922 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L925">line 925 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -699,7 +783,7 @@ the area is completely inside the world boundaries.<br/><br/>
  <td class="d"> Found thobs.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1276">line 1276 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1279">line 1279 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -707,14 +791,14 @@ the area is completely inside the world boundaries.<br/><br/>
  <p>
  }}}<br/><br/>
  Retrieve what drag capabilities are allowed by the currently selected world cursor sprite.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1025">line 1025 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1028">line 1028 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1get_draw_points">function UIMapEditor:getDrawPoints()</a></h5>
  <p>
  Compute the positions to draw the selected sprite in the world.<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L859">line 859 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L862">line 862 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -735,7 +819,7 @@ the area is completely inside the world boundaries.<br/><br/>
  <td class="d"> Mouse y screen coordinate.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L998">line 998 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1001">line 1001 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -762,7 +846,7 @@ the area is completely inside the world boundaries.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1on_mouse_down">UIResizable:onMouseDown</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1095">line 1095 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1098">line 1098 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -794,7 +878,7 @@ the area is completely inside the world boundaries.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_move">Window:onMouseMove</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1051">line 1051 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1054">line 1054 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -821,25 +905,25 @@ the area is completely inside the world boundaries.<br/><br/>
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_mouse_up">Window:onMouseUp</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1493">line 1493 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1496">line 1496 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1open_jukebox">function UIMapEditor:openJukebox()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L591">line 591 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L594">line 594 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1open_load">function UIMapEditor:openLoad()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L575">line 575 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L578">line 578 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1open_save">function UIMapEditor:openSave()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L579">line 579 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L582">line 582 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -855,20 +939,20 @@ the area is completely inside the world boundaries.<br/><br/>
  <td class="d"> Name of the clicked page.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L635">line 635 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L638">line 638 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1paste_area">function UIMapEditor:pasteArea()</a></h5>
  <p>
  Paste copied area into the destination area (one or more times).<br/><br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1397">line 1397 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1400">line 1400 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1quit">function UIMapEditor:quit()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L587">line 587 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L590">line 590 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -884,13 +968,13 @@ the area is completely inside the world boundaries.<br/><br/>
  <td class="d">Entrance door to remove.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1203">line 1203 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1206">line 1206 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_map_editor_1restart">function UIMapEditor:restart()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L583">line 583 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L586">line 586 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -911,7 +995,7 @@ the area is completely inside the world boundaries.<br/><br/>
  <td class="d"> Parcel number to set.</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1481">line 1481 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L1484">line 1484 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -926,7 +1010,7 @@ the area is completely inside the world boundaries.<br/><br/>
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L597">line 597 of Lua/dialogs/resizables/map_editor.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/map_editor.lua#L600">line 600 of Lua/dialogs/resizables/map_editor.lua</a>.
  </p>
  </div>
 </div>

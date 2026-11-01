@@ -24,7 +24,7 @@
  <h2 class="class">UIAdviserHistory Class</h2>
 <h3 class="class">Adviser message history</h3> 
 <div class="class_info">
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L21">line 21 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L23">line 23 of Lua/dialogs/resizables/adviser_history.lua</a>.
  <br/><strong>Inheritance:</strong> <a href="_0_1_u_i_adviser_history.html">UIAdviserHistory</a>
  » <a href="_0_1_u_i_resizable.html">UIResizable</a>
  » <a href="_0_1_window.html">Window</a>
@@ -32,6 +32,22 @@
 <div class="method_list">
  <h4>Method Index</h4>
  <ul>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__button_pressed">_buttonPressed</a>(<span class="p">setting</span>, <span class="p">func</span>, <span class="p">info</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__get_button_label">_getButtonLabel</a>(<span class="p">value</span>, <span class="p">name</span>, <span class="p">custom_labels</span>, <span class="p">default_string</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__get_option_y_pos">_getOptionYPos</a>()
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1__start_new_column">_startNewColumn</a>()
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
  <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1add_bevel_panel">addBevelPanel</a>(<span class="p">x</span>, <span class="p">y</span>, <span class="p">w</span>, <span class="p">h</span>, <span class="p">colour</span>, <span class="p">highlight_colour</span>, <span class="p">shadow_colour</span>, <span class="p">disabled_colour</span>, <span class="p">lowered_colour</span>, <span class="p">apply_ui_scale</span>)
  (inherited from <a href="_0_1_window.html">Window</a>)
@@ -69,11 +85,19 @@
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1build_dialog">buildDialog</a>()
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
+ </li>
+ <li class="inherited">
  <a href="_0_1_window.html#_0_1_window_1close">close</a>()
  (inherited from <a href="_0_1_window.html">Window</a>)
  </li>
  <li class="self">
  <a href="_0_1_u_i_adviser_history.html#_0_1_u_i_adviser_history_1create_controls">createControls</a>()
+ </li>
+ <li class="inherited">
+ <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1create_options_element">createOptionsElement</a>(<span class="p">option_label</span>, <span class="p">option_tooltip</span>, <span class="p">setting_label</span>, <span class="p">setting_tooltip</span>, <span class="p">setting_colours</span>, <span class="p">callback</span>, <span class="p">toggle_state</span>, <span class="p">default_value</span>, <span class="p">reset_func</span>)
+ (inherited from <a href="_0_1_u_i_resizable.html">UIResizable</a>)
  </li>
  <li class="self">
  <a href="_0_1_u_i_adviser_history.html#_0_1_u_i_adviser_history_1delete_button_clicked">deleteButtonClicked</a>(<span class="p">message_index</span>)
@@ -245,6 +269,9 @@
 <div class="member_list">
  <h4>Member Index</h4>
  <ul>
+ <li><span class="p">_current_option_index</span>
+ (*)
+ </li>
  <li><span class="p">active_button</span>
  (*)
  </li>
@@ -256,7 +283,13 @@
  </li>
  <li><span class="p">approx_rows_space</span>
  </li>
+ <li><span class="p">autoclip</span>
+ (*)
+ </li>
  <li><span class="p">background_panel</span>
+ (*)
+ </li>
+ <li><span class="p">big_button_height</span>
  (*)
  </li>
  <li><span class="p">blink_counter</span>
@@ -271,7 +304,19 @@
  <li><span class="p">border_sprites</span>
  (*)
  </li>
+ <li><span class="p">btn_height</span>
+ (*)
+ </li>
  <li><span class="p">btn_repeat_delay</span>
+ (*)
+ </li>
+ <li><span class="p">btn_width</span>
+ (*)
+ </li>
+ <li><span class="p">built_in_font</span>
+ (*)
+ </li>
+ <li><span class="p">buttonBack</span>
  (*)
  </li>
  <li><span class="p">buttons</span>
@@ -286,10 +331,16 @@
  <li><span class="p">colour</span>
  (*)
  </li>
+ <li><span class="p">column_count</span>
+ (*)
+ </li>
  <li><span class="p">cursor_x</span>
  (*)
  </li>
  <li><span class="p">cursor_y</span>
+ (*)
+ </li>
+ <li><span class="p">custom_back_button</span>
  (*)
  </li>
  <li><span class="p">default_button_sound</span>
@@ -302,7 +353,13 @@
  <li><span class="p">dragging</span>
  (*)
  </li>
+ <li><span class="p">entry_list</span>
+ (*)
+ </li>
  <li><span class="p">esc_closes</span>
+ </li>
+ <li><span class="p">extra_height</span>
+ (*)
  </li>
  <li><span class="p">header_height</span>
  </li>
@@ -315,11 +372,23 @@
  <li><span class="p">key_handlers</span>
  (*)
  </li>
+ <li><span class="p">label_height</span>
+ (*)
+ </li>
+ <li><span class="p">label_width</span>
+ (*)
+ </li>
+ <li><span class="p">labels</span>
+ (*)
+ </li>
  <li><span class="p">last_history_count</span>
  </li>
  <li><span class="p">last_seen_history_top</span>
  </li>
  <li><span class="p">list_table</span>
+ </li>
+ <li><span class="p">margin</span>
+ (*)
  </li>
  <li><span class="p">message_col_width</span>
  </li>
@@ -331,7 +400,13 @@
  </li>
  <li><span class="p">modal_class</span>
  </li>
+ <li><span class="p">mode</span>
+ (*)
+ </li>
  <li><span class="p">num_visible_rows</span>
+ </li>
+ <li><span class="p">on_top</span>
+ (*)
  </li>
  <li><span class="p">panel_sprites</span>
  </li>
@@ -339,6 +414,9 @@
  (*)
  </li>
  <li><span class="p">parent</span>
+ (*)
+ </li>
+ <li><span class="p">reload</span>
  (*)
  </li>
  <li><span class="p">resizable</span>
@@ -350,6 +428,9 @@
  <li><span class="p">scrollbar</span>
  </li>
  <li><span class="p">scrollbars</span>
+ (*)
+ </li>
+ <li><span class="p">strings_ref</span>
  (*)
  </li>
  <li><span class="p">textboxes</span>
@@ -401,7 +482,7 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L33">line 33 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L36">line 36 of Lua/dialogs/resizables/adviser_history.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -422,13 +503,13 @@
  </tr>
  </table></p><p>
  <strong>Overrides:</strong> <a href="_0_1_u_i_resizable.html#_0_1_u_i_resizable_1after_load">UIResizable:afterLoad</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L193">line 193 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L196">line 196 of Lua/dialogs/resizables/adviser_history.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_adviser_history_1create_controls">function UIAdviserHistory:createControls()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L79">line 79 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L82">line 82 of Lua/dialogs/resizables/adviser_history.lua</a>.
  </p>
  </div>
  <div class="method">
@@ -443,26 +524,26 @@
  <td class="d">?</td>
  </tr>
  </table></p><p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L71">line 71 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L74">line 74 of Lua/dialogs/resizables/adviser_history.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_adviser_history_1on_tick">function UIAdviserHistory:onTick()</a></h5>
  <p>
  <strong>Overrides:</strong> <a href="_0_1_window.html#_0_1_window_1on_tick">Window:onTick</a>.<br/>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L177">line 177 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L180">line 180 of Lua/dialogs/resizables/adviser_history.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_adviser_history_1scrollbar_moved">function UIAdviserHistory:scrollbarMoved()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L158">line 158 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L161">line 161 of Lua/dialogs/resizables/adviser_history.lua</a>.
  </p>
  </div>
  <div class="method">
  <h5><a name="_0_1_u_i_adviser_history_1update">function UIAdviserHistory:update()</a></h5>
  <p>
- <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L149">line 149 of Lua/dialogs/resizables/adviser_history.lua</a>.
+ <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/dialogs/resizables/adviser_history.lua#L152">line 152 of Lua/dialogs/resizables/adviser_history.lua</a>.
  </p>
  </div>
 </div>

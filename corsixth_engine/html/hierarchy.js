@@ -12,6 +12,7 @@ var hierarchy =
     [ "animation_start_frames", "structanimation__start__frames.html", null ],
     [ "chunk_renderer", "classchunk__renderer.html", null ],
     [ "cursor", "classcursor.html", null ],
+    [ "fluid_player", "classfluid__player.html", null ],
     [ "font", "classfont.html", [
       [ "bitmap_font", "classbitmap__font.html", null ],
       [ "freetype_font", "classfreetype__font.html", null ]
@@ -97,12 +98,14 @@ var hierarchy =
     [ "path_node", "structpath__node.html", null ],
     [ "pathfinder", "classpathfinder.html", null ],
     [ "raw_bitmap", "classraw__bitmap.html", null ],
+    [ "render_size", "structrender__size.html", null ],
     [ "render_target", "classrender__target.html", null ],
     [ "render_target_creation_params", "structrender__target__creation__params.html", null ],
     [ "render_target::scoped_buffer", "classrender__target_1_1scoped__buffer.html", [
       [ "render_target::scoped_target_texture", "classrender__target_1_1scoped__target__texture.html", null ]
     ] ],
     [ "render_target::scoped_clip", "classrender__target_1_1scoped__clip.html", null ],
+    [ "sdl_audio_mutex", "classsdl__audio__mutex.html", null ],
     [ "th::sound::sdl_mixer", "classth_1_1sound_1_1sdl__mixer.html", null ],
     [ "SDL_Rect", null, [
       [ "clip_rect", "structclip__rect.html", null ]
@@ -117,5 +120,6 @@ var hierarchy =
     [ "th_lua_midi_player", "classth__lua__midi__player.html", null ],
     [ "th_sprite_properties", "structth__sprite__properties.html", null ],
     [ "th_string_list", "classth__string__list.html", null ],
+    [ "window_size", "structwindow__size.html", null ],
     [ "xy_pair", "structxy__pair.html", null ]
 ];

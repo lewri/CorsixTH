@@ -36,7 +36,7 @@
  <span><a href="_0_1_announcer.html" class="class">Announcer</a> - Announces audible messages to the player.</span>
 </li>
  <li>
- <span><a href="_0_1_app.html" class="class">App</a> - SDL 3</span>
+ <span><a href="_0_1_app.html" class="class">App</a> - Adjust random announcement delay</span>
 </li>
  <li>
  <span><a href="_0_1_audio.html" class="class">Audio</a> - Layer which handles the Lua-facing side of loading and playing audio.</span>
@@ -171,6 +171,9 @@
 </li>
  </ul>
 </li>
+ <li>
+ <span><a href="_0_1_rat.html" class="class">Rat</a> - A `Rat` which runs from hole to hole</span>
+</li>
  </ul>
 </li>
  <li>
@@ -188,7 +191,10 @@ in the engine for reading / listing files off an ISO image instead of a
 file system.</span>
 </li>
  <li>
- <span><a href="_0_1_graphics.html" class="class">Graphics</a> - Layer for loading (and subsequently caching) graphical resources.</span>
+ <span><a href="_0_1_graphics.html" class="class">Graphics</a> - Layer for loading (and subsequently caching) graphical resources.
+The Graphics class handles loading and caching of graphics resources.
+It can adapt as the API to C changes, and hide these changes from most of
+the other Lua code.</span>
 </li>
  <li>
  <span><a href="_0_1_hospital.html" class="class">Hospital</a></span>
@@ -569,6 +575,9 @@ their last modification dates.</span>
  <span><a href="_0_1_u_i_resizable.html" class="class">UIResizable</a> - Class for resizable windows.</span>
  <ul class="subclass_hierarchy">
  <li>
+ <span><a href="_0_1_u_i_accessibility.html" class="class">UIAccessibility</a> - Accessibility window used in the main menu and ingame.</span>
+</li>
+ <li>
  <span><a href="_0_1_u_i_adviser_history.html" class="class">UIAdviserHistory</a> - Adviser message history</span>
 </li>
  <li>
@@ -613,6 +622,9 @@ their last modification dates.</span>
  <span><a href="_0_1_u_i_folder.html" class="class">UIFolder</a> - Customise window used in the main menu and ingame.</span>
 </li>
  <li>
+ <span><a href="_0_1_u_i_graphic_settings.html" class="class">UIGraphicSettings</a></span>
+</li>
+ <li>
  <span><a href="_0_1_u_i_hotkey_assign.html" class="class">UIHotkeyAssign</a> - Custom key bindings</span>
 </li>
  <li>
@@ -648,9 +660,6 @@ their last modification dates.</span>
  <span><a href="_0_1_u_i_options.html" class="class">UIOptions</a> - Options window used in the main menu and ingame.</span>
 </li>
  <li>
- <span><a href="_0_1_u_i_resolution.html" class="class">UIResolution</a> - A custom resolution selection window</span>
-</li>
- <li>
  <span><a href="_0_1_u_i_scroll_speed.html" class="class">UIScrollSpeed</a> - A window for setting the scroll speed of the camera.</span>
 </li>
  <li>
@@ -664,6 +673,9 @@ their last modification dates.</span>
 </li>
  <li>
  <span><a href="_0_1_u_i_update.html" class="class">UIUpdate</a> - Options window used in the main menu and ingame.</span>
+</li>
+ <li>
+ <span><a href="_0_1_u_i_window_size.html" class="class">UIWindowSize</a> - A custom window size selection window</span>
 </li>
  <li>
  <span><a href="_0_1_u_i_zoom_speed.html" class="class">UIZoomSpeed</a> - Window to set the zoom speed of the scroll wheel while in-game.</span>
