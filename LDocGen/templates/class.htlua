@@ -71,7 +71,6 @@
                 <th class="t">Type</th>
                 <th>Description</th>
               </tr>
-
               <! for name, param in member:parameterPairs() do !>
                 <tr>
                   <td class="n"><!= name !></td>
@@ -81,15 +80,21 @@
                     or (param and param:getShortDesc()) or "?" !></td>
                 </tr>
               <! end !>
+            </table>
 
-              <! if member:getReturnType() then !>
-                <tr class="return">
-                  <td class="n"><strong>Returns:</strong></td>
+            <! if member:getReturnType() then !>
+              <strong>Returns:</strong>
+              <table class="params">
+                <tr>
+                  <th class="t">Type</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
                   <td class="t"><!= member:getReturnType() !></td>
                   <td class="d"><!= member:getReturnDesc() or "?" !></td>
                 </tr>
-              <! end !>
-            </table>
+              </table>
+            <! end !>
           </p><p>
           <! end !>
           <! if super and super:get(name) then local existing = super:get(name) !>
