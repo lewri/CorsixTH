@@ -120,7 +120,7 @@ local function ParseComments(tokens, i, object)
         param:setShortDesc(pdesc)
         current_param = param
       elseif operation == "return" then
-        param = nil
+        current_param = nil
         if not class.is(object, LuaFunction) then
           error("Return annotation on a non-function object (" ..
             tokens.__file .. " near line " ..
