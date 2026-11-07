@@ -84,12 +84,14 @@
 
             <! if member:getReturnType() then !>
               <strong>Returns:</strong>
-              <table class="params">
+              <table class="return">
                 <tr>
+                  <th class="n"></th>
                   <th class="t">Type</th>
                   <th>Description</th>
                 </tr>
                 <tr>
+                  <td class="n"></td>
                   <td class="t"><!= member:getReturnType() !></td>
                   <td class="d"><!= member:getReturnDesc() or "?" !></td>
                 </tr>
