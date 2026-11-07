@@ -280,7 +280,7 @@ div.method_list ul li.self {
   font-weight: bold;
 }
 
-div.method_list span.p, div.member_list span.p, div.methods table.params td.n {
+div.method_list span.p, div.member_list span.p, div.methods table.params table.return td.n {
   font-family: monospace;
   font-weight: normal;
 }

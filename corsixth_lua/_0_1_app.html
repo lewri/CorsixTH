@@ -395,7 +395,11 @@ Controls the main CorsixTH application</h3>
  Check that a file at a full path exists, or find it, or expand filename to full paths<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">test_file</td>
  <td class="t">string</td>
@@ -406,7 +410,13 @@ Controls the main CorsixTH application</h3>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ <tr class="return">
+ <td class="n"><strong>Returns:</strong></td>
+ <td class="t">string</td>
+ <td class="d"># A full path that exists</td>
+ </tr>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1923">line 1923 of Lua/app.lua</a>.
  </p>
  </div>
@@ -417,7 +427,11 @@ Controls the main CorsixTH application</h3>
 Loads the specified level.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">level</td>
  <td class="t">string</td>
@@ -455,7 +469,8 @@ or nil for TH campaign or mapeditor</td>
  <td class="d"> Information about campaign in case loading level
 is a part of a campaign. if not part of a campaign then campaign_info is nil.</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L885">line 885 of Lua/app.lua</a>.
  </p>
  </div>
@@ -479,7 +494,11 @@ is a part of a campaign. if not part of a campaign then campaign_info is nil.</t
  Function to check the loaded game is compatible with the program<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">save_version</td>
  <td class="t">integer</td>
@@ -490,7 +509,8 @@ is a part of a campaign. if not part of a campaign then campaign_info is nil.</t
  <td class="t">string</td>
  <td class="d"> What graphics set is used</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1897">line 1897 of Lua/app.lua</a>.
  </p>
  </div>
@@ -520,7 +540,11 @@ with strings provided by english language with inheritance (i.e. all strings).
 This will give translators an idea which strings are missing in their translation.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">dir</td>
  <td class="t">string</td>
@@ -531,7 +555,8 @@ This will give translators an idea which strings are missing in their translatio
  <td class="t">string</td>
  <td class="d"> The language to check against.</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1041">line 1041 of Lua/app.lua</a>.
  </p>
  </div>
@@ -546,7 +571,11 @@ the release method.
 * Method(version) reports the difference between two savegame versions.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">version_a</td>
  <td class="t">number&nbsp;or&nbsp;table</td>
@@ -562,7 +591,8 @@ the release method.
  <td class="t">string</td>
  <td class="d"> What method to compare by</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1818">line 1818 of Lua/app.lua</a>.
  </p>
  </div>
@@ -571,7 +601,11 @@ the release method.
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">evt_type</td>
  <td class="t">?</td>
@@ -582,7 +616,8 @@ the release method.
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1273">line 1273 of Lua/app.lua</a>.
  </p>
  </div>
@@ -605,7 +640,11 @@ the release method.
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">last_dispatch_type</td>
  <td class="t">?</td>
@@ -616,7 +655,8 @@ the release method.
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1219">line 1219 of Lua/app.lua</a>.
  </p>
  </div>
@@ -633,7 +673,11 @@ the release method.
  Searches in the given folders for the given filename<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">search_paths</td>
  <td class="t">table</td>
@@ -644,7 +688,13 @@ the release method.
  <td class="t">string</td>
  <td class="d"> Filename to search for.</td>
  </tr>
- </table></p><p>
+ <tr class="return">
+ <td class="n"><strong>Returns:</strong></td>
+ <td class="t">string?</td>
+ <td class="d">full_path_to_file</td>
+ </tr>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L850">line 850 of Lua/app.lua</a>.
  </p>
  </div>
@@ -724,7 +774,11 @@ the release method.
  Returns the full path of the local path given<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">folders</td>
  <td class="t">string&nbsp;or&nbsp;table</td>
@@ -735,7 +789,13 @@ the release method.
  <td class="t">boolean</td>
  <td class="d"> Whether the path needs to end with a local path separator</td>
  </tr>
- </table></p><p>
+ <tr class="return">
+ <td class="n"><strong>Returns:</strong></td>
+ <td class="t">string</td>
+ <td class="d">fullpath The OS dependent full path</td>
+ </tr>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L95">line 95 of Lua/app.lua</a>.
  </p>
  </div>
@@ -745,13 +805,18 @@ the release method.
  Requests data regarding a given savegame version<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">savegame_version</td>
  <td class="t">number</td>
  <td class="d"> What to lookup, uses application version if blank</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1782">line 1782 of Lua/app.lua</a>.
  </p>
  </div>
@@ -761,13 +826,18 @@ the release method.
  Provides the release (or development) string for a given savegame version<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">savegame_version</td>
  <td class="t">number</td>
  <td class="d"> The version to look up</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1807">line 1807 of Lua/app.lua</a>.
  </p>
  </div>
@@ -776,13 +846,18 @@ the release method.
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">overrides</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L2196">line 2196 of Lua/app.lua</a>.
  </p>
  </div>
@@ -841,13 +916,18 @@ TODO: Integrate other directory initialisations into this function<br/><br/>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">path</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1443">line 1443 of Lua/app.lua</a>.
  </p>
  </div>
@@ -868,13 +948,18 @@ TODO: Integrate other directory initialisations into this function<br/><br/>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">filepath</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1878">line 1878 of Lua/app.lua</a>.
  </p>
  </div>
@@ -885,13 +970,18 @@ TODO: Integrate other directory initialisations into this function<br/><br/>
 to be able to progress through that campaign.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">campaign_file</td>
  <td class="t">string</td>
  <td class="d"> Full path of a CorsixTH Campaign definition Lua file.</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L735">line 735 of Lua/app.lua</a>.
  </p>
  </div>
@@ -903,7 +993,11 @@ This function should always be called to catch errors and properly pass the
 error to the player<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">level</td>
  <td class="t">?</td>
@@ -945,7 +1039,8 @@ return (boolean) The outcome of the pcall</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L865">line 865 of Lua/app.lua</a>.
  </p>
  </div>
@@ -954,7 +1049,11 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">dir</td>
  <td class="t">?</td>
@@ -970,7 +1069,8 @@ return (boolean) The outcome of the pcall</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1692">line 1692 of Lua/app.lua</a>.
  </p>
  </div>
@@ -980,13 +1080,18 @@ return (boolean) The outcome of the pcall</td>
  Initialise CorsixTH's main menu screen including relevant windows<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">message</td>
  <td class="t">string</td>
  <td class="d"> Something to display to the user</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L685">line 685 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1002,13 +1107,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1363">line 1363 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1017,13 +1127,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1355">line 1355 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1032,13 +1147,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1359">line 1359 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1047,13 +1167,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1375">line 1375 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1062,13 +1187,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1379">line 1379 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1077,13 +1207,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1371">line 1371 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1092,13 +1227,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1383">line 1383 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1107,13 +1247,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1423">line 1423 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1122,13 +1267,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1419">line 1419 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1137,13 +1287,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1431">line 1431 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1152,13 +1307,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1439">line 1439 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1167,13 +1327,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1435">line 1435 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1182,13 +1347,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1427">line 1427 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1197,13 +1367,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1367">line 1367 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1212,13 +1387,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1286">line 1286 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1227,13 +1407,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1387">line 1387 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1242,13 +1427,18 @@ return (boolean) The outcome of the pcall</td>
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1403">line 1403 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1259,13 +1449,18 @@ return (boolean) The outcome of the pcall</td>
 Call the UI to report the new window mode<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1407">line 1407 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1276,13 +1471,18 @@ Call the UI to report the new window mode<br/><br/>
 Call the UI to adjust to the new render size<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1397">line 1397 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1293,13 +1493,18 @@ Call the UI to adjust to the new render size<br/><br/>
 Call the UI to report the new window size<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1391">line 1391 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1310,13 +1515,18 @@ Call the UI to report the new window size<br/><br/>
 Call the UI to report the new window mode<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1413">line 1413 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1346,13 +1556,23 @@ Call the UI to report the new window mode<br/><br/>
  Load bitmap data into memory.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">filename</td>
  <td class="t">string</td>
  <td class="d"> Name of the file to load.</td>
  </tr>
- </table></p><p>
+ <tr class="return">
+ <td class="n"><strong>Returns:</strong></td>
+ <td class="t">string</td>
+ <td class="d"># The loaded data.</td>
+ </tr>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1629">line 1629 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1363,13 +1583,23 @@ Call the UI to report the new window mode<br/><br/>
 A correct campaign definition contains "name", "description", "levels", and "winning_text".<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">campaign_file</td>
  <td class="t">string</td>
  <td class="d"> Full path of the file to read.</td>
  </tr>
- </table></p><p>
+ <tr class="return">
+ <td class="n"><strong>Returns:</strong></td>
+ <td class="t">table?, string?</td>
+ <td class="d">file_content, error_message</td>
+ </tr>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L780">line 780 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1379,7 +1609,11 @@ A correct campaign definition contains "name", "description", "levels", and "win
  Read a data file of the application into memory (possibly with decompression).<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">dir</td>
  <td class="t">string</td>
@@ -1390,7 +1624,8 @@ A correct campaign definition contains "name", "description", "levels", and "win
  <td class="t">string</td>
  <td class="d"> If specified, the file to load. If 'nil', the dir' parameter is the filename in the "Data" directory.</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1643">line 1643 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1401,7 +1636,11 @@ A correct campaign definition contains "name", "description", "levels", and "win
 Values in the returned table: "path", "level_file", "name", "map_file", "briefing", and "end_praise".<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">level</td>
  <td class="t">string</td>
@@ -1412,7 +1651,13 @@ Values in the returned table: "path", "level_file", "name", "map_file", "briefin
  <td class="t">string</td>
  <td class="d"> Folder of the parent campaign file</td>
  </tr>
- </table></p><p>
+ <tr class="return">
+ <td class="n"><strong>Returns:</strong></td>
+ <td class="t">table?, string?</td>
+ <td class="d">level_info, error_message</td>
+ </tr>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L795">line 795 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1422,13 +1667,18 @@ Values in the returned table: "path", "level_file", "name", "map_file", "briefin
  Get a level file.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">path</td>
  <td class="t">string</td>
  <td class="d"> Full path of the level file, or a Theme Hospital level filename</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1663">line 1663 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1451,13 +1701,18 @@ Values in the returned table: "path", "level_file", "name", "map_file", "briefin
  Restarts the current level (offers confirmation window first)<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">message</td>
  <td class="t">string</td>
  <td class="d"> Optional message to the player</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1965">line 1965 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1466,13 +1721,18 @@ Values in the returned table: "path", "level_file", "name", "map_file", "briefin
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">filename</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1868">line 1868 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1501,13 +1761,18 @@ Values in the returned table: "path", "level_file", "name", "map_file", "briefin
  <p>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">...</td>
  <td class="t">?</td>
  <td class="d">?</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L85">line 85 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1536,13 +1801,18 @@ Values in the returned table: "path", "level_file", "name", "map_file", "briefin
  Check specified music directory is OK.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">path</td>
  <td class="t">?</td>
  <td class="d">Optional directory to check instead of configuration value</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L557">line 557 of Lua/app.lua</a>.
  </p>
  </div>
@@ -1559,7 +1829,11 @@ Values in the returned table: "path", "level_file", "name", "map_file", "briefin
 Returns the file handler, and true if it was written to the intended file.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
- <tr><th class="n">Name</th><th class="t">Type</th><th>Description</th>
+ <tr>
+ <th class="n">Name</th>
+ <th class="t">Type</th>
+ <th>Description</th>
+ </tr>
  <tr>
  <td class="n">file</td>
  <td class="t">string</td>
@@ -1570,7 +1844,8 @@ Returns the file handler, and true if it was written to the intended file.<br/><
  <td class="t">string</td>
  <td class="d"> The mode in which the file is opened, defaults to write</td>
  </tr>
- </table></p><p>
+ </table>
+ </p><p>
  <strong>Declared on:</strong> <a href="http://www.github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/app.lua#L1178">line 1178 of Lua/app.lua</a>.
  </p>
  </div>
