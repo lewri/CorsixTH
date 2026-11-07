@@ -1243,8 +1243,7 @@ Then it is specified here.</td>
  <div class="method">
  <h5><a name="_0_1_hospital_1check_disease_requirements">function Hospital:checkDiseaseRequirements(<span class="p">disease</span>)</a></h5>
  <p>
- i.e. a list of rooms (ordered the same as disease.treatment_rooms), and a set of humanoid_classes with<br/><br/>
- the needed amount of that class as the value<br/><br/>
+ Checks if the requirements for the given disease are met in the hospital and returns the ones missing.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1255,7 +1254,7 @@ Then it is specified here.</td>
  <tr>
  <td class="n">disease</td>
  <td class="t">String</td>
- <td class="d"> The disease to check the requirements for</td>
+ <td class="d"> The disease to check the requirements for returns false if all requirements are met, else a table in the form { rooms = {[room1], [room2], ...}, staff = {[humanoid_class] = [amount_needed] or nil} } i.e. a list of rooms (ordered the same as disease.treatment_rooms), and a set of humanoid_classes with the needed amount of that class as the value</td>
  </tr>
  </table>
  </p><p>
@@ -1273,8 +1272,8 @@ Then it is specified here.</td>
  <div class="method">
  <h5><a name="_0_1_hospital_1compute_price_level_impact">function Hospital:computePriceLevelImpact(<span class="p">patient</span>, <span class="p">casebook</span>)</a></h5>
  <p>
- is adjusted.<br/><br/>
- localised disease name when Adviser tells the warning message.<br/><br/>
+ The patient happiness is adjusted proportionally. The hospital reputation<br/><br/>
+ can only be affected when the distortion level reaches some threshold.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1285,12 +1284,12 @@ Then it is specified here.</td>
  <tr>
  <td class="n">patient</td>
  <td class="t">patient</td>
- <td class="d"> The patient paying the bill. His/her happiness level</td>
+ <td class="d"> The patient paying the bill. His/her happiness level is adjusted.</td>
  </tr>
  <tr>
  <td class="n">casebook</td>
  <td class="t">object</td>
- <td class="d"> Disease casebook entry. It's used to display the</td>
+ <td class="d"> Disease casebook entry. It's used to display the localised disease name when Adviser tells the warning message.</td>
  </tr>
  </table>
  </p><p>
@@ -1369,7 +1368,6 @@ Then it is specified here.</td>
  <h5><a name="_0_1_hospital_1count_room_of_type">function Hospital:countRoomOfType(<span class="p">type</span>, <span class="p">max_count</span>)</a></h5>
  <p>
  Checks if the hospital has a room of a given type.<br/><br/>
- Returns Number of that type found, at most max_count is returned if provided.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1385,7 +1383,7 @@ Then it is specified here.</td>
  <tr>
  <td class="n">max_count</td>
  <td class="t">optional&nbsp;or&nbsp;integer</td>
- <td class="d"> If provided, non-negative maximum count to return.</td>
+ <td class="d"> If provided, non-negative maximum count to return. Returns Number of that type found, at most max_count is returned if provided.</td>
  </tr>
  </table>
  </p><p>
@@ -1402,8 +1400,7 @@ Then it is specified here.</td>
  <div class="method">
  <h5><a name="_0_1_hospital_1count_staff_of_category">function Hospital:countStaffOfCategory(<span class="p">category</span>, <span class="p">max_count</span>)</a></h5>
  <p>
- "Surgeon", "Researcher", "Junior" or "Consultant"<br/><br/>
- returns Number of that type employed, at most max_count is returned if provided.<br/><br/>
+ Checks if the hospital employs staff of a given category.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1414,12 +1411,12 @@ Then it is specified here.</td>
  <tr>
  <td class="n">category</td>
  <td class="t">string</td>
- <td class="d"> A humanoid_class or one of the specialists, i.e.</td>
+ <td class="d"> A humanoid_class or one of the specialists, i.e. "Doctor", "Nurse", "Handyman", "Receptionist", "Psychiatrist", "Surgeon", "Researcher", "Junior" or "Consultant"</td>
  </tr>
  <tr>
  <td class="n">max_count</td>
  <td class="t">optional&nbsp;or&nbsp;integer</td>
- <td class="d"> If provided, non-negative maximum count to return.</td>
+ <td class="d"> If provided, non-negative maximum count to return. returns Number of that type employed, at most max_count is returned if provided.</td>
  </tr>
  </table>
  </p><p>
@@ -1444,7 +1441,7 @@ to cure them and the fax.<br/><br/>
  <td class="d">?</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1577,7 +1574,7 @@ ratholes, nearest to the centre of the current view first.<br/><br/>
  <td class="d"> Bottom edge of the current view in map screen coordinates.</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1702,7 +1699,7 @@ ratholes, nearest to the centre of the current view first.<br/><br/>
  <td class="d"> name of the disease</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1763,7 +1760,6 @@ ratholes, nearest to the centre of the current view first.<br/><br/>
  <h5><a name="_0_1_hospital_1get_index_of_task">function Hospital:getIndexOfTask(<span class="p">x</span>, <span class="p">y</span>, <span class="p">taskType</span>, <span class="p">obj</span>)</a></h5>
  <p>
  Find a handyman task by task type, position, and possibly the used object.<br/><br/>
- Since multiple litter objects may exist at the same tile, the object must be given when cleaning.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1789,7 +1785,7 @@ ratholes, nearest to the centre of the current view first.<br/><br/>
  <tr>
  <td class="n">obj</td>
  <td class="t">Object</td>
- <td class="d"> If specified, the object used for doing the task.</td>
+ <td class="d"> If specified, the object used for doing the task. Since multiple litter objects may exist at the same tile, the object must be given when cleaning.</td>
  </tr>
  </table>
  </p><p>
@@ -1857,7 +1853,7 @@ activity with hospital size.<br/><br/>
  <td class="d"> Do the desks need to be staffed</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1926,7 +1922,7 @@ Treatment charge should never be less than the starting price if reputation fall
  <td class="d"> Y position of the queried tile.</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1998,7 +1994,7 @@ Treatment charge should never be less than the starting price if reputation fall
  <td class="d"> Does the desk need to be staffed</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -2122,7 +2118,7 @@ Treatment charge should never be less than the starting price if reputation fall
  <td class="d"> The name of the room</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -2991,7 +2987,6 @@ Also if a debug patient, they are also removed from the debug list.<br/><br/>
  <h5><a name="_0_1_hospital_1spawn_rat">function Hospital:spawnRat(<span class="p">hole</span>)</a></h5>
  <p>
  Spawn a rat emerging from a rathole. It runs to another rathole and vanishes.<br/><br/>
- rathole is used when omitted.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -3002,10 +2997,10 @@ Also if a debug patient, they are also removed from the debug list.<br/><br/>
  <tr>
  <td class="n">hole</td>
  <td class="t">table&nbsp;or&nbsp;optional</td>
- <td class="d"> The hole to emerge from; a random existing</td>
+ <td class="d"> The hole to emerge from; a random existing rathole is used when omitted.</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -3150,8 +3145,7 @@ in _S.transactions.</td>
  <div class="method">
  <h5><a name="_0_1_hospital_1update_not_cured_counts">function Hospital:updateNotCuredCounts(<span class="p">patient</span>, <span class="p">reason</span>)</a></h5>
  <p>
- -"kicked": Patient goes home early (manually sent, no treatment room, etc).<br/><br/>
- -"over_priced": Patient considers the price too high.<br/><br/>
+ Update the 'not cured' counts of the hospital.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -3167,7 +3161,7 @@ in _S.transactions.</td>
  <tr>
  <td class="n">reason</td>
  <td class="t">string</td>
- <td class="d"> the reason why the patient is not cured.</td>
+ <td class="d"> the reason why the patient is not cured. -"kicked": Patient goes home early (manually sent, no treatment room, etc). -"over_priced": Patient considers the price too high.</td>
  </tr>
  </table>
  </p><p>

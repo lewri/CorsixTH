@@ -346,8 +346,7 @@ room.handyman_call_sound = "maint007.wav" TODO: No sound for this room?</h3>
  <div class="method">
  <h5><a name="_0_1_operating_theatre_room_1__build_table_action1">function OperatingTheatreRoom:_buildTableAction1(<span class="p">surgeon1</span>, <span class="p">patient</span>, <span class="p">operation_table</span>)</a></h5>
  <p>
- be the same as the surgeon who gets the action on his queue.<br/><br/>
- the operation table.<br/><br/>
+ Builds the first operation action (i.e. with the surgeon whose we see the front).<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -358,7 +357,7 @@ room.handyman_call_sound = "maint007.wav" TODO: No sound for this room?</h3>
  <tr>
  <td class="n">surgeon1</td>
  <td class="t">Staff</td>
- <td class="d">: the surgeon who does this operation action. He must</td>
+ <td class="d">: the surgeon who does this operation action. He must be the same as the surgeon who gets the action on his queue.</td>
  </tr>
  <tr>
  <td class="n">patient</td>
@@ -368,7 +367,7 @@ room.handyman_call_sound = "maint007.wav" TODO: No sound for this room?</h3>
  <tr>
  <td class="n">operation_table</td>
  <td class="t">OperatingTable</td>
- <td class="d">: master object representing</td>
+ <td class="d">: master object representing the operation table.</td>
  </tr>
  </table>
  </p><p>
@@ -490,8 +489,8 @@ room.handyman_call_sound = "maint007.wav" TODO: No sound for this room?</h3>
  <div class="method">
  <h5><a name="_0_1_operating_theatre_room_1queue_wash_hands">function OperatingTheatreRoom:queueWashHands(<span class="p">surgeon</span>, <span class="p">before_other_actions</span>)</a></h5>
  <p>
- Add the actions at the end of the queue otherwise.<br/><br/>
- Default value is true.<br/><br/>
+ Sends the surgeon to the nearest operation sink ("op_sink1")<br/><br/>
+ and makes him wash his hands<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -507,7 +506,7 @@ room.handyman_call_sound = "maint007.wav" TODO: No sound for this room?</h3>
  <tr>
  <td class="n">before_other_actions</td>
  <td class="t">boolean</td>
- <td class="d">: If true, add the actions at the front the action queue.</td>
+ <td class="d">: If true, add the actions at the front the action queue. Add the actions at the end of the queue otherwise. Default value is true.</td>
  </tr>
  </table>
  </p><p>

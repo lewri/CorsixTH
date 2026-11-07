@@ -707,7 +707,7 @@ says what to do with the patient.<br/><br/>
  <td class="d"> optional drawer icon object</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1222,18 +1222,9 @@ y is the y-coordinate of the reputation meter<br/><br/>
  <div class="method">
  <h5><a name="_0_1_u_i_bottom_panel_1queue_message">function UIBottomPanel:queueMessage(<span class="p">type</span>, <span class="p">message</span>, <span class="p">owner</span>, <span class="p">timeout</span>, <span class="p">default_choice</span>, <span class="p">callback</span>)</a></h5>
  <p>
+ Queue a fax notification message to appear.<br/><br/>
  The arguments specify a message, which is added to a FIFO queue, and will
 appear on screen once there is space.<br/><br/>
- Structure of message (except strike):
-message = {
-{ text = "first line of text", offset (integer, optional) }
-{ text = "second line of text", offset (integer, optional) }
-...
-choices = {
-{ text = "first choice", choice = "choice_type", enabled = true or false (optional, defaults to true) }
-...
-}
-}<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1269,7 +1260,16 @@ choices = {
  <tr>
  <td class="n">callback</td>
  <td class="t">function&nbsp;or&nbsp;or&nbsp;or&nbsp;nil</td>
- <td class="d"> If given, it will be called when the message is closed.</td>
+ <td class="d"> If given, it will be called when the message is closed. Structure of message (except strike):
+message = {
+{ text = "first line of text", offset (integer, optional) }
+{ text = "second line of text", offset (integer, optional) }
+...
+choices = {
+{ text = "first choice", choice = "choice_type", enabled = true or false (optional, defaults to true) }
+...
+}
+}</td>
  </tr>
  </table>
  </p><p>
@@ -1309,8 +1309,8 @@ choices = {
  <div class="method">
  <h5><a name="_0_1_u_i_bottom_panel_1set_dynamic_info">function UIBottomPanel:setDynamicInfo(<span class="p">info</span>)</a></h5>
  <p>
- dividers: { 25, 50, 75 }<br/><br/>
- }<br/><br/>
+ If the info is nil then a cooldown timer is used before removing the<br/><br/>
+ information from the display.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1321,7 +1321,7 @@ choices = {
  <tr>
  <td class="n">info</td>
  <td class="t">table</td>
- <td class="d"> A table containing the information to display. The text</td>
+ <td class="d"> A table containing the information to display. The text key is required and contains an array of lines to show. An optional progress key may be given to draw a progress bar, following the text and and an array of dividers may be provided to draw extra vertical lines in the progress bar. info = { text: { "He's not the saviour", "He's very naughty boy" }, progress: 50, dividers: { 25, 50, 75 } }</td>
  </tr>
  </table>
  </p><p>

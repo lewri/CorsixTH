@@ -1279,7 +1279,6 @@ movement to 1 for significant shaking.</td>
  <h5><a name="_0_1_game_u_i_1on_pinch_update">function GameUI:onPinchUpdate(<span class="p">scale</span>)</a></h5>
  <p>
  Process SDL_EVENT_PINCH_UPDATE.<br/><br/>
- Scale < 1 is "zoom out". Scale > 1 is "zoom in"<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1290,10 +1289,10 @@ movement to 1 for significant shaking.</td>
  <tr>
  <td class="n">scale</td>
  <td class="t">number</td>
- <td class="d"> The scale change since the last SDL_EVENT_PINCH_UPDATE.</td>
+ <td class="d"> The scale change since the last SDL_EVENT_PINCH_UPDATE. Scale < 1 is "zoom out". Scale > 1 is "zoom in"</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1435,7 +1434,7 @@ call actually says something.</td>
  <td class="d">?</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1645,7 +1644,6 @@ param index (integer) Position in recallpositions table<br/><br/>
  <h5><a name="_0_1_game_u_i_1set_world_hit_test">function GameUI:setWorldHitTest(<span class="p">mode</span>)</a></h5>
  <p>
  Change if the World should be tested for entities under the cursor<br/><br/>
- to disable, room to enable only for non-door objects in given room<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1656,7 +1654,7 @@ param index (integer) Position in recallpositions table<br/><br/>
  <tr>
  <td class="n">mode</td>
  <td class="t">boolean&nbsp;or&nbsp;or&nbsp;or&nbsp;room</td>
- <td class="d"> true to enable hit test (normal), false</td>
+ <td class="d"> true to enable hit test (normal), false to disable, room to enable only for non-door objects in given room</td>
  </tr>
  </table>
  </p><p>

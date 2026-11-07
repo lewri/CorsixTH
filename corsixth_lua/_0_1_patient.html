@@ -1038,7 +1038,7 @@ called when they are done using a diagnosis room<br/><br/>
  <td class="d">: casebook entry for the treatment.</td>
  </tr>
  </table>
- <strong>Returns:</strong>
+ <strong>&nbsp;Returns:</strong>
  <table class="return">
  <tr>
  <th class="n"></th>
@@ -1073,9 +1073,8 @@ called when they are done using a diagnosis room<br/><br/>
  <div class="method">
  <h5><a name="_0_1_patient_1go_home">function Patient:goHome(<span class="p">reason</span>, <span class="p">disease_id</span>)</a></h5>
  <p>
- the last treatment is over-priced.
-param disease_id (string): When the reason is "over_priced" this is the<br/><br/>
- id of the disease/diagnosis that the patient considered over_priced<br/><br/>
+ statistics (number of cured/kicked out patients, etc.)<br/><br/>
+ The mood icon is updated accordingly. Reputation is impacted accordingly.<br/><br/>
  <strong>Parameters:</strong>
  <table class="params">
  <tr>
@@ -1086,7 +1085,8 @@ param disease_id (string): When the reason is "over_priced" this is the<br/><br/
  <tr>
  <td class="n">reason</td>
  <td class="t">string</td>
- <td class="d">: the reason why the patient is sent home, which could be:</td>
+ <td class="d">: the reason why the patient is sent home, which could be: -"cured": When the patient is cured. -"kicked": When the patient is kicked anyway, either manually, either when no treatment can be found for her/him, etc. -"over_priced": When the patient decided to leave because he/she believes the last treatment is over-priced.
+param disease_id (string): When the reason is "over_priced" this is the id of the disease/diagnosis that the patient considered over_priced</td>
  </tr>
  <tr>
  <td class="n">disease_id</td>
