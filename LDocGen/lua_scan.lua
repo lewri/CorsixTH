@@ -109,7 +109,25 @@ local function ParseComments(tokens, i, object)
         end
         param:setShortDesc(pdesc)
       elseif operation == "return" then
-        -- TODO
+        if not class.is(object, LuaFunction) then
+          error("Return annotation on a non-function object (" ..
+            tokens.__file .. " near line " ..
+            tokens[decl_i - 1].line .. ")")
+        end
+
+        local return_type, return_desc =
+          operand:match("^%s*%(([^)]*)%)%s*(.*)$")
+
+        if not return_type then
+          --[[error("Return annotation without a type declaration (" ..
+            tokens.__file .. " near line " ..
+            tokens[decl_i - 1].line .. ")")]]--
+          -- Fail silently for now
+        end
+
+        object:setReturnType(return_type)
+        object:setReturnDesc(return_desc)
+
       elseif operation == "example" then
         -- TODO
       else
