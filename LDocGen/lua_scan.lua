@@ -73,13 +73,22 @@ local function ParseComments(tokens, i, object)
   -- Set filename and line
   object:setFile(tokens.__file, decl_i == 1 and 1 or tokens[decl_i - 1].line)
   -- Parse each command
+  local current_param
   for _, part in ipairs(comment_parts) do
     for command in (" "..part):gmatch"([^!]+)" do
       local operation = command:match"(%S*)"
       local operand = command:sub(1 + #operation, -1):trim()
       if operation == "" then
         if operand ~= "" then
-          if object:getShortDesc() then
+          if current_param then
+            local pdesc = current_param:getShortDesc()
+            if pdesc and pdesc ~= "" then
+              pdesc = pdesc .. " " .. operand
+            else
+              pdesc = operand
+            end
+            current_param:setShortDesc(pdesc)
+          elseif object:getShortDesc() then
             if object:getLongDesc() then
               object:setShortDesc(object:getLongDesc())
             end
@@ -89,6 +98,7 @@ local function ParseComments(tokens, i, object)
           end
         end
       elseif operation == "dummy" then
+        current_param = nil
         object:setIsDummy(true)
       elseif operation == "param" then
         local pname, pdesc = operand:match"^%s*([a-zA-Z_.]%.?%.?[a-zA-Z0-9_]*)%s*(.*)$"
@@ -108,7 +118,9 @@ local function ParseComments(tokens, i, object)
           param.type = types
         end
         param:setShortDesc(pdesc)
+        current_param = param
       elseif operation == "return" then
+        param = nil
         if not class.is(object, LuaFunction) then
           error("Return annotation on a non-function object (" ..
             tokens.__file .. " near line " ..
@@ -129,8 +141,10 @@ local function ParseComments(tokens, i, object)
         object:setReturnDesc(return_desc)
 
       elseif operation == "example" then
+        current_param = nil
         -- TODO
       else
+        current_param = nil
         error("Unknown documentation command: " .. operation .." ("..
           tokens.__file .." near line ".. tokens[decl_i - 1].line ..")")
       end
